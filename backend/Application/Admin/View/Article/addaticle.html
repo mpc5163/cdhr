@@ -1,0 +1,122 @@
+<include file="Public/head" />
+<form id="fmform" action="" method="POST" enctype="multipart/form-data">
+    <input type="hidden" value="fmimg" name="imgtype" value="" />
+    <input id="fmimg" style="display: none;" name="fmimg" type="file" onchange="upload('fmform','imgurl')"/>
+</form>
+<style type="text/css">
+	table tr > td:first-child{padding-left:20px;padding-bottom:10px;width:40%;text-align:center;}
+	table tr > td:last-child input{width:60%;margin-bottom:10px;	}
+</style>
+         <div class="modal-body">
+            <table class="modal-table" style="width:80%;">
+              <tr>
+              <td>标题<span style="color:red">&nbsp;*</span></td>
+              <td><input type="text" class="form-control" name="title" placeholder="标题" id="title" value="{$data.title}"></td>
+            </tr>
+            <tr>  
+              <td>作者<span style="color:red">&nbsp;*</span></td>
+                <td><input type="hidden" name="userid" id="userid" value="{$data.id}"/>
+                <input type="text" class="form-control"  name="author" id="author" placeholder="作者" value="{$data.author}"></td>
+              </tr>
+              <tr>  
+              <td>类别：<span style="color:red">&nbsp;*</span></td>
+                <td><select  name="classid" id="classid" class="form-control" value="{$data.classid}" style="width:180px;">
+                  <option value="0">请选择文章类别</option>
+                  <option value="1">时事新刊</option>
+                  <option value="2">深度好文章</option>
+                  <option value="3">公司简介</option>
+                  
+              </select></td>
+              </tr>
+              <tr>  
+              <td>描述<span style="color:red">&nbsp;*</span></td>
+                <td>
+                <input type="text" class="form-control"  name="description" id="description" placeholder="描述" value="{$data.description}"></td>
+              </tr>
+              <tr>
+              <td>缩略图</td>
+              <td><img id="imgurl" name="imgurl" style="width: 130px;height: 130px;margin:5px auto;" class="form-control" src="{$data.thumbnail}" onclick="javascript:$('#fmimg').click();"/>
+              <input id="thumbnail" type="hidden" name="thumbnail" value="{$data.thumbnail}" />{$data.thumbnail}
+              <span style="color:red;">上传图片尺寸为:1145 * 500 px</span>
+                            </td>
+            </tr> 
+            <tr>
+              <td>内容</td>
+              <td>
+                <span id="detail">{$data.content|htmlspecialchars_decode|stripslashes}</span>
+              </td>
+            </tr>
+            </table>
+        </div> 
+            <script id="container" name="content" type="text/plain" style="min-height: 400px;">{$data.content|htmlspecialchars_decode|stripslashes}
+            </script>           
+<button class="btn btn-default" style="width:200px;text-align:center;position:absolute;right:100px;margin-top:15px;" onclick="saveUser()">完成</button>
+<include file="Public/footer" />
+<script src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+  $("#detail").hide();
+    var ue;
+    $(function(){
+    	$("#container").height(document.documentElement.clientHeight-160);
+         ue = UE.getEditor('container',{
+            serverUrl :"{:U('/Admin/Article/ueditor')}"
+        });
+            ue.ready(function() {
+		    //设置编辑器的内容
+		    ue.setContent($("#detail").html());      
+		});
+    });
+  //上传图片
+  function upload(fromID,imgid){
+    var vars=$("#"+fromID);
+    var options={
+        type:"post",
+        url:"{:U('/Admin/File/Upload')}",
+        dataType:'json',
+        contentType:"application/json;charset=utf-8",
+        success:function(data){
+            if(data!="false"){
+                $("#"+imgid).attr('src',data);
+                $("#vidurl").attr('poster',data);
+                $("#thumbnail").attr('value',data);
+            }
+        }
+    }
+    vars.ajaxSubmit(options);
+  }
+  //保存添加或修改的用户信息
+  function saveUser(){
+    var userid     = $("#userid").val();
+    var title   = $("#title").val();
+    var classid   = $("#classid").val();
+    var author       = $("#author").val();
+    var description       = $("#description").val();
+    var thumbnail= $("#thumbnail").val();
+    var content     = ue.getContent();
+    var isenable   = $("#isenable option:selected").val();
+      var preg_tel = /^1[34578]\d{9}$/; //手机号
+    var preg_name= /^[\u4E00-\u9FA5]{1,6}$/;  //姓名正则
+    if (title == '') {
+      alert('标题不能为空!');return;
+      }
+      
+      $.ajax({
+        type     : "POST",
+        url      : "{:U('/Admin/Article/saveUser')}",
+        data     : {"userid":userid,"title":title,"author":author,"description":description,"classid":classid,"content":content,"thumbnail":thumbnail,"isenable":isenable},
+        dataType : "json",
+        error    : function(){},
+        success  : function(data){
+            console.log(data);
+            if(data.status){
+              $(window.parent.document).find("#main_iframe").attr("src",data.url);
+            }else{
+              alert(data.info);
+            }             
+        }
+      });
+  }
+
+</script>
+

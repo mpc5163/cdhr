@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css">
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+        <style>
+        .jyt_ul11{}
+        .jyt_ul11 li{
+            padding: 20px 15px;
+            border-bottom: 1px solid #eee;
+            overflow: hidden;
+        }
+        .jyt_ul11 li img{
+            display: block;
+            float: left;
+            width: 30.4%;
+            height: 100%;
+        }
+        .jyt_ul11 li .jyt_xqq{
+            padding-left: 10px;
+            float: left;
+            width: 64%;
+        }
+        .jyt_xqq p{
+            color: #090909;
+            font-size: 14px;
+            line-height: 20px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+        .jyt_xqq h5{
+            font-weight: normal;
+            color: #999999;
+            font-size: 12px;
+            line-height: 20px;
+        }
+        .jyt_xqq h6{
+            font-weight: normal;
+            color: #999999;
+            font-size: 12px;
+            line-height: 20px;
+        }
+        </style>
+    </head>
+    <body>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header style="background:#188eee;" class="header">
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_edit_h1">直播明细</h1>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content jyt_jifen_con" style="background:#fff;">
+                <ul class="jyt_ul11">
+                   
+                </ul>
+	    	</div>
+	    
+	    	
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+	    		
+	    	</footer> -->
+    	</div>
+</body>
+<script type="text/javascript">
+  $(document).ready(function(){
+       $.ajax({
+          url:"http://hr.hongrunet.com/Home/Letv/Live_list",
+          dataType:"jsonp",
+          data:{},
+          jsonpCallback:'jsonpReturn1',
+          success: function(data){
+              console.log(data);
+              var time;
+              if(data.status == 1){
+                var xx = data.data
+                  for(var i in xx){
+                    if(xx[i].timelength == 1){
+                      time = '00:40:00';
+                    }else if(xx[i].timelength == 2){
+                      time = '01:00:00';
+                    }else if(xx[i].timelength == 3){
+                      time = '01:30:00';
+                    }else if(xx[i].timelength == 4){
+                      time = '02:00:00';
+                    }else if(xx[i].timelength == 5){
+                      time = '02:30:00';
+                    }else if(xx[i].timelength == 6){
+                      time = '03:00:00';
+                    }
+                    console.log(xx[i]);
+                    $('.jyt_ul11').append('<li><a href="lf_selectPort.html?id='+xx[i].id+'"><img src="'+xx[i].coverimgurl+'"><div class="jyt_xqq"><p>'+xx[i].title+'</p><h5>开始时间： '+xx[i].start+'</h5><h6>直播时长： '+time+'</h6></a></div></li>')
+                  }
+              }else if(data.status == 5){         
+                  window.lpcation.href=data.data;
+              }
+          }
+      });
+  });
+</script>
+</html>

@@ -1,0 +1,287 @@
+/*http://api.open.lecloud.com/live/execute*/
+	/*Content-Type: application/x-www-form-urlencoded;charset=utf-8*/
+	/*
+		$headers = array(
+		    'User-Agent' => 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)',
+		    'Content-Type'    => 'application/x-www-form-urlencoded;charset=utf-8',
+		    'Referer: http://hr.hongrunet.com'
+			);
+		$url='http://api.open.lecloud.com/live/execute';	
+	*/
+/*
+公共参数
+若未做特殊说明，本文档所有接口均需传以下五个参数：
+
+	method		string	要调用的OpenAPI接口方法名称，如：letv.rtmp.stream.search
+	ver			string	版本号，用于区分相同接口不同版本功能，如：3.0 ver=4.0
+	userid		int		客户唯一标识码，客户在乐视云计算公司门户注册后自动生成
+	timestamp	long 	时间戳，由1970年1月1日开始所经过的毫秒数表示，
+						早于服务器时间10分钟内的请求有效
+	sign		string	验证码，生成规则见下面的《权限验证》
+*/		
+/*
+权限验证
+参数sign用于验证请求是否具有合法权限，其生成规则如下：
+    一、把除sign外的所有参数（包括另外的公共参数）按key升序排序。
+    二、把key和它对应的value拼接成一个字符串。按步骤1中顺序，把所有键值对字符串拼接成一个字符串。对于url类的参数，请使用url编码前的字符串。
+    三、把分配给的secretkey(此处假设为：ABCDEFGHIJK)拼接在第2步骤得到的字符串后面。    
+    四、计算第3步骤字符串的md5值，使用md5值的16进制字符串作为sign的值。
+*/
+/*
+直播活动创建接口
+方法名称 : lecloud.cloudlive.activity.create
+请求方法：POST
+请求参数：
+	*activityName		string 		直播活动名称(200个字符以内)
+	*activityCategory	string 		活动分类编码表
+	*startTime			string 		开始时间，从1970开始的毫秒数
+	*endTime			string 		结束时间，从1970开始的毫秒数
+	coverImgUrl			string 		活动封面地址，如果为空，则系统会默认一张图片
+	description 		string 		活动描述（1024个字符以内）
+	*playMode			int 		播放模式，0：实时直播 1：流畅直播
+	*liveNum			int 		机位数量，范围为：1,2,3,4. 默认为1
+	*codeRateTypes		string 		流的码率类型，逗号分隔。由大到小排列。
+									取值范围：13 流畅；16 高清；19 超清；
+									 25   1080P；99 原画。
+									默认按最高码率播放，如果有原画则按原画播放
+	needRecord			int 		是否支持全程录制 0：否 1：是。默认为0
+	needTimeShift		int 		是否支持时移 0：否   1：是。默认为0
+	needFullView		int 		是否全景观看 0：否   1：是。默认为0
+返回参数：
+	activityId  		string  		活动ID	
+
+《活动分类编码表》：
+					001	发布会
+					002	婚礼
+					003	年会
+					004	体育
+					005	游戏
+					006	旅游&户外
+					007	财经
+					008	演唱会
+					009	烹饪
+					010	宠物&动物
+					011	访谈
+					012	教育
+					013	竞技
+					014	剧场
+					015	晚会
+					016	电视节目
+					017	秀场
+					018	资讯
+					999	其他
+
+
+*/
+/*
+直播活动查询接口
+方法名称：lecloud.cloudlive.activity.search
+请求方法：GET
+请求参数：
+	activityId		string	否	直播活动ID
+	activityName	string	否	直播活动名称
+	activityStatus	int		否	直播活动状态。0：未开始 1：已开始 3：已结束
+	offSet			int		否	从第几条数据开始查询，默认0
+	fetchSize		int		否	一次返回多少条数据，默认为10，最多不能超过100条
+返回参数：
+	activityId			string	是	活动ID
+	activityName		string	是	活动名称
+	activityCategory	string	是	活动分类
+	activityStatus		int		是	活动状态。0：未开始 1：已开始  3：已结束
+	startTime			string	是	开始时间。从1970开始的毫秒数
+	endTime				string	是	结束时间。从1970开始的毫秒数
+	createTime			string	是	活动创建时间。从1970开始的毫秒数
+	coverImgUrl			string	否	活动封面地址
+	description			string	否	活动描述
+	playMode			int		是	播放模式。0：实时直播；1：流畅直播
+	liveNum				int		是	机位数量。最多4个机位
+	needRecord			int		是	是否支持全程录制。0：否 1：是
+	needTimeShift		int		是	是否支持时移。0：否 1：是
+	needFullView		int		是	是否支持全景观看。0：否 1：是
+	neededPushAuth		int		是	是否启用推流鉴权。0：否 1：是
+	pushUrlValidTime	int		否	推流地址有效时长。单位s，启用推流鉴权时有效
+	needIpWhiteList		int		是	是否启用IP推流白名单。0：否 1：是
+	pushIpWhiteList		string	否	推流IP白名单。启用IP推流白名单时有效	
+*/
+
+/*
+直播活动修改接口
+方法名称：lecloud.cloudlive.activity.modify
+请求方法：POST
+请求参数：
+	activityId			string	是	直播活动ID
+	activityName		string	否	直播活动名称(200个字符以内)
+	activityCategory	string	否	活动分类，参见《直播活动创建接口》文档
+	startTime			string	否	开始时间，从1970开始的毫秒数
+	endTime				string	否	结束时间，从1970开始的毫秒数
+	coverImgUrl			string	否	活动封面地址
+	description			string	否	活动描述（255个字符以内）
+	liveNum				int		否	机位数量，范围为：1，2，3，4
+	codeRateTypes		string	否	流的码率类型，逗号分隔。取值范围：13 流畅； 16 
+									高清；19 超清； 25 1080P；99 原画
+	needRecord			int		否	是否支持全程录制 0：否 1：是
+	needTimeShift		int		否	是否支持时移 0：否 1：是
+	needFullView		int		否	是否支持全景观看 0：否 1：是
+	playMode			int		否	播放模式：0：实时直播；1：流畅直播
+*/	
+/*
+直播活动封面上传接口
+方法名称: lecloud.cloudlive.activity.modifyCoverImg
+请求方法：POST
+请求参数：
+	activityId	string	是	直播活动ID。
+	file		File	是	要上传的封面图片。
+							注1：file是http文件流格式，不是字符串、文件地址或文件路径。
+							注2：file不参与公共参数中sign值的计算。
+返回参数：
+	coverImgUrl	String	是	图片地址							
+
+*/
+/*
+直播活动结束接口
+方法名称: lecloud.cloudlive.activity.stop
+请求方法：POST
+请求参数：
+	activityId	string	是	直播活动ID
+*/
+/*
+直播活动安全信息设置接口
+方法名称：lecloud.cloudlive.activity.sercurity.config
+请求方法：POST
+请求参数：
+	activityId			string	是	直播活动ID
+	neededPushAuth		int		否	是否启用 直播推流防盗链。 	0：否 1：是。默认为0。
+	pushUrlValidTime	int	否	直播推流防盗链有效时长，单位s。启用直播推流防盗链时才有效。
+	liveKey				string	否直播安全码，计算推流地址时用到的安全码，
+								如果为空的话，则使用客户的安全码
+	needIpWhiteList 	int	否	是否启用 直播流推流白名单。 0：否 1：是。默认为0。
+	pushIpWhiteList		string	否	
+								直播流推流IP白名单。
+								启用IP推流白名单时有效。
+								多个IP时，用英文半角逗号分隔，
+								IP最多可以配置10个，值总长度最大为512
+	needPlayerDomainWhiteList	int 	否	是否启用 播放域名白名单。
+										0：否 1：是。默认为0。
+	playerDomainWhiteList	String	否	域名白名单，多个时逗号分隔。最大长度为512，最多为10个
+*/	
+/*
+直播活动播放页地址获取
+方法名称：lecloud.cloudlive.activity.playerpage.getUrl
+请求方法：GET
+请求参数：
+	activityId	string	是	直播活动ID
+返回参数
+	playPageUrl	string	是	直播活动播放页地址
+*/	
+/*
+直播活动推流Token获取接口
+方法名称: lecloud.cloudlive.activity.getPushToken
+请求方法：GET
+请求参数：
+	activityId	string	是	直播活动ID
+返回参数：
+	token	string	是	推流密钥。32位明文，数字+字母组成	
+*/	
+/*
+直播活动推流地址获取接口
+方法名称: lecloud.cloudlive.activity.getPushUrl
+功能说明：获取直播推流地址。
+1、如果活动安全设置中启用了推流鉴权，则推流地址的有效时间默认为10分钟，也可以单独设置。
+2、如果是同一个IP客户端推同一个流则不受防盗链限制。
+请求方法：GET
+请求参数：
+	activityId	string	是	直播活动ID
+返回参数：
+	liveNum		int		是	机位数量
+	lives		list	数组
+	—machine	string	是	机位位置。1-4机位
+	—status		int		是	状态。0：无信号 1：有信号
+	—pushUrl	string	是	推流地址	
+*/
+/*
+直播活动机位状态查询接口
+方法名称: lecloud.cloudlive.activity.getActivityMachineState
+功能说明：查询活动下各机位的状态
+请求方法：GET
+请求参数：
+	activityId	string	是	直播活动ID
+返回参数：
+	activityId	String	是	活动ID
+	liveNum		int		是	机位数量
+	lives		list	是	机位信息列表
+	-- liveId	string	是	直播ID。机位的唯一对应的标识
+	-- machine	string	是	机位位置。取值范围 1-4
+	-- status	int		是	机位状态。0:无信号   1:有信号	
+*/
+/*
+直播活动流信息查询接口
+方法名称：lecloud.cloudlive.vrs.activity.streaminfo.search
+功能说明：用于第三方播放器获取直播活动的流信息。
+请求方法：GET
+请求参数：
+	activityId	string	是	直播活动ID
+返回参数：
+	activityId		string	是	活动ID
+	liveNum			Int		是	机位数量
+	lives			array	是	机位信息。活动最多4个机位
+	-liveId			string	是	机位ID
+	-machine		int		是	机位编号。1-4
+	-streams		array	是	流信息
+	--streamId		string	是	流ID
+	--codeRateType	string	是	码率类型: 13 流畅；16 高清；19 超清；25   1080P；99 原画
+*/
+/*
+打点录制创建任务接口
+方法名称 : lecloud.cloudlive.rec.createRecTask
+功能说明：创建打点录制任务。
+原画码率作为输入码率，直播上的码率作为输出码率，执行转码获取打点录制任务。
+请求方法：POST
+请求参数：
+	liveId		string	是	直播ID，直播id查询参考《活动流信息查询接口》文档
+	startTime	string	是	开始时间，从1970开始的毫秒数
+	endTime		string	是	结束时间，从1970开始的毫秒数
+返回参数
+	taskId 		string	是	任务ID
+*/
+/*
+打点录制查询结果接口
+方法名称：lecloud.cloudlive.rec.searchResult
+功能说明： 根据直播ID、任务ID等条件，查询打点录制结果。
+
+请求方法：GET
+请求参数：
+	liveId		string	否	直播ID
+	taskId		string	否	任务ID
+	offset		long	否	开始行数
+	size		int		否	每页记录数
+	startTime	string	否	开始时间，从1970开始的毫秒数
+	endTime		string	否	结束时间，从1970开始的毫秒数
+2、返回参数：
+
+	total			int	是	符合条件的总条数
+	rows			array	是	分页的列表
+	--belongUserId	string	是	所属用户id
+	--liveId		string	是	直播ID
+	--streamId		string	是	流ID
+	--taskId		int	是	任务ID
+	--videoId		string	是	视频ID，用于从点播获取下载地址
+	--vodStatus		string	是	视频转码结果
+	--status		int	是	录制任务状态。1、5 新建； 2 执行中； 4 不录制；3 
+							录制完成（生成云点播视频后则变为已完成）；
+							 6 录制失败；7 转码完成；8 转码失败
+*/
+/*
+获取录制视频信息接口（ver=4.0）
+方法名称：lecloud.cloudlive.activity.getPlayInfo
+功能说明： 根据活动ID，查询录制视频的videoId和videoUnique，其中videoUnique组合成播放地址。
+
+请求方法：GET
+请求参数：
+	activityId		string	否	直播活动ID
+2、返回参数：
+	
+	activityId		string	是	直播活动ID
+	machineInfo		list	是	直播对应的信息列表
+	-- videoId		string	是	视频ID
+	-- videoUnique	string	是	视频unique
+*/	

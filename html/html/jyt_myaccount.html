@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css">
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+        <style>
+              #loading{
+                  position:absolute;width:100%;height:100%;background-color:#fff;z-index:99;
+                /* text-align:center; */
+              }
+              #loading>img{
+                  display:block;
+                  margin:40vw auto;
+                  width:60vw;
+                  height:60vw;
+              }
+        </style>
+    </head>
+    <body>
+      <div id="loading"></div>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header jyt_header_account">
+                <a  href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_edit_h1">我的账户</h1>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content ">
+             <div class="jyt_account_top">
+                <div class="jyt_account_top_left">
+                    <p class="jyt_account_top_left_p">我的积分</p>
+                    <h3 id="myscores" class="jyt_account_top_left_h3"></h3>
+                    <a class="jyt_account_top_left_a" href="kll_paycom.html">积分兑换</a>
+                </div>
+                <div class="jyt_account_top_right">
+                    <p class="jyt_account_top_right_p">我的余额（元）</p>
+                    <h3 id="mymoney" class="jyt_account_top_right_h3"></h3>
+                    <a class="jyt_account_top_right_a" href="jyt_tixian.html">余额提现</a>
+                </div>
+             </div>
+             <div class="jyt_account_mid">
+                 <div class="jyt_account_mid_con">
+                    <div class="jyt_account_mid_con_left">
+                        <i class="iconfont icon-xiaozhuxuanzhong"></i>
+                        <p class="jyt_account_mid_con_left_p">累计获得积分</p>
+                        <h3 id="allscores" class="jyt_account_mid_con_left_h3">6666</h3>
+                    </div>
+                    <div class="jyt_account_mid_con_right">
+                        <i class="iconfont icon-icon"></i>
+                        <p class="jyt_account_mid_con_right_p">累计创造财富（元）</p>
+                        <h3 id="allmoney" class="jyt_account_mid_con_right_h3">2396.00元</h3>
+                    </div>
+                 </div>
+             </div>
+             <div class="jyt_account_bot">
+                 <ul class="jyt_account_bot_nav_ul">
+                     <li  class="jyt_account_bot_ul_li jyt_account_bot_ul_li_bor">
+                         <i class="iconfont icon-shouru"></i>
+                         <span   class="jyt_account_bot_ul_li_sp">收入详情</span>
+                     </li>
+                     <li  class="jyt_account_bot_ul_li">
+                         <i class="iconfont icon-zhichu"></i>
+                         <span   class="jyt_account_bot_ul_li_sp">支出详情</span>
+                     </li>
+                 </ul>
+                <div id="account" class="jyt_account_bot_con">
+                    <ul class="jyt_account_bot_con_ul">
+                    </ul>
+                </div>
+                <div class="jyt_account_bot_con" style="display: none;">
+                    <ul class="jyt_account_bot_con_ul">
+                    </ul>
+                </div>
+             </div>
+                   
+            </div>
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+	    		
+	    	</footer> -->
+    	</div>
+    </body>
+    <script>
+      $(document).ready(function() {
+           var account = $("#account>ul");
+           $.ajax({
+              url : 'http://hr.hongrunet.com/Home/UserCenter/myCount',
+              dataType:'jsonp',
+              async:false,
+              data:{},
+              jsonpCallback:'jsonpReturn',
+              beforeSend:function(XMLHttpRequest){
+                  $("#loading").html("<img src='../lf_img/8.gif'/>"); //在后台返回success之前显示loading图标
+              },
+              success : function(req){
+                  $("#loading").remove();
+                  console.log(req);  
+                  if(req.data[0].myscores == null){
+                     req.data[0].myscores =0;
+                  };
+                  if(req.data[0].mymoney == null){
+                     req.data[0].mymoney =0;
+                  }; 
+                  if(req.data[0].allscores == null){
+                     req.data[0].allscores =0;
+                  }; 
+                  if(req.data[0].allmoney == null){
+                     req.data[0].allmoney =0;
+                  };
+                  $("#myscores").text(req.data[0].myscores);     
+                  $("#mymoney").text(req.data[0].mymoney);  
+                  $("#allscores").text(req.data[0].allscores); 
+                  $("#allmoney").text(req.data[0].allmoney);
+                  $.each(req.data[0].shrdetail,function(index,value){
+                          console.log(req); 
+                           var $li = $("<li>").addClass('jyt_account_bot_con_ul_li');
+                           if(value.message ==="见点奖"){
+                             var $i = $("<i>").addClass('iconfont icon-hongbao');
+                             var $p = $("<p>").addClass('jyt_account_bot_con_ul_li_con_p').text("招生奖");
+                           };
+                           if(value.message ==="收到红包"){
+                             var $i = $("<i>").addClass('iconfont icon-hongbao');
+                             var $p = $("<p>").addClass('jyt_account_bot_con_ul_li_con_p').text(value.message);
+                           };
+                           if(value.message ==="分佣金额"){
+                             var $i = $("<i>").addClass('iconfont icon-weixinzhifubaojiaofei-');
+                             var $p = $("<p>").addClass('jyt_account_bot_con_ul_li_con_p').text("我的奖学金");
+                           };
+                           if(value.message ==="观看直播"){
+                             var $i = $("<i>").addClass('iconfont icon-weixinzhifubaojiaofei-');
+                             var $p = $("<p>").addClass('jyt_account_bot_con_ul_li_con_p').text("直播收费");
+                           };
+                           var $div = $("<div>").addClass('jyt_account_bot_con_ul_li_con');
+                           
+                           var $i2 = $("<i>").addClass('jyt_account_bot_con_ul_li_con_i').text(value.createtime);
+                           var $h3 = $("<h3>").addClass('jyt_account_bot_con_ul_li_con_h3').text("+"+value.money);
+                            $li.append($i).append($div.append($p).append($i2)).append($h3);
+                            account.append($li);
+                        });
+                  //收入详情+支出详情
+                  $(".jyt_account_bot_ul_li").on("touchstart",function () {
+                         console.log(req); 
+                       $(".jyt_account_bot_ul_li").removeClass('jyt_account_bot_ul_li_bor');
+                       $(this).addClass('jyt_account_bot_ul_li_bor');
+                       var index = $(this).index();
+                       $(".jyt_account_bot_con").css('display', 'none');
+                       $(".jyt_account_bot_con").eq(index).css('display', 'block;');
+                       var $account =  $(".jyt_account_bot_con").eq(0).find("ul");
+                       var $account2 =  $(".jyt_account_bot_con").eq(1).find("ul");
+                       $(".jyt_account_bot_con").eq(index).find("ul").html('');
+                        $.each(req.data[0].shrdetail,function(index,value){
+                           var $li = $("<li>").addClass('jyt_account_bot_con_ul_li');
+                           if(value.message ==="见点奖"){
+                             var $i = $("<i>").addClass('iconfont icon-hongbao');
+                             var $p = $("<p>").addClass('jyt_account_bot_con_ul_li_con_p').text("招生奖");
+                           };
+                           if(value.message ==="收到红包"){
+                             var $i = $("<i>").addClass('iconfont icon-hongbao');
+                              var $p = $("<p>").addClass('jyt_account_bot_con_ul_li_con_p').text(value.message);
+                           };
+                           if(value.message ==="分佣金额"){
+                             var $i = $("<i>").addClass('iconfont icon-weixinzhifubaojiaofei-');
+                              var $p = $("<p>").addClass('jyt_account_bot_con_ul_li_con_p').text(value.message);
+                           };
+
+                           var $div = $("<div>").addClass('jyt_account_bot_con_ul_li_con');
+                          
+                           var $i2 = $("<i>").addClass('jyt_account_bot_con_ul_li_con_i').text(value.createtime);
+                           var $h3 = $("<h3>").addClass('jyt_account_bot_con_ul_li_con_h3').text("+"+value.money);
+                            $li.append($i).append($div.append($p).append($i2)).append($h3);
+                            $account.append($li);
+                        });
+                       $.each(req.data[0].zhcdetail,function(index,value){
+                           var $li = $("<li>").addClass('jyt_account_bot_con_ul_li');
+                           if(value.message ==="余额提现"){
+                             var $i = $("<i>").addClass('iconfont icon-icon');
+                           };
+                           if(value.message ==="发出红包"){
+                             var $i = $("<i>").addClass('iconfont icon-hongbao');
+                           };
+                            if(value.message ==="升级等级"){
+                             var $i = $("<i>").addClass('iconfont icon-xiajijigou');
+                           };
+                            if(value.message ==="购买权限"){
+                             var $i = $("<i>").addClass('iconfont icon-xiaozhuxuanzhong');
+                           };
+                           var $div = $("<div>").addClass('jyt_account_bot_con_ul_li_con');
+                           var $p = $("<p>").addClass('jyt_account_bot_con_ul_li_con_p').text(value.message);
+                           var $i2 = $("<i>").addClass('jyt_account_bot_con_ul_li_con_i').text(value.createtime);
+                           var $h3 = $("<h3>").addClass('jyt_account_bot_con_ul_li_con_h3').text(value.money);
+                            $li.append($i).append($div.append($p).append($i2)).append($h3);
+                            $account2.append($li);
+                        });
+                      
+                  });
+              
+
+                 
+              } 
+           });
+
+ });
+
+         
+
+    </script>
+</html>

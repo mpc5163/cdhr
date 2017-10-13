@@ -1,0 +1,78 @@
+<include file="Public/head" />
+<div>
+    <ul id="myTab" class="nav nav-tabs" role="tablist">
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="userlist">
+        	<div class="formdiv">
+        		<form id="changepwd">          
+        			<table>
+        				<tr>
+        					<td>原始密码</td>
+        					<td><input type="hidden" name="userid" id="userid" value="{$_SESSION['userid']}" />
+								<input type="password" name="password" id="password" class="form-control"  placeholder="请输入原始密码">
+                            </td>
+        				</tr>
+        				<tr>
+        					<td>新密码</td>
+        					<td><input type="password" name="newpassword" id="newpassword" class="form-control"  placeholder="6-10位的数字和字母">
+                            </td>
+        				</tr>
+        				<tr>
+        					<td>重复密码</td>
+        					<td><input type="password" name="confpassword" id="confpassword" class="form-control"  placeholder="6-10位的数字和字母"></td>
+        				</tr>
+        				   				
+        	            <tr>
+                            <td></td>
+                            <td>
+                                <button type="button" class="btn btn-lg btn-primary" style="background-color: #7C26BD;" onclick="changepwd();">保 存</button>
+                            </td>
+        	            </tr> 				
+        			</table>
+        		</form>
+        	</div>      
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    // var pp = /^[a-zA-Z][a-zA-Z0-9]{5,19}/;//密码正则      
+    var pp =  /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,10}$/;
+    function changepwd(){
+		var password=$("#password").val();
+		var newpassword=$("#newpassword").val();
+		var confpassword=$("#confpassword").val();
+		if(password==""){
+			alert('请输入原始密码');
+			return;
+		}
+		if(newpassword=="" || confpassword==""){
+			alert('请输入新密码');
+			return;
+		}
+		if(newpassword != confpassword){
+			alert('两次输入的密码不一致');
+			return;
+		}
+        if (!pp.test(newpassword)) {
+            alert("新密码不符合要求");return;
+        }
+      	var formdata = $("#changepwd").serialize();
+        $.ajax({
+            type     : "POST",
+            url      : "{:U('/Admin/Admin/savePWD')}",
+            data     : formdata,
+            dataType : "json",
+            success  : function(data){
+                if(data.status){
+                    $(window.parent.document).find("#main_iframe").attr("src",data.url);
+                }else{
+                    alert(data.info);
+                }
+            }
+        });
+	}
+
+</script>
+
+<include file="Public/footer" />

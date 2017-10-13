@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/swiper-3.4.2.min.css"><!-- 轮播图样式 -->
+    <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+    <!-- 私有样式 -->
+    <link rel="stylesheet" href="../css/kll_index.css">
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/swiper.min.js"></script><!-- 轮播图js -->
+    <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+    <!-- 私有js -->
+    <script type="text/javascript" src="../js/kll_index.js"></script>
+    <title>鸿儒商学讲堂</title>
+    <style type="text/css">
+        .jyt_shen{
+            display: block;
+            float: right;
+            color:#f00;
+            font-size: 1.1875rem;
+        }
+    </style>
+</head>
+<body>
+<!-- 控制页面大小 -->
+<div class="big-box">
+    <!-- 头部 -->
+    <header class="header kll_header">
+        <a class="kll_header-left iconfont icon-fanhui" href="javascript:history.go(-1);"></a>
+        <h1 class="kll_header-h1">我的课程</h1>
+    </header>
+    <!-- 中间内容 -->
+    <div class="content">
+        <ul id="myclass" class="kll_myclass-ul">
+            <!-- <li class="kll_myclass-li">
+                <img class="kll_mycalss-pic" src="../images/kll_myclass1.png" alt="鸿儒盛世">
+                <a class="kll_myclass-a" href="wy_All.html">
+                    <h4 class="kll_myclass-h4">【团队企管】四步打造高效执行团队【团队企管】四步打造高效执行团队</h4>
+                    <p class="kll_myclass-time">发布时间：2017-01-04  21:01 <span class="jyt_shen">审核中</span></p>
+                    <p class="kll_myclass-num">8888人已观看</p>
+                    <p class="kll_myclass-person kll_myclass-money">讲师</p>
+                </a>
+            </li> -->
+           <!--  <li class="kll_myclass-li">
+                <img class="kll_mycalss-pic" src="../images/kll_myclass2.png" alt="鸿儒盛世">
+                <a class="kll_myclass-a" href="wy_All.html">
+                    <h4 class="kll_myclass-h4">【团队企管】如何构建自主运营团队</h4>
+                    <p class="kll_myclass-time">发布时间：2017-01-04  21:01</p>
+                    <p class="kll_myclass-num">8888人已观看</p>
+                    <p class="kll_myclass-person kll_myclass-money">合伙人专享</p>
+                </a>
+            </li>
+            <li class="kll_myclass-li">
+                <img class="kll_mycalss-pic" src="../images/kll_myclass3.png" alt="鸿儒盛世">
+                <a class="kll_myclass-a" href="wy_All.html">
+                    <h4 class="kll_myclass-h4">【团队企管】怎样配备电商团队</h4>
+                    <p class="kll_myclass-time">发布时间：2017-01-04  21:01</p>
+                    <p class="kll_myclass-num">8888人已观看</p>
+                    <p class="kll_myclass-person kll_myclass-money">学霸专享</p>
+                </a>
+            </li>
+            <li class="kll_myclass-li">
+                <img class="kll_mycalss-pic" src="../images/kll_myclass4.png" alt="鸿儒盛世">
+                <a class="kll_myclass-a" href="wy_All.html">
+                    <h4 class="kll_myclass-h4">【团队企管】如何组建电商团队</h4>
+                    <p class="kll_myclass-time">发布时间：2017-01-04  21:01</p>
+                    <p class="kll_myclass-num">8888人已观看</p>
+                    <p class="kll_myclass-person kll_myclass-free">免费</p>
+                </a>
+            </li>
+            <li class="kll_myclass-li">
+                <img class="kll_mycalss-pic" src="../images/kll_myclass5.png" alt="鸿儒盛世">
+                <a class="kll_myclass-a" href="wy_All.html">
+                    <h4 class="kll_myclass-h4">【团队企管】全面预算管理与绩效管控</h4>
+                    <p class="kll_myclass-time">发布时间：2017-01-04  21:01</p>
+                    <p class="kll_myclass-num">8888人已观看</p>
+                    <p class="kll_myclass-person kll_myclass-free">免费</p>
+                </a>
+            </li> -->
+        </ul>
+    </div>
+</div>
+</body>
+<script>
+    $.ajax({
+        url : 'http://hr.hongrunet.com/Home/UserCenter/myCourse',
+        dataType:'jsonp',
+        data:{},
+        jsonpCallback:'jsonpReturn',
+        success : function (req) {
+            console.log(req);
+            var myclass = $("#myclass");
+            $.each(req.data,function(index,value){
+                $li = $("<li>").addClass('kll_myclass-li');
+                $img = $("<img>").addClass('kll_mycalss-pic').attr("src",value.thumbnail);
+                $a = $("<a>").addClass('kll_myclass-a').attr("href",'lf_videoDetail.html?id='+value.id);
+                $h4 = $("<h4>").addClass('kll_myclass-h4').text(value.title);
+                if(value.is_look == 0){
+                    $p1 = $("<p>").addClass('kll_myclass-time').html("发布时间："+value.createtime+"<span class='jyt_shen'>审核中..</span>");
+                }else if(value.is_look == 1){
+                    $p1 = $("<p>").addClass('kll_myclass-time').html("发布时间："+value.createtime+"<span class='jyt_shen'>审核通过</span>");
+                }else{
+                    $p1 = $("<p>").addClass('kll_myclass-time').html("发布时间："+value.createtime+"<span class='jyt_shen'>审核失败</span>");
+                }
+                
+                $p2 = $("<p>").addClass('kll_myclass-num').text(value.looknum+"人已观看");
+                if(value.levelname ==="学童"){
+                    $p3 = $("<p>").addClass('kll_myclass-person kll_myclass-free').text('免费');
+                }else{
+                    $p3 = $("<p>").addClass('kll_myclass-person kll_myclass-money').text(value.levelname);
+                }
+                
+                $a.append($h4).append($p1).append($p2).append($p3);
+                $li.append($img).append($a);
+                myclass.append($li);
+            });
+         }
+    })
+
+</script>
+</html>

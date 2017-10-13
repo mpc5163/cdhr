@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <meta name="author" content="ZZJBS" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+        <meta name="format-detection" content="telephone=no" />
+
+        <meta name="format-detection" content="email=no" />
+
+        <!-- 引入文件 -->
+
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css">
+
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+
+        <title>鸿儒商学讲堂</title>
+
+        <style>
+
+			.lf_port>h3{
+
+				padding:10vw 0 8vw;
+
+				text-align:center;
+
+				font-size:2rem;
+
+				color:#188eee;
+
+				font-weight:normal;
+
+			}
+
+			.lf_port>button{
+
+				display:block;
+
+				margin:0 auto 6vw;
+
+				width:48.4375vw;
+
+				height:20.9375vw;
+
+				background:0;
+
+				outline:none;
+
+			}
+
+			.lf_port>.lf_pc{
+
+				background:url(../lf_img/lf_pc.png) no-repeat center center;
+
+				background-size:cover;
+
+			}
+
+			.lf_port>.lf_phone{
+
+				background:url(../lf_img/lfphone.png) no-repeat center center;
+
+				background-size:cover;
+
+			}
+      .zhuyi{
+        font-size:2.0rem;
+        padding:0 3%;
+        text-align:center;
+        height:12vw;
+        color:#f00;
+      }
+
+        </style>
+
+    </head>
+
+    <body>
+
+    	<!-- 控制页面大小 -->
+
+    	<div class="big-box">
+
+    		<!-- 头部 -->
+
+	    	<header class="header jyt_header_edit">
+
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+
+                <h1 class="jyt_header_edit_h1">选择端口</h1>
+
+	    	</header>
+
+	    	<!-- 中间内容 -->
+
+	    	<div class="content" style="background:#fff">
+
+              	<div class="lf_port">
+
+              		<h3>请选择开启直播的端口：</h3>
+
+              		<button class="lf_pc"  id="pc" type="button"></button>
+
+              		<button class="lf_phone" id="phone" type="button"></button>
+ 
+              		<button style="font-size: 18px;appearance:none;-weblit-appearance:none;-moz-appearance:none;display: block;
+              		width: 90%;margin: 0 auto;background: #188eee;
+              		border-radius: 5px;height: 50px;line-height: 50px;color:#fff;" id="lubo" type="button">开始录播</button>
+                  <br />
+<p class="zhuyi">
+                       注意：录播开始一定是在直播开始后点击<br/>否则，录播会失败的！
+                   </p>
+              	</div>
+
+	    	</div>
+
+            
+
+            
+
+	    	<!-- 尾部，如果没有需删除 -->
+
+	    	<!-- <footer class="footer">
+
+	    		
+
+	    	</footer> -->
+
+    	</div>
+
+    </body>
+
+</html>
+
+<!-- <script type="text/javascript">
+
+	$(function(){
+
+		
+
+	})
+
+</script> -->
+
+<script type="text/javascript">
+
+	var lid = window.location.href.split("?")[1].split('=')[1];
+
+	$("#pc").on("touchstart", function (){
+
+         window.location.href = "http://hr2.hongrunet.com/html/wy_myVideo.html?id="+lid;
+
+	});
+
+	$('#lubo').on('touchstart',function(){
+		$.ajax({
+            url : 'http://hr.hongrunet.com/home/Test/recode',
+            data : {lid:lid},
+            dataType : 'jsonp',
+            jsonpCallback : 'jsonpReturn3',
+            success : function (req){
+                console.log(req);
+                alert(req.msg);
+            },
+            error : function (err){
+                alert('网络错误');return;
+            }
+        });
+	})
+
+	$("#phone").on("touchstart", function (){
+
+                window.location.href = "http://hr2.hongrunet.com/html/lf_phonePort.html";
+
+		
+
+	});
+
+</script>

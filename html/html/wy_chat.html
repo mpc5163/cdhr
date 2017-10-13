@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" />
+    <!-- 公共样式 -->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <!-- 引入zepto文件 -->
+    <!-- <script type="text/javascript" src="../js/common.js"></script> -->
+    <!-- 引入公共js文件 -->
+
+    <link rel="stylesheet" href="../css/wy_main.css" />
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="../layui/layui.css">
+    <script src="../js/socket.io.js"></script>
+    <style media="screen">
+        .content div {
+            word-break: break-word;
+        };
+        
+    </style>
+    <style>
+        a#tijiao{
+            display: inline-block;
+            line-height: 7vw;
+            width: 12vw;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #fff;
+            float:right;
+            background-color:#188eee;
+            margin-top:3.4vw;
+            border-radius:5px;
+        }
+    </style>
+
+    <title>鸿儒商学讲堂-创业交流平台</title>
+</head>
+
+<body>
+    <!-- 控制页面大小 -->
+    <div class="big-box">
+        <!-- 头部 -->
+        <header class="header wy_header wy_font32 wy_header-a">
+            <div class="wy_header-title">
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui wy_backBtn"></a>
+                <span id="room_name"><!--房间名--></span>
+                <a href="" id="manage_room" class="iconfont icon-shezhi wy_setting"></a>
+            </div>
+        </header>
+        <!-- 中间内容 -->
+        <div class="content wy_chat-centent">
+            <!-- 时间 -->
+            <div class="wy_time">
+                <!--2017-04-18 &nbsp;&nbsp; 08:54-->
+            </div>
+            <input type="hidden" name="name" id="name" value=""/>
+            <!-- 添加部分 -->
+        </div>
+        <!-- 尾部，如果没有需删除 -->
+        <footer class="footer wy_chat-footer" style="transition: all 1s;">
+            <i class="iconfont icon-iconfontcolor16" id="to_img" style="float:left;"></i>
+            <input class="wy_input-btn" id="nr" type="text">
+            <input style="display:none;" type="file" name="files" class="update_file"/>
+             <a id="tijiao">发送</a>
+        </footer>
+    </div>
+</body>
+<script>
+    var flage = true;
+    $(".wy_input-btn").on("focus", function () {
+        flage = false;
+    }).on("blur", function () {
+        flage = true;
+        $("#tijiao").css("color", "#fff");
+        setTimeout(function () {
+            var et = $(".content div:last");
+            et[0].scrollIntoView();
+        },100);
+    }).keydown(function (e) {
+        setTimeout(function () {
+            if ($(".wy_input-btn").val()) {
+                $("#tijiao").css("color", "#f60");
+            } else {
+                $("#tijiao").css("color", "#fff");
+            }
+        }, 100);
+        if (e.keyCode == 13) {
+            $(".wy_input-btn").trigger("blur");
+            $('#tijiao').trigger("click");
+        }
+    }).on("change", function () {
+        if ($(".wy_input-btn").val()) {
+            $("#tijiao").css("color", "#f60");
+        } else {
+            $("#tijiao").css("color", "#fff");
+        }
+    });
+    $(function(){
+        $("html").css("font-size", screen.width/640 * 16);
+    })
+
+
+    var screenY = window.innerHeight ? window.innerHeight : document.body.clientHeight;//获取页面高
+    var screenX = window.innerWidth ? window.innerWidth : document.body.clientWidth;//获取页面宽
+    if ($(".footer").height()) {
+        $(".content").css("height", screenY - $(".header").height() - $(".footer").height());
+    } else {
+        $(".content").css("height", screenY - $(".header").height());
+    };
+    if ($(".header").height()) {
+        $(".content").css("top", Math.floor($(".header").height()-1));
+    } else {
+        $(".content").css("top", 0);
+    };
+
+    $(function() {
+        id = location.search.split('=')[1];
+
+        $.ajax({
+            url: 'http://hr.hongrunet.com/home/index/go_room',
+            dataType: 'jsonp',
+            data: 'id=' + id,
+            jsonp: 'jsonpReturn',
+            success: function(req) {
+                jsonpReturn(req);
+            }
+        })
+    })
+
+    function jsonpReturn(req) {
+
+        if (req.status != 1) {
+            alert(req.msg);
+            history.go(-1);
+        }
+        user_info = req.data;
+        $('#room_name').html(user_info.room_name); //房间名
+        $('#manage_room').attr('href', 'wy_manageGroup.html?id=' + user_info.room_id);
+        addFunction();
+        $.ajax({
+            url: 'http://hr.hongrunet.com/home/index/get_chat',
+            dataType: 'jsonp',
+            data: {
+                room: id
+            },
+            jsonpCallback: 'jsonpReturn3',
+            success: function(req) {
+                var info = req.data;
+                var lb;
+                var type;
+                for (var i = info.length - 1; i >= 0; i--) {
+                    if (user_info.id == info[i].uid) {
+                        lb = 'right'; //自己的消息
+                    } else {
+                        lb = 'left'; //别人的消息
+                    }
+                    if (info[i].type == 1) {
+                        content = '<div class="wy_' + lb + 'People"><img class="wy_headeImg wy_headeImg-' + lb + '" src="' + info[i].headimg + '" alt=""><div class="wy_' + lb + '-msg"><p class="wy_title">' + info[i].name +
+                            '</p><p class="wy_neirong-' + lb + '">' + info[i].content +
+                            '</p></div></div>';
+                    } else {
+                        content = '<div class="wy_' + lb + 'People"><img class="wy_headeImg wy_headeImg-' + lb + '" src="' + info[i].headimg + '" alt=""><div class="wy_' + lb + '-msg"><p class="wy_title">' + info[i].name +
+                            '</p><img style="max-width:30vm;" class="wy_neirong-' + lb + '" src="' + info[i].content + '"></div></div>';
+                    }
+
+                    $('.wy_chat-centent').append(content);
+                }
+                // console.log($(".content wy_chat-centent").prevObject[0].scrollingElement.scrollHeight);
+                // $(".content wy_chat-centent").scrollTop( $(".content wy_chat-centent").prevObject[0].scrollingElement.scrollHeight);
+               /*var et = $(".content div:last");
+                et[0].scrollIntoView();*/
+                $(".wy_chat-centent").scrollTop(999999999999);
+            }
+        })
+    }
+</script>
+
+<script>
+    $('#to_img').on('click', function() {
+        $('.update_file').click();
+    })
+
+</script>
+
+</html>
+
+<script>
+    function addFunction() {
+        var socket = io.connect("http://47.93.27.22:666");
+        var nr = '';
+        var user_name = user_info.name;
+        var headimg = '../images/wy_group-2.png';
+        // 加入房间
+        socket.on('connect', function() {
+            socket.emit('join', user_name, 'room_' + user_info.room_id);
+        });
+
+        $('#tijiao').click(function() {     //提交消息
+            if (user_info.headimg != null) {
+                headimg = user_info.headimg;
+            }
+            nr = $('#nr').val();
+            if (nr == '') {
+                return false;
+            }
+            $('#nr').val('');
+            socket.emit('foo', user_name, headimg, nr);
+            //插入数据库
+            $.ajax({
+                url: 'http://hr.hongrunet.com/home/index/put_chat',
+                dataType: 'jsonp',
+                data: {
+                    room: id,
+                    content: nr
+                },
+                jsonpCallback: 'jsonpReturn2',
+                success: function(req) {
+                    // console.log(req);
+                }
+            })
+        });
+
+        //接收服务器传回的消息
+        var content = '';
+        var lb = '';
+
+        socket.on('req', function(name, img, nr) {
+            if (name == user_name) {
+                lb = 'right'; //自己的消息
+            } else {
+                lb = 'left'; //别人的消息
+            }
+            content = '<div class="wy_' + lb + 'People"><img class="wy_headeImg wy_headeImg-' + lb + '" src="' + img + '" alt=""><div class="wy_' + lb + '-msg"><p class="wy_title">' + name + '</p><p class="wy_neirong-' + lb + '">' + nr + '</p></div></div>';
+
+            $('.wy_chat-centent').append(content);
+            $(".wy_chat-centent").scrollTop(999999999999);
+            // $(".content wy_chat-centent").scrollTop( $(".content wy_chat-centent")[0].scrollingElement.scrollHeight); 
+            // var heightY = $(".content div:last").height() + parseFloat($(".content div:last").css("margin").split(" ")[1]);
+            // $('.wy_chat-centent').scrollTop($('.wy_chat-centent').scrollTop() + heightY);
+            if (flage) {
+               /* var et = $(".content div:last");
+                et[0].scrollIntoView();*/
+            }
+        })
+
+        layui.use('upload', function() {    //保存七牛云，数据库，链接nodejs
+            layui.upload({
+                url: '../qiniu.php',
+                elem: '.update_file',
+                unwrap: true,
+                success: function(res) {
+                     console.log(res);
+                    if (user_info.headimg != null) {
+                        headimg = user_info.headimg;
+                    }
+                    this.value = '';
+                    socket.emit('img', user_name, headimg, res.url);
+                    $.ajax({
+                        url: 'http://hr.hongrunet.com/home/index/put_chat',
+                        dataType: 'jsonp',
+                        data: {
+                            room: id,
+                            content: res.url,
+                            type: 2
+                        },
+                        jsonpCallback: 'jsonpReturn4',
+                        success: function(req) {
+                            // console.log(req);
+                        }
+                    })
+                }
+            });
+        });
+
+        socket.on('toimg', function(name, touxiang, img) {  // 接收图片消息
+            if (name == user_name) {
+                lb = 'right'; //自己的消息
+            } else {
+                lb = 'left'; //别人的消息
+            }
+            content = '<div class="wy_' + lb + 'People"><img class="wy_headeImg wy_headeImg-' + lb + '" src="' + touxiang + '" alt=""><div class="wy_' + lb + '-msg"><p class="wy_title">' + name +
+                '</p><img style="max-width:30vm;" class="wy_neirong-' + lb + '" src="' + img + '"></div></div>';
+
+            $('.wy_chat-centent').append(content);
+            $(".wy_chat-centent").scrollTop(999999999999);
+            // $(".content wy_chat-centent").scrollTop( $(".content wy_chat-centent")[0].scrollingElement.scrollHeight);
+            if (flage) {
+              /*  var et = $(".content div:last");
+                et[0].scrollIntoView();*/
+                
+            }
+        })
+
+        socket.on('tiren', function(tichu_name) {
+            if (tichu_name === user_name) {
+                alert('你已经被踢出了房间');
+                window.location.href = "kll_index.html";
+            }
+        })
+    }
+
+    (function () {
+        var timerClear = 1;
+        var intervalDo = setInterval(function () {
+            var imgArr = $("img.wy_neirong-left");
+            var flag = true;
+            for (var i = 0; i < imgArr.length; i++) {
+                if (!imgArr[i].complete) {
+                    flag = false;
+                }
+            }
+            if (flag && imgArr.length >= 1) {
+                clearInterval(intervalDo);
+                $(".wy_chat-centent").scrollTop(999999999999);
+            }
+            timerClear++;
+            if (timerClear >= 300) {
+                clearInterval(intervalDo);
+            }
+        },100);
+    })();
+</script>

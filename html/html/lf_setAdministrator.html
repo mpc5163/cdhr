@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" />
+    <!-- 公共样式 -->
+    <link rel="stylesheet" href="../css/lf_style.css" />
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <!-- 引入zepto文件 -->
+    <!--  <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script> -->
+    <script type="text/javascript" src="../js/common.js"></script>
+    <!-- 引入公共js文件 -->
+    <title>鸿儒商学讲堂</title>
+</head>
+
+<body>
+    <!-- 控制页面大小 -->
+    <div class="big-box">
+        <!-- 头部 -->
+        <header class="header lf_header">
+            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+            <h2>设置管理员</h2>
+        </header>
+        <!-- 中间内容 -->
+        <div class="content">
+            <ul class="lf_administratorList" id="content">
+                <!-- 内容部分 -->
+            </ul>
+        </div>
+        <!-- 尾部，如果没有需删除 -->
+
+    </div>
+</body>
+<!-- <script type="text/javascript" src="../js/lf_class.js"></script> -->
+
+</html>
+<script>
+    var id = location.search.split('=')[1];
+    $.ajax({
+        url: 'http://hr.hongrunet.com/home/index/admin',
+        data: {
+            'id': id
+        },
+        dataType: 'jsonp',
+        jsonpCallback: 'jsonpReturn',
+        success: function(res) {
+            console.log(res);
+            var admin = res.data.admin;
+            var guanli = res.data.guanli;
+            var user = res.data.user;
+            var level = res.data.level;
+            //管理
+            var admin_content = '<li class="lf_adminList lf_adminList1"><img src="' + admin.headimg + '" alt=""><span class="lf_setName">' + admin.name +
+                '</span><span class="lf_setAdmin" style="color:#188eee"><i class="iconfont icon-guanliyuan"></i>房主</span></li>';
+            $('#content').append(admin_content);
+            var guanli_content = '';
+            for (var i in guanli) {
+                guanli_content = '<li class="lf_adminList lf_adminList1"><img src="' + guanli[i].headimg + '"><span class="lf_setName">' + guanli[i].name +
+                    '</span><span class="lf_setAdmin"><i class="iconfont icon-guanliyuan"></i><span>管理</span></span><ul class="lf_seting"><li ontouchend="javascript:del_admin('+id+','+guanli[i].id+')">取消管理员</li><li ontouchend="javascript:del_user('+id+','+guanli[i].id+')">踢出房间</li></ul></li>';
+                $('#content').append(guanli_content);
+            }
+            var user_content = '';
+            for (var i in user) {
+                user_content = '<li class="lf_adminList lf_adminList1"><img src="' + user[i].headimg + '"><span class="lf_setName">' + user[i].name + '</span><span class="lf_setAdmin"><i class="iconfont "></i><span></span></span><ul class="lf_seting"><li ontouchend="javascript:add_admin('+id+','+user[i].id+')">设为管理员</li><li ontouchend="javascript:del_user('+id+','+user[i].id+')">踢出房间</li></ul></li>';
+                $('#content').append(user_content);
+            }
+
+            //管理事件
+            $(".lf_adminList1").on("touchend", function() {
+                $(".lf_adminList1").css({
+                    background: "url('../lf_img/lf_setlibg.png') no-repeat;",
+                    backgroundSize: "100% 100%"
+                });
+                $(".lf_adminList1").eq($(this).index()).css({
+                    background: "url('../lf_img/lf_setlibg2.png') no-repeat;",
+                    backgroundSize: "100% 100%"
+                });
+                $(".lf_adminList1").find("ul").css("display", "none");
+                $(".lf_adminList1").eq($(this).index()).find("ul").css("display", "block");
+
+            });
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    })
+    function del_user(id,uid){     //踢出用户
+        $.ajax({
+            url: 'http://hr.hongrunet.com/home/index/del_user',
+            data: {
+                'id': id,
+                'uid' : uid,
+            },
+            dataType: 'jsonp',
+            jsonpCallback: 'jsonpReturn',
+            success : function(res){
+                alert(res.msg);
+                if(res.status == 1){
+                    location.reload();
+                }
+            }
+        })
+    }
+    function del_admin(id,uid){     //取消管理员
+        $.ajax({
+            url: 'http://hr.hongrunet.com/home/index/del_admin',
+            data: {
+                'id': id,
+                'uid' : uid,
+            },
+            dataType: 'jsonp',
+            jsonpCallback: 'jsonpReturn',
+            success : function(res){
+                alert(res.msg);
+                if(res.status == 1){
+                    location.reload();
+                }
+            }
+        })
+    }
+    function add_admin(id,uid){ //添加管理员
+        $.ajax({
+            url: 'http://hr.hongrunet.com/home/index/add_admin',
+            data: {
+                'id': id,
+                'uid' : uid,
+            },
+            dataType: 'jsonp',
+            jsonpCallback: 'jsonpReturn',
+            success : function(res){
+                console.log(res);
+                alert(res.msg);
+                if(res.status == 1){
+                    location.reload();
+                }
+            }
+        })
+    }
+</script>

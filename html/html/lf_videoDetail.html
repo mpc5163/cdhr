@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" href="../css/lf_style.css"/>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+        <style>
+            #icon-share{
+                display: block;
+                position: absolute;
+                top:0;
+                right:4vw;
+                font-size:2rem;
+                display:none;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 控制页面大小 -->
+        <div class="big-box">
+            <!-- 头部 -->
+            <header class="header lf_header">
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+                 <h2>视频详情</h2>
+                 <span id="icon-share" class="iconfont icon-fenxiang1"></span>
+            </header>
+            <!-- 中间内容 -->
+            <div class="content" style="z-index:1;">
+                <div class="lf_videobox">
+                   <video  style="width:100%;max-height:210px;z-index:1" class="shipin" controls src=""></video>
+                    <!-- <embed style="width:100%;max-height:210px;z-index:1" src="" type=""/> -->
+                </div>
+                <div class="lf_video-description">
+                    <h3>
+                        <a id="title"></a>
+                        <span  class="iconfont icon-shang1 lf_dashang"></span>
+                    </h3>
+                    <div class="lf_video-con">
+                        <!-- <p>
+                            <i class="iconfont icon-shijian1"></i><span>视频时长：01:20:50</span>
+                        </p> -->
+                        <p>
+                            <i class="iconfont icon-icon1"></i><span>人气：<a id="renqi"></a></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="lf_lesson">
+                    <h3>
+                        <i class="iconfont icon-shuben"></i>课程简介
+                    </h3>
+                    <p id="jianjie">
+
+                    </p>
+                </div>
+                <div class="lf_videobg"></div>
+                <div class="lf_video-jiangshi" id="jiangshi">
+                    <h3>
+                        <i class="iconfont icon-jiangshi"></i>讲师介绍
+                    </h3>
+
+                </div>
+            </div>
+             <!-- 尾部，如果没有需删除 -->
+            <footer class="footer" style="border-top:1px solid #d9d9d9">
+                <ul class="lf_botlinks">
+                    <li>
+                        <a class="lf_jump" href="kll_index.html">
+                            <i class="iconfont icon-shouye lf_icon-top"></i>
+                            <span class="lf_botxt">首页</span>
+                        </a>
+
+                    </li>
+                    <li id="app">
+                        <a class="lf_jump" href="javascript:void(0)">
+                            <i class="iconfont icon-app1 lf_icon-top"></i>
+                            <span class="lf_botxt">APP</span>
+                        </a>
+
+                    </li>
+                  <script type="text/javascript" src="../js/weixin_app.js"></script>
+                   <script type="text/javascript">
+                        if(is_kingkr_obj()){
+                                  $('#app').css('display','none');
+                                  $('#icon-share').css('display','block');
+                                }
+                    </script>
+                  <!--   <li>
+                      <a class="lf_jump" href="lf_classify.html">
+                          <i class="iconfont icon-fenlei lf_icon-top"></i>
+                          <span class="lf_botxt">课程分类</span>
+                      </a>
+                  
+                  </li> -->
+                    <li>
+                        <a class="lf_jump" href="lf_comprofile.html">
+                            <i class="iconfont icon-kefu lf_icon-top"></i>
+                            <span class="lf_botxt">公司客服</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="lf_jump" href="lf_personal.html">
+                            <i class="iconfont icon-geren lf_icon-top"></i>
+                            <span class="lf_botxt">个人中心</span>
+                        </a>
+
+                    </li>
+                </ul>
+                 <!-- 弹出模态框 -->
+                <div class="lf_motaikuang-live">
+                  <div class="lf_center">
+                     <div class="lf_hongbao">
+                         <a class="lf_jump ds" id="ds2">2元</a>
+                         <a class="lf_jump ds" id="ds5">5元</a>
+                         <a class="lf_jump ds" id="ds10">10元</a>
+                         <a class="lf_jump ds" id="ds20">20元</a>
+                         <a class="lf_jump ds" id="ds50">50元</a>
+                         <a class="lf_jump ds" id="ds100">100元</a>
+                     </div>
+                     <div class="lf_textbox">
+                         <img id="headimg" src="" alt="" style="height:56px;width:56px;border-radius:50%;"/>
+                         <p id="user_name">
+                         </p>
+                     </div>
+                  </div>
+                   <div class="lf_close">
+                        <span class="iconfont icon-cuohao"></span>
+                  </div>
+              </div>
+              <input type="hidden" name="" id="jsid" value=""/>
+            </footer>
+
+        </div>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+        <script>
+             $(".lf_dashang").on("touchstart",function(){
+                 $(".lf_motaikuang-live").css("display","block");
+                 $("video").css({display:"none"});
+                  $(".lf_close span").on("touchstart",function(){
+                    $(".lf_motaikuang-live").css("display","none");
+                    $("video").css({display:"block"});
+                  });
+                //打赏去支付
+                $(".ds").on("touchstart",function(){
+                    $.ajax({
+                        url : 'http://hr.hongrunet.com/home/Course/das',
+                        data : {},
+                        dataType : 'jsonp',
+                        jsonpCallback : 'jsonpReturn3',
+                        success : function (req){
+                            if(req.status == 0){
+                                alert('请先去登录');return;
+                            }
+                        },
+                        error : function (err){
+                            alert('网络错误');return;
+                        }
+                    });
+                    var str = $(this).attr('id');
+                    var money = str.replace(/ds/,"");   //打赏金额
+                    var jsid  = $("#jsid").val();
+                    var vid   = window.location.href.split('?')[1].split('=')[1];
+                    window.location.href = "kll_payment.html?m="+money+"&js="+jsid+"&type=6&vid="+vid;
+                });
+            });
+        </script>
+    </body>
+</html>
+<script>
+   function shareCallback(res){
+    // 　　setTimeout(function(){alert((res));}, 2000);
+    　　if(res == '1'){
+       　　 　　alert('分享成功');
+    　　}else{
+        　　　　alert('分享失败');
+    　　}
+    }
+
+    $(function(){
+        var urls = location.href;
+        var id = location.search.split('?')[1].split('&')[0].split('=')[1];
+        $.ajax({
+            url : 'http://hr.hongrunet.com/Home/Course/course',
+            dataType:'jsonp',
+            data:{id:id,url:urls},
+            jsonpCallback : 'jsonpReturn',
+            success : function(req){
+                console.log(req); 
+                if(req.status == 10){
+                    alert(req.msg);
+                    window.location.href="jyt_register.html";return;
+                }else if(req.status == 2){
+                    alert(req.msg);
+                    history.back();
+                }
+                var courses_info = req.data.courses_info;
+                $("#icon-share").on("click",function(){
+                    share('我在鸿儒讲堂里看《'+courses_info.title+'》，全民直播时代已经到来了，同学们快来加入一起分享红利吧！', 'http://hr2.hongrunet.com/jyt_image/jyt_register_logo1.png', 'http://hr2.hongrunet.com/html/lf_videoDetail.html?id='+id, '鸿儒商学讲堂')
+                });
+                if(courses_info.videofops){
+                    $('.shipin').attr('src',courses_info.videofops);
+                }else{
+                    $('.shipin').attr('src',courses_info.video);
+                }
+                $('.shipin').attr('src',courses_info.video);
+                $('#title').html(courses_info.title);
+                $('#renqi').html(courses_info.looknum);
+                $('#jianjie').html(courses_info.content);
+                var teacher = req.data.teacher, gz,remark;
+                if(req.data.type == 0){gz = '关注TA'; }else{gz = '已关注';}
+                if(teacher.remark){
+                    remark = teacher.remark;
+                }else{
+                    remark = '这个人很懒，什么也没有留下';
+                }
+                var jiangshi = '<dl class="lf_video-js"><dt class="lf_videodt"><img src="'+teacher.headimg+'" alt=""/></dt><dd class="lf_videodd"><p class="lf_video_jiangshi"><span >'+teacher.name+'</span><span><i class="iconfont icon-huizhang"></i>讲师</span></p><p class="lf_videoCon">'+remark+'</p> <p class="lf_guanzhu" onclick="javascript:guanzhu('+teacher.id+')"><i class="iconfont icon-boke_guanzhu"></i> <a id="guanzhu_type">'+gz+'</a> </p></dd></dl>';
+                $('#jiangshi').append(jiangshi);
+                $('#headimg').attr('src',teacher.headimg);
+                $('#user_name').html(teacher.name);
+                $('#jsid').val(teacher.id);
+                if(req.data.jsapi_config != undefined){
+                        //var configs = req.data.jsapi_config;
+                        var configs = JSON.parse(req.data.jsapi_config);
+
+                        console.log(configs);
+                        wx.config(configs);
+                        wx.ready(function(){
+                            wx.onMenuShareTimeline({
+                                title: '我在鸿儒讲堂里看《'+courses_info.title+'》，全民直播时代已经到来了，同学们快来加入一起分享红利吧！', // 分享标题
+                                link: "http://hr2.hongrunet.com/html/lf_videoDetail.html?id="+id, // 分享链接
+                                imgUrl: 'http://hr2.hongrunet.com/jyt_image/jyt_register_logo1.png', // 分享图标
+                                success: function() {
+                                    // 用户确认分享后执行的回调函数
+                                    window.href = "http://hr.hongrunet.com/Home/Wechat/code.html";
+                                },
+                                cancel: function() {
+
+                                    // 用户取消分享后执行的回调函数
+                                    window.href = "http://hr.hongrunet.com/Home/Wechat/code.html";
+                                }
+                            });
+                            wx.onMenuShareAppMessage({
+                                title: '鸿儒商学讲堂', // 分享标题
+                                desc: '我在鸿儒讲堂里看《'+courses_info.title+'》，全民直播时代已经到来了，同学们快来加入一起分享红利吧！', // 分享描述
+                                link: "http://hr2.hongrunet.com/html/lf_videoDetail.html?id="+id, // 分享链接
+                                imgUrl: 'http://hr2.hongrunet.com/jyt_image/jyt_register_logo1.png', // 分享图标
+                                type: '', // 分享类型,music、video或link，不填默认为link
+                                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                                success: function() {
+                                     // 用户确认分享后执行的回调函数
+                                    window.href= "http://hr.hongrunet.com/Home/Wechat/code.html";
+                                },
+                                cancel: function() {
+
+                                     // 用户取消分享后执行的回调函数
+                                    window.href= "http://hr.hongrunet.com/Home/Wechat/code.html";
+                                }
+                            });
+                        });
+                        wx.error(function(res){
+                            console.log(res);
+                            // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                        });
+                    }
+            }
+        });
+ });
+    function guanzhu(id){
+        var uid = id
+        var ajax_url = 'http://hr.hongrunet.com/home/UserCenter/clickFollow';
+        var guanzhu_type = $('#guanzhu_type').html();
+        if('已关注' == guanzhu_type){
+            ajax_url = 'http://hr.hongrunet.com/home/UserCenter/clickNoFollow';
+        }else{
+            ajax_url = 'http://hr.hongrunet.com/home/UserCenter/clickFollow';
+        }
+        $.ajax({
+            url : ajax_url,
+            data : {id:uid},
+            dataType : 'jsonp',
+            jsonpCallback : 'jsonpReturn2',
+            success : function (req){
+                if(req.status == 0){
+                    alert(req.msg);return;
+                }
+                if(req.msg == '取消关注成功'){
+                    $('#guanzhu_type').html('关注TA');
+                }else{
+                    $('#guanzhu_type').html('已关注');
+                }
+                console.log(req);
+            },
+            error : function (err){
+                console.log(err);
+            }
+        })
+    }
+</script>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" href="../css/lf_style.css"/>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+        <style>
+            #loading{
+              position:absolute;width:100%;height:100%;background-color:#fff;z-index:99;
+              /* text-align:center; */
+            }
+            #loading>img{
+              display:block;
+              margin:40vw auto;
+              width:60vw;
+              height:60vw;
+            }
+          
+        </style>
+    </head>
+    <body>
+        <div id="loading" style=""></div>
+        <!-- 控制页面大小 -->
+        <div class="big-box">
+            <!-- 头部 -->
+            <header class="header lf_header">  
+                 <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+                 <h2>积分互转</h2>
+            </header>
+            <!-- 中间内容 -->
+            <div class="content" style="background-color:#fff">
+               	<div class="lf_integral">
+               		<div class="lf_integralTop">
+               			<ul class="lf_displayFlex">
+	               			<li class="lf_integralitem lf_integralitemon">积分转出</li>
+	               			<li class="lf_integralitem">互转记录</li>
+	               		</ul>
+               		</div>
+               		<div class="lf_integralBot">
+	               		<div class="lf_integral-huzhuan">
+	               			<form action="">
+		               			<ul class="lf_integralBot">
+		               				<li class="lf_integral-input lf_clearFloat">
+		               					<label for="lf_jifenout">转出积分：</label>
+		               					<input id="rnumber" type="text"/>
+		               					<span class="lf_xing">*</span>
+		               					<p id="myscore" class="lf_tips"></p>
+		               				</li>
+		               				<li class="lf_integral-input lf_clearFloat">
+		               					<label for="lf_friend-user">好友账号：</label>
+		               					<input id="lf_friend-user" type="text"/>
+		               					<span class="lf_xing">*</span>
+		               				</li>
+		               				<!-- <li class="lf_integral-input lf_clearFloat">
+                            <label for="lf_friend-phone">好友手机号：</label>
+                            <input id="lf_friend-phone" type="text"/>
+                            <span class="lf_xing">*</span>
+                          </li>
+                          <li class="lf_integral-input lf_clearFloat">
+                            <label for="lf_erjipwd">二级密码：</label>
+                            <input id="lf_erjipwd" type="text"/>
+                            <span class="lf_xing">*</span>
+                          </li>-->
+                          <li class="lf_sureoutput">
+                            <button id="scoreYes" type="button">确认转出</button>
+                          </li> 
+		               			</ul>
+		               		</form>
+	               		</div>
+	               		<!-- 互转记录 -->
+               			<div id="record" class="lf_integral-record">
+               				<ul>
+               					
+               					<!-- <li class="lf_recorditem lf_clearFloat">
+                          <div class="lf_time">
+                            <p>13:12</p>
+                            <p class="lf_pbot">05-17</p>
+                          </div>
+                          <img src="../lf_img/lf_admin02.png" alt=""/>
+                          <div class="lf_recordCon">
+                            <h3>+400</h3>
+                            <p class="lf_pbot">jon Snow-转入</p>
+                          </div>
+                        </li>
+                        <li class="lf_recorditem lf_clearFloat">
+                                                  
+                                                  <img src="../lf_img/lf_admin02.png" alt=""/>
+                                                  <div class="lf_recordCon">
+                                                    <h3>jon Snow-转入</h3>
+                                                    <p class="lf_pbot">2017-09-12 12:20:56</p>
+                                                  </div>
+                                                  <div class="lf_righttime">
+                                                      +5
+                                                  </div>
+                                                </li> -->
+               				</ul>
+               			</div>
+               		</div>
+               		
+               	</div>
+            </div>
+            <!-- 尾部，如果没有需删除 -->
+           
+        </div>
+    </body>
+   
+    <script type="text/javascript" src="../js/lf_class.js"></script>
+    <script>
+
+        $("#rnumber").keyup(function(){  
+            $(this).val($(this).val().replace(/[^0-9]/g,''));  
+        }).bind("paste",function(){  //CTR+V事件处理  
+            $(this).val($(this).val().replace(/[^0-9]/g,''));   
+        }).css("ime-mode", "disabled"); //CSS设置输入法不可用  
+         $.ajax({
+            url : 'http://hr.hongrunet.com/Home/UserCenter/scoreHuZhuan',
+            dataType:'jsonp',
+            data:{},
+            jsonpCallback:'jsonpReturn',
+
+            beforeSend:function(XMLHttpRequest){ 
+                $("#loading").html("<img src='../lf_img/8.gif'/>"); //在后台返回success之前显示loading图标
+            }, 
+            success : function(req){
+               console.log(req);
+              $("#loading").remove(); //ajax返回成功，清除loading图标
+                var score = req.data.myscore
+                if(score == null){
+                    score = 0;
+                }
+                $("#myscore").text("可使用积分 "+score);
+                
+                 $("#rnumber").keyup(function(){
+                    var num = parseInt($("#rnumber").val());
+                    if(num>score){
+                      $("#rnumber").val("您的可使用积分不足").css("color","#f00");
+                    }else{
+                       $("#rnumber").css("color","#000");
+                    }
+                 });
+                 
+            }
+        });
+       
+        $("#scoreYes").on("click",function(){
+            var score = $("#rnumber").val();
+            var phone = $("#lf_friend-user").val();
+             $.ajax({
+                url : 'http://hr.hongrunet.com/Home/UserCenter/scoreYes',
+                dataType:'jsonp',
+                data:{
+                  score:score,
+                  phone:phone
+                },
+                jsonpCallback:'jsonpReturn',
+                success : function (req) {
+                    console.log(req);
+
+                   if(req.status==='0'){
+                     alert(req.msg);
+                   }else{
+                      alert(req.msg);
+                      window.location.href = "lf_personal.html";
+                   }
+
+                }
+            });
+        });
+        $(".lf_integralTop .lf_integralitem").on("touchstart",function(){
+            $(".lf_integralitem").removeClass('lf_integralitemon');
+            $(".lf_integralitem").eq($(this).index()).addClass('lf_integralitemon');
+            $(".lf_integralBot>div").css("display","none");
+            $(".lf_integralBot>div").eq($(this).index()).css("display","block"); 
+             var record = $("#record").find("ul");
+           $(".lf_integralitem").eq(1).off("click").on("click",function(){
+                 $.ajax({
+                    url : 'http://hr.hongrunet.com/Home/UserCenter/scoreHuZhuanLog',
+                    dataType:'jsonp',
+                    data:{},
+                    jsonpCallback:'jsonpReturn',
+                    success : function (req) {
+                    record.html("");
+                      console.log(req);
+                      $.each(req.data,function(index,value){
+                            $li = $("<li>").addClass('lf_recorditem lf_clearFloat');
+                            $li = $("<li>").addClass('lf_recorditem lf_clearFloat');
+                            $div1 = $("<div>").addClass('lf_righttime').text(value.score);
+                            $img = $("<img>").attr("src",value.headimg);
+                            $div2 = $("<div>").addClass('lf_recordCon');
+                            $h3 = $("<h3>").text(value.name);
+                            $p3 = $("<p>").addClass('lf_pbot').text(value.createtime);
+                            $div2.append($h3).append($p3);
+                            $li.append($img).append($div2).append($div1);
+                            record.append($li);
+                        });
+                       
+                    }
+                });    
+              })        
+           });
+       
+
+    </script>
+</html>

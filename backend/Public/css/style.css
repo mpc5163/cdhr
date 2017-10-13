@@ -1,0 +1,272 @@
+*button{outline:none;}
+
+
+
+/*  PUBLIC */
+
+b{font-weight: normal;}
+
+.bac_e{background: #eee;}
+
+.bac_f{background: #fff;}
+
+.borb0{border-bottom: 0;}
+
+.c_e01413{color:#e01413;}
+
+.c_040B0E{color:#040B0E;}
+
+.c_c00{color:#c00;}
+
+.c_dc110b{color:#dc110b;}
+
+.c_545454{color:#545454;}
+
+.c_bf3727{color:#bf3727;}
+
+.c_fa274c{color:#bf3727 }
+
+.c_575757{color: #575757;}
+
+.c_666{color:#666;}
+
+.c_000{color:#000;}
+
+.c_888{color:#888;}
+
+.c_fff{color:#fff;}
+
+.c_c00{color:#c00;}
+
+.c_aa3f02{color: #aa3f02;}
+
+.dis_flex{display: flex;}
+
+.mara{margin:0 auto;}
+
+.mart0{margin-top: 0px;}
+
+.mart5{margin-top: 5px;}
+
+.mart10{margin-top: 10px;}
+
+.mart30{margin-top: 20px;}
+
+.marb0{margin-bottom: 0!important;}
+
+.marb5{margin-bottom: 5px;}
+
+.marb10{margin-bottom: 10px;}
+
+.marb60{margin-bottom: 60px;}
+
+.pad0{padding:0!important;}
+
+.pad5{padding: 5px!important;}
+
+.pad8{padding: 8px;}
+
+.padl5{padding-left: 5px;}
+
+.padr5{padding-right: 5px;}
+
+.padt5{padding-top: 5px;}
+
+.padt15{padding-top: 15px;}
+
+.padt20{padding-top: 20px;}
+
+.pad12{padding:12px;}
+
+.padt0{padding-top: 0!important}
+
+.pad_t15{padding:15px 0 0;}
+
+.pad5{padding:5px;}
+
+.pad10{padding:10px;}
+
+.padt10{padding-top: 10px;}
+
+.padb10{padding-bottom: 10px;}
+
+.padt20{padding-top: 20px;}
+
+.mar0{margin:0;}
+
+.mar10{margin:10px;}
+
+.marl5{margin-left: 5px;}
+
+.marr10{margin-right: 10px;}
+
+.mar_t5{margin:5px 0 0!important;}
+
+.mart10{margin-top: 10px;}
+
+.mart15{margin-top: 15px;}
+
+.marb60{margin-bottom:60px!important;}
+
+.marb100{margin-bottom:100px!important;}
+
+.mart3{margin-top: 3px;}
+
+.fon12{font-size: 12px!important;}
+
+.fon14{font-size: 14px!important;}
+
+.fon15{font-size: 15px;}
+
+.fon16{font-size: 16px;}
+
+.fon20{font-size: 20px;}
+
+.fon30{font-size: 30px;}
+
+.fon_w_b{font-weight: bold;}
+
+.texr{text-align: right}
+
+.texc{text-align: center;}
+
+.hei12{height: 12px;}
+
+.hei_p40{height: 40%;}
+
+.l_heig20{line-height: 20px;}
+
+.l_heig25{line-height: 25px;}
+
+.l_heig40{line-height: 40px;}
+
+.bor0{border: 0!important;}
+
+.bor_b_10e{border-bottom: 10px solid #eee!important;}
+
+.bor_b_10f0{border-bottom: 10px solid #f0f0f0!important;}
+
+.wid_p100{width: 100%;}
+
+.wid_p86{width: 86%;}
+
+.footer_con{ position: fixed; bottom: 0; left: 0; width: 100%; background: #ffffff; }
+
+.footer_con span{display: block;font-size: 10px;}
+
+.footer_con a{color: #666666;}
+
+.footer_con a:hover {
+
+    color: #c00;
+
+}
+
+.a1{ color: #333333; font-size: 13px; }
+
+.a1 span{ color: #999999; font-weight: bold; }
+
+.t1{ width:100%;height: 1rem; border-top:1px solid #D9D9D9;border-bottom:1px solid #D9D9D9; background: #EEEEEE;}
+
+.t2{ margin-bottom: 50px;}
+
+.s1{ color: #ee5a4e; font-weight: bold; }
+
+.b1{ border-bottom: 1px solid #CCCCCC; padding: 15px 0;}
+
+.b2{ color:#FD0100; font-weight:bold; font-size:20px; margin-top: 5px;}
+
+.b3{ padding-top: 5px;}
+
+.border1{ border: 1px solid #7DA6D2!important;}
+
+.am-list-border li{border-bottom: 1px solid #eee;}
+
+.am-g-collapsey{width: 100%;padding:0px!important;}
+
+.am-g-collapsey a{color:#545454;padding:8px 10px!important;}
+
+.am-g-collapsey a span{vertical-align:middle;display:inline-block;font-size: 14px;}
+
+.am-g-collapsey a span img{width: 20px;height: 20px;margin-right: 5px;}
+
+.am-g-collapsey a i{float: right;display:inline-block;color: #888;}
+
+.hy_1{ margin-top: 10px; }
+
+.am-g-collapsey p span img{width: 20px; height: 20px; margin-right: 5px;}
+
+
+
+/****Index****/
+
+.Index_toudan{ width: 100%; overflow: hidden; padding-bottom: 10px;}
+
+.Index_toudan h3,.Index_zxxfc h3{ width: 95%; padding: 5px 0;  color: #333333; font-size: 20px; font-weight: normal; overflow: hidden; margin:0 auto 10px; border-bottom: 1px solid #D9D9D9; }
+
+.Index_toudan h3 img,.Index_zxxfc h3 img{ margin-right: 10px; position: relative; top: -2px;}
+
+.Index_toudan h3 span,.Index_zxxfc h3 span{ color: #808080; font-size: 13px; margin-left: 5px; }
+
+.I_t1{ width: 40%; overflow: hidden; float: left; margin: 0 5px;}
+
+.I_t1 img{ display: block; width: 100%; }
+
+.I_t2{ width: 50%; overflow: hidden; float: left; color: #333333; font-weight: bold;}
+
+.I_t2 span{ color: #ee5a4e; }
+
+.I_t3{ display: block; width: 24%; padding: 2px 0;  -moz-border-radius: 3px; -webkit-border-radius: 3px;border-radius: 3px;background: #ee5a4e; float: right; text-align: center; margin-top: 4px; margin-right: 5px; color: #FFF; }
+
+.Index_zxxfc{width: 100%; overflow: hidden;}
+
+.Index_zxxfc ul{ padding:0; }
+
+.Index_zxxfc ul li{ list-style: none; width: 95%; overflow: hidden; margin:10px auto;}
+
+.Index_zxxfc ul li span{display:block; width: 70%; overflow: hidden; float: left;}
+
+.Index_zxxfc ul li span img{ display: block; width: 100%; height: auto; }
+
+.Index_zxxfc ul li a{ display: block; float:right;width: 24%; overflow: hidden; padding: 2px 0; margin-top: 30px;  -moz-border-radius: 3px; -webkit-border-radius: 3px;border-radius: 3px;background: #ee5a4e; text-align: center;color: #FFF; }
+
+.zhuce{ color: #999999; }
+
+.zhuce a{ text-decoration: underline; color:#313131; }
+
+.sqdan{ width: 95%;  margin: 0 auto; }
+
+.shuoming{ width: 100%; overflow: hidden; }
+
+.shuoming img{ display: block; width: 100%; height: auto; }
+
+
+
+.mszd{ width:100%; overflow:hidden;}
+
+.mszd  img{display:block; width:100%;}
+
+
+
+.btn1{ font-size: 12px; }
+
+.h3_1{ width: 92%; overflow: hidden; margin:0 auto; font-size: 16px;  color: #F00; margin-bottom: 10px;  }
+
+.czfzzh{ width: 92%; overflow: hidden; margin:0 auto; font-size: 16px; }  
+
+.czfzzh p img{ display:block; width:100%; height:auto;}
+
+.cz_1{ width: 98%; overflow: hidden; background: #0E90D2; color: #FFF; padding: 6px 1%; -moz-border-radius: 3px; 
+
+  -webkit-border-radius: 3px; border-radius: 3px;}  
+
+  .btn2{ width: 92%; overflow: hidden; -moz-border-radius: 3px; 
+
+  -webkit-border-radius: 3px; border-radius: 3px; background:#0E90D2; color: #FFF; border: 0; margin: 0 auto; display: block; padding: 10px 0;  }
+
+
+
+  footer{ width: 100%; overflow: hidden; position: fixed; bottom: 0; left: 0; background: #FFF; padding: 2px 0; }
+    footer a{ display: block; width: 33%; overflow: hidden; float: left; text-align: center; font-size: 14px; }
+    footer a span{ display:block; width: 48%; overflow: hidden; margin: 0 auto; }
+    footer a img{ display: block; width: 100%; }

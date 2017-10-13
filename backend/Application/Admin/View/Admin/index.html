@@ -1,0 +1,241 @@
+<include file="Public/head" />
+<style type="text/css">
+	table tr > td:first-child{padding-left:20px;padding-bottom:10px;width:40%;text-align:center;}
+	table tr > td:last-child input{width:80%;margin-bottom:10px;	}
+</style>
+<div>
+	<div>
+		<button style="width:100px;margin:5px" type="button" class="btn btn-primary" onclick="addUser()">添加</button>
+	</div>
+	
+	<div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="userlist" style="padding-right: 20px;">
+			<table id="jqGrid" style="width: 100%;"></table>
+			<div id="jqGridPager"></div> 	
+	    </div>
+    	<div role="tabpanel" class="tab-pane" id="edituser">
+    		
+	</div>
+</div>
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="width:80%;margin:auto;">
+    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">添加 | 编辑管理员</h4>
+	      </div>
+	       <div class="modal-body">
+    				<table class="modal-table" style="width:80%;">
+	    			<!-- <tr>
+						<td>姓名</td>
+						<td><input type="text" class="form-control" name="realname" placeholder="姓名" id="realname"></td>
+					</tr> -->
+					<tr>	
+						<td>登录名</td>
+						<td><input type="hidden" name="userid" id="userid"/>
+							<input type="text" class="form-control"  name="username" id="username" placeholder="登录名"></td>
+					</tr>
+					<tr id="pwdhide">	
+						<td>密码</td>
+						<td><input type="password" class="form-control"  name="password" id="password" placeholder="六位以上的数组和字母"></td>
+					</tr>
+					<tr>
+						<td>角色</td>
+			             <td>
+			                <select class="form-control"  name="role" id="role" style="width:80%;margin-bottom:10px">
+			                	<volist name="roles" id="role1">
+										<option value="{$role1.id}" >{$role1.rolename}</option>
+			                	</volist>	
+			                </select>
+			            </td>
+					</tr> 	
+		            <tr>
+						<td>手机号</td>
+						<td><input type="text" class="form-control" name="phone" id="phone" placeholder="电话"></td>
+					</tr> 
+					<tr class="isuse">
+						<td>是否可用</td>
+						<td>
+							<select class="form-control"  name="status" id="status" style="width:80%;margin-bottom:10px">
+								<option value="1" >可用</option>
+								<option value="2" >不可用</option>
+			                </select>
+			            </td>
+
+					</tr>          
+    			</table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-primary" onclick="saveUser();">保存</button>
+	      </div>		     
+    	</div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+	function formatLink(id) {
+		return "<a class='btn btn-primary' href='javascript:' onclick='edit("+id+");'>编辑</a>&nbsp;<a class='btn btn-danger' href='javascript:' id='user"+id+"' onclick='deleteUser("+id+");'>删除</a>";
+
+	};
+
+
+  function addUser(){
+		$("#username").val("");
+		$("#phone").val("");
+		$("#password").val("");
+		$("#userid").val("");		
+		$(".isuse").hide();
+		$('.bs-example-modal-lg').modal().show();  	
+  }  
+
+    //编辑用户信息
+	function edit(id){
+			var rowdata=$("#jqGrid").jqGrid('getRowData',id);
+			var username=rowdata.rolename;
+		if(username=="超级管理员"){
+			alert("超级管理员为系统内置，不能进行编辑！");
+			return;
+		}
+		$.ajax({
+			url: "{:U('/Admin/Admin/getUserbyID')}",
+			dataType: "json",
+			async: false,
+			data: { "id": id },
+			type: "GET",  
+			success: function(user) {
+				$("#username").val(user.username);
+				$("#phone").val(user.phone);
+				$("#password").val(user.password);
+				$("#role option").each(function(){
+					var value=$(this).attr('value');
+					if(value==user.roleid)
+					{
+						$(this).prop('selected','selected');
+					}
+					else{
+						$(this).removeProp('selected');
+					}
+				});
+				$("#status option").each(function(){
+					var value=$(this).attr('value');
+					if(value==user.status)
+					{
+						$(this).prop('selected','selected');
+					}
+					else{
+						$(this).removeProp('selected');
+					}
+				});				
+				$("#userid").val(id);
+			}  
+
+		});
+		$(".isuse").show();	
+		$('.bs-example-modal-lg').modal().show(); 
+
+	}
+
+	function deleteUser(id){
+			var rowdata=$("#jqGrid").jqGrid('getRowData',id);
+			var username=rowdata.rolename;
+		if(username=="超级管理员"){
+			alert("超级管理员为系统内置，不能进行删除！");
+			return;
+		}
+		if (confirm("你确定要删除吗?")) {
+			$.ajax({
+				url: "{:U('/Admin/Admin/deleteUser')}",
+				dataType: "text",
+				async: true,
+				data: { "id": id },
+				type: "GET",   
+				success: function(req) {
+					if(req=="true")
+					{	
+						$("#user"+id).parent().parent().remove();
+						// $(window.parent.document).find("#main_iframe").attr("src","{:U('/Admin/Admin/index')}");
+					}else{
+						alert('用户删除失败!');
+					}
+				}
+		    });			
+		}
+
+	}
+
+	function saveUser(){
+		var userid   = $("#userid").val();
+		var username = $("#username").val();
+		var phone    = $("#phone").val();
+		var password = $("#password").val();
+		var status   = $("#status option:selected").val();
+		var roleid   = $("#role option:selected").val();
+		// var pattern = /^[\u4E00-\u9FA5]{1,6}$/;  //姓名正则
+		var myreg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/; 	//手机号正则
+
+		if(username.length==0){
+			alert('请输入登录名');return;
+		}
+		if (password.length < 6) {
+			alert("密码不符合要求");return;
+		}
+		if ($("#role option:selected").text()=='') {
+			alert('请选择角色');return;
+		}
+		if(!myreg.test(phone)) {
+			alert('请输入有效的手机号码!');return;
+		};
+
+  	$.ajax({
+  		type     : "POST",
+  		url      : "{:U('/Admin/Admin/saveUser')}",
+  		data     : {"userid":userid,"username":username,"password":password,"phone":phone,"roleid":roleid,"status":status},
+  		dataType : "json",
+  		error    : function(){},
+  		success  : function(data){
+    			console.log(data);
+    			if(data.status){
+    				alert('编辑成功！');
+    				$(window.parent.document).find("#main_iframe").attr("src",data.url);
+    			}else{
+    				alert(data.info);
+    			}      				
+  		}
+  	});
+	}
+
+	$(document).ready(function($) {	
+
+		$("#jqGrid").jqGrid({
+			styleUI : 'Bootstrap',
+			colModel: [
+			    // { label: '姓名', name: 'realname',width:'100'},
+			    { label: '登录名', name: 'username',width:'100' },
+			    { label: '电话', name: 'phone' ,width:'120'},
+			    { label: '角色', name: 'rolename',width:'100' },
+			    { label: '状态', name: 'status',width:'80' },
+			    { label: '登录地址', name: 'ip',width:'100' },
+			    { label: '添加时间', name: 'createtime',width:'200' },	
+			    // { label: '地址', name: 'address' ,width:'200'},
+			    { label: '操作', name: 'id',width:380,formatter: formatLink,width:'150'}
+			],
+			viewrecords: true,
+			rownumbers: true,
+			rownumWidth: 35,
+			height: document.documentElement.clientHeight-135,
+			autowidth:true,
+			rowNum: 9,
+			datatype: 'local',
+			loadonce:true,
+			pager: "#jqGridPager"
+		});
+		$("#jqGrid").jqGrid('setGridParam', { data: eval({$users})});
+		$("#jqGrid").trigger('reloadGrid');
+	});
+
+</script>
+<include file="Public/footer" />

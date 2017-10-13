@@ -1,0 +1,38 @@
+<include file="Public/head" />
+<style type="text/css">
+	table tr > td:first-child{padding-left:20px;padding-bottom:10px;width:40%;text-align:center;}
+	table tr > td:last-child input{width:80%;margin-bottom:10px;	}
+</style>
+<div>
+	<div style="margin:24px;">
+		<label class="wy_label">当前设置&nbsp;:</label>
+		<input size="24px" name="price"  value="<?php echo $daf;?> " style="height:36px;"  />	
+	</div>
+	<div style="margin:24px;">
+		<input style="height:36px;" id="price"  type="number" size="24px" placeholder="请输入直播基础价格"/>
+		<button id="submit_search" class="btn btn-primary" onclick="save();">修改</button>			
+	</div>
+	
+<include file="Public/footer" />
+<script>
+	//价格设定
+	function save(){
+		var price  	= $("#price").val();
+		$.ajax({
+	  		type     : "POST",
+	  		url      : "{:U('/Admin/LetvList/save')}",
+	  		data     : {"price":price},
+	  		dataType : "json",
+	  		error	 : function(){},
+	  		success  : function(data){
+	    			console.log(data);
+	    			if(data.status == 1){
+	    				alert(data.msg);
+	    				$(window.parent.document).find("#main_iframe").attr("src","{:U('/Admin/LetvList/price')}");	
+	    			}else{
+	    				alert(data.msg);	
+	    			}      				
+	  		}
+	  	});
+	}
+</script>

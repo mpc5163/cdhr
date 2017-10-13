@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+
+    <link rel="stylesheet" href="../css/wy_main.css"/>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <title>鸿儒商学讲堂-观看直播</title>
+</head>
+<body>
+<!-- 控制页面大小 -->
+<div class="big-box">
+    <div class="content wy_myVideo">
+        <div class="wy_videoBg_box">
+            <!--<a href="javascript:history.go(-1);" class="iconfont icon-cuohao wy_font36"></a>-->
+
+            <div class="wy_my-video-top">
+                <div class="wy_t_left">
+                    <img class="wy_t-headImg" src="../wy_img/myHeadImg.png" alt=""/>
+                    <p class="wy_font18 wy_p1">小菲老师<br/>
+                        <span>76543</span>人观看
+                    </p>
+                    <div class="wy_follow wy_font20">关注</div>
+                </div>
+                <div class="wy_t_right">
+                    <img class="wy_t-logoImg" src="../wy_img/wy_my-login.png" alt=""/>
+                </div>
+            </div>
+
+            <div class="wy_my-video-bottom">
+                <div class="wy_msgs">
+                    <i class="iconfont icon-iconfontmark wy_font36"></i>
+
+                    <input class="wy_input-btn wy_font20" type="text" placeholder="和大家说点什么吧"/>
+
+                    <div class="wy_send wy_font24">发送</div>
+
+                    <div class="wy_close">
+                        <i class="iconfont icon-error wy_font30"></i>
+                    </div>
+
+                    <div class="wy_reward wy_font24">打赏</div>
+                </div>
+            </div>
+
+            <!--聊天框-->
+            <div class="wy_chatList">
+                <ul>
+                    <li>
+                        <img src="../wy_img/myHeadImg.png" alt=""/>
+                        <span class="wy_font23">太棒了，好喜欢老师讲的</span>
+                    </li>
+                    <li>
+                        <img src="../wy_img/myHeadImg.png" alt=""/>
+                        <span class="wy_font23">太棒了</span>
+                    </li>
+                    <li>
+                        <img src="../wy_img/myHeadImg.png" alt=""/>
+                        <span class="wy_font23">太棒了，好喜欢老师讲的</span>
+                    </li>
+                    <li>
+                        <img src="../wy_img/myHeadImg.png" alt=""/>
+                        <span class="wy_font23">太棒了</span>
+                    </li>
+                    <li>
+                        <img src="../wy_img/myHeadImg.png" alt=""/>
+                        <span class="wy_font23">太棒了，好喜欢老师讲的</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!--弹窗-->
+        <div class="wy_PopupBox">
+            <div class="wy_PopupBox-bg"></div>
+            <div class="wy_PopupBox-body">
+                <div class="wy_PopupBox-body-top">
+                    <h1 class="wy_font24 wy_h1">提示</h1>
+                    <p class="wy_font24 wy_p">你确定结束直播吗？</p>
+                    <!--<i class="iconfont icon-cuohao wy_font30 wy_closeBtn"></i>-->
+                </div>
+                <div class="wy_PopupBox-body-bottom">
+                    <a class="wy_a-btn wy_a-btn1 wy_li-a wy_font24 wy_cancel" href="javascript:void(0)">取消</a>
+                    <a class="wy_a-btn wy_li-a wy_font24" href="lf_videoend.html">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    $(function(){
+        $(".wy_close").click(function(){
+            $(".wy_myVideo .wy_PopupBox").css("display","block");
+            $(".wy_cancel").click(function(){
+                $(".wy_myVideo .wy_PopupBox").css("display","none");
+            });
+        });
+        $("input:text").focus(function(){
+            $(this).attr('placeholder','');
+        });
+        $("input:text").blur(function(){
+            $(this).attr('placeholder','和大家说点什么吧');
+        })
+    });
+</script>
+</html>

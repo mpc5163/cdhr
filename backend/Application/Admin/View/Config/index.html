@@ -1,0 +1,155 @@
+<include file="Public/head" />
+<style type="text/css">
+	table tr > td:first-child{padding-left:20px;padding-bottom:10px;width:24%;text-align:center;}
+	table tr > td:last-child input{width:80%;margin-bottom:10px;	}
+	span{font-size: 2rem;}
+	button{margin-left:36%;margin-top:2%;width:20%;height:3rem;}
+</style>
+<div>
+	<div class="tab-content">
+		<form action="" method="post" class="form-horizontal"  enctype="multipart/form-data">
+			<div class="box-body">
+				<span>会员等级消费设置</span>
+				<!-- <hr/> -->
+				<table class="table table-bordered table-hover table-condensed">
+					<tr>
+						<th>等级</th>
+						<th rowspan="1" style="width: 120px">学童</th>
+						<th rowspan="1" style="width: 120px">学霸</th>
+						<th rowspan="1" style="width: 120px">讲师</th>
+						<th rowspan="1" style="width: 120px">合伙人</th>
+					</tr>										
+					<tr>
+						<td style="line-height:3rem;">会员升级需花费金额(元)</td>
+						<td>{$m['0']}</td>
+						<td>{$m['1']}</td>
+						<td>{$m['2']}</td>
+						<td>{$m['3']}</td>
+					</tr>
+				</table>
+				<!-- <button type="button" class="btn btn-primary" onclick="saveConfig();">修改</button> -->
+			</div>
+			<div class="box-body">
+				<span>会员三级分销比例</span>
+				<hr/>
+				<table class="table table-bordered table-hover table-condensed">
+					<tr>
+						<th>等级</th>
+						<th rowspan="1" style="width: 120px">学童(积分)</th>
+						<th rowspan="1" style="width: 120px">学霸</th>
+						<th rowspan="1" style="width: 120px">讲师</th>
+						<th rowspan="1" style="width: 120px">合伙人</th>
+					</tr>						
+					<tr>
+						<td style="line-height:3rem;">一级分销奖金</td>
+						<td>{$a['0']}</td>
+						<td>{$b['0']}</td>
+						<td>{$c['0']}</td>
+						<td>{$d['0']}</td>
+					</tr>
+					<tr>
+						<td style="line-height:3rem;">二级分销奖金</td>
+						<td>{$a['1']}</td>
+						<td>{$b['1']}</td>
+						<td>{$c['1']}</td>
+						<td>{$d['1']}</td>
+					</tr>
+					<tr>
+						<td style="line-height:3rem;">三级分销奖金</td>
+						<td>{$a['2']}</td>
+						<td>{$b['2']}</td>
+						<td>{$c['2']}</td>
+						<td>{$d['2']}</td>
+					</tr>		
+				</table>
+				<!-- <button type="button" class="btn btn-primary" onclick="saveConfig();">修改</button> -->
+			</div>
+			<!-- 体现规则 -->
+			<div class="box-body">
+				<span>提现规则</span>
+				<hr/>
+				<table class="table table-bordered table-hover table-condensed">
+					<tr>
+						<th>等级</th>
+						<th rowspan="1" style="width: 120px">体现周期</th>
+						<th rowspan="1" style="width: 120px">提现方式</th>
+						<th rowspan="1" style="width: 120px">额度限制</th>
+						<th rowspan="1" style="width: 120px">提现手续费</th>
+						<th rowspan="1" style="width: 120px">提现绩效要求</th>
+					</tr>						
+					<tr>
+						<td style="line-height:3rem;">学霸</td>
+						<td>秒到</td>
+						<td>企业到账</td>
+						<td>100元</td>
+						<td>1%</td>
+						<td>无</td>
+					</tr>
+					<tr>
+						<td style="line-height:3rem;">讲师</td>
+						<td>秒到</td>
+						<td>企业到账</td>
+						<td>100元</td>
+						<td>1%</td>
+						<td>无</td>
+					</tr>
+					<tr>
+						<td style="line-height:3rem;">合伙人</td>
+						<td>秒到</td>
+						<td>企业到账</td>
+						<td>100元</td>
+						<td>1%</td>
+						<td>无</td>
+					</tr>		
+				</table>
+			</div>
+		</form>
+	</div>
+</div>
+<include file="Public/footer" />
+<script type="text/javascript">	
+	function saveConfig(){
+		// var userid   = $("#userid").val();
+		var children    = $("#children").val();
+		var lecter     = $("#lecter").val();
+		var scholar = $("#scholar").val();
+		var partner	 = $("#partner").val();
+	  	$.ajax({
+	  		type     : "POST",
+	  		url      : "{:U('/Admin/Config/saveConfig')}",
+	  		data     : {"children":children,"scholar":scholar,"lecter":lecter,"partner":partner},
+	  		dataType : "json",
+	  		error		 : function(){},
+	  		success  : function(data){
+	    			console.log(data);
+	    			if(data.status){
+	    				$(window.parent.document).find("#main_iframe").attr("src",data.url);
+	    			}else{
+	    				alert(data.info);
+	    			}      				
+	  		}
+	  	});
+	}
+</script>
+<script>
+	//价格设定
+	function save(){
+		var price  	= $("#price").val();
+		$.ajax({
+	  		type     : "POST",
+	  		url      : "{:U('/Admin/Config/save')}",
+	  		data     : {"price":price},
+	  		dataType : "json",
+	  		error	 : function(){},
+	  		success  : function(data){
+	    			console.log(data);
+	    			if(data.status == 1){
+	    				alert(data.msg);
+	    				$(window.parent.document).find("#main_iframe").attr("src","{:U('/Admin/Config/index')}");	
+	    			}else{
+	    				alert(data.msg);	
+	    			}      				
+	  		}
+	  	});
+	}
+</script>

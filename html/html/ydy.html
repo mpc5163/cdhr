@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <title>鸿儒商学讲堂-支付引导页</title>
+        <style type="text/css">
+            body{ background: url(ydy_1.png); filter:alpha(opacity=90);-moz-opacity:0.9; -khtml-opacity: 0.9; opacity: 0.9;    }
+            img{ display: block; width: 80%; float: right; }
+        </style>
+    </head>
+    <body>
+        <img src="ydy_2.png">
+    </body>
+    <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var res = window.location.href.split('?res=')[1];
+            $.ajax({
+              url : 'http://hr.hongrunet.com/Home/Letv/ydy',
+              dataType:'jsonp',
+              data:{},
+              jsonpCallback : 'jsonpReturn',
+              success : function(msg){
+                console.log(res);
+                if(msg.status==1){
+                    window.location.href=res;
+                }
+              }                        
+          });  
+        });
+    </script>
+</html>

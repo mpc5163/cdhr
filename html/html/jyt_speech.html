@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+    <link rel="stylesheet" href="../css/wy_main.css"/>
+    <link rel="stylesheet" href="../css/lf_style.css"/>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <title>鸿儒商学讲堂</title>
+</head>
+<body>
+<!-- 控制页面大小 -->
+<div class="big-box">
+    <!-- 头部 -->
+    <header class="header wy_header wy_font32 wy_header-a">
+        <div class="wy_header-title">
+            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui wy_backBtn"></a>
+            <span>演讲高手</span>
+            <button onclick="window.location.href='wy_SpeechTop.html'" style="border:0;background:none;font-size:16px;color:#fff;float: right;line-height: 12.84vw;height: 12.84vw;" type="button">上传视频</button>
+        </div>
+        <!--导航-->
+        
+    </header>
+    <!-- 中间内容 -->
+    <div class="content wy_Interview">
+        <!--产品列表  全部-->
+        <div class="wy_Interview-list" id="quanbu">
+            <!-- 全部 -->
+        </div>
+        <!--产品列表 免费-->
+        <div class="wy_Interview-list" style="display:none;" id="mianfei">
+            <!-- 免费 -->
+        </div>
+        <!--产品列表  学霸-->
+        <div class="wy_Interview-list" style="display:none;" id="xueba">
+            <!--产品列表  学霸-->
+        </div>
+        <!--产品列表  讲师-->
+        <div class="wy_Interview-list" style="display:none;" id="jiangshi">
+            <!--产品列表  讲师-->
+        </div>
+        <!--产品列表  合伙人-->
+        <div class="wy_Interview-list" style="display:none;" id="hehuoren">
+            <!--产品列表  合伙人-->
+        </div>
+    </div>
+   <!-- 尾部，如果没有需删除 -->
+    <footer class="footer" style="border-top:1px solid #d9d9d9">
+        <ul class="lf_botlinks">
+            <li>
+                <a class="lf_jump" href="kll_index.html">
+                    <i class="iconfont icon-shouye lf_icon-top"></i>
+                    <span class="lf_botxt">首页</span>
+                </a>
+            </li>
+            <li>
+                <a class="lf_jump" href="javascript:void(0)">
+                    <i class="iconfont icon-app1 lf_icon-top"></i>
+                    <span class="lf_botxt">APP</span>
+                </a>
+            </li>
+            <li>
+                <a class="lf_jump" href="lf_classify.html">
+                    <i class="iconfont icon-fenlei lf_icon-top"></i>
+                    <span class="lf_botxt">课程分类</span>
+                </a>
+            </li>
+            <li>
+                <a class="lf_jump" href="lf_comprofile.html">
+                    <i class="iconfont icon-kefu lf_icon-top"></i>
+                    <span class="lf_botxt">公司客服</span>
+                </a>
+            </li>
+            <li>
+                <a class="lf_jump" href="lf_personal.html">
+                    <i class="iconfont icon-geren lf_icon-top"></i>
+                    <span class="lf_botxt">个人中心</span>
+                </a>
+            </li>
+        </ul>
+    </footer>
+    <!--弹窗-->
+    <div class="wy_PopupBox">
+        <div class="wy_PopupBox-bg"></div>
+        <div class="wy_PopupBox-body">
+            <div class="wy_PopupBox-body-top">
+                <h1 class="wy_font24 wy_h1">提示</h1>
+                <p class="wy_font24 wy_p">需要提升学员等级或者购买访问权限才能访问</p>
+                <i class="iconfont icon-cuohao wy_font30 wy_closeBtn"></i>
+            </div>
+            <div class="wy_PopupBox-body-bottom">
+                <a class="wy_a-btn wy_a-btn1 wy_li-a wy_font24" href="jyt_riseApply.html">学员升级</a>
+                <a class="wy_a-btn wy_li-a wy_font24" href="kll_paycom.html">购买权限</a>
+                <!-- <a class="wy_a-btn wy_li-a wy_font24" href="#">取消</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function(){
+        $(".wy_nav-li").on("touchstart",function(){
+            $(".wy_nav-li").children("a").removeClass("wy_nav-on");
+            $(this).children("a").addClass("wy_nav-on");
+            /*var tit =  $(this).children('a').text();
+                $(".wy_header-title").children('span').text(tit);*/
+            index = $(this).index();
+            $(".wy_Interview-list").css("display","none");
+            $(".wy_Interview-list").eq(index).css("display","block");
+        })
+    });
+    function jsonpReturn(req){
+        console.log(req);
+        if(req.status == '5'){
+            location.href = req.data;
+        }
+        $('#leibie').html(req.data.classname);
+        var course = req.data.courses_info;
+        //全部
+        var quanbu = '';
+        var mb = '';
+        var zy = '';
+        var mianfei = 0;
+        var xueba = 0;
+        var jiangshi = 0;
+        var hehuoren = 0;
+        var left = 'wy_list-left';
+        var right = 'wy_list-right';
+        for(var i in course){
+            zy = (i % 2 == 0)?left:right;
+            quanbu = '<div class="wy_list '+zy+'"><a name="lf_videoDetail.html?id='+course[i].id+'" data-id="' + course[i].id + '" class="wy_li-a"><img class="wy_listImg" src="'+course[i].thumbnail+'" alt=""/><p class="wy_font23 wy_list-tit">'+course[i].title+'</p><span class="wy_font23 wy_span-l">'+course[i].class+'</span><span class="wy_font18 wy_span-r">'+course[i].looknum+'人已观看</span></a></div>';
+            mb = '<a href="lf_videoDetail.html?id='+course[i].id+'" class="wy_li-a"><img class="wy_listImg" src="'+course[i].thumbnail+'" alt=""/><p class="wy_font23 wy_list-tit">'+course[i].title+'</p><span class="wy_font23 wy_span-l">'+course[i].class+'</span><span class="wy_font18 wy_span-r">'+course[i].looknum+'人已观看</span></a></div>';
+            if(course[i].level == 1){
+                zy = (mianfei % 2 == 0)?left:right;
+                mb = '<div class="wy_list '+zy+'">'+mb;
+                $('#mianfei').append(mb);
+                mianfei++;
+            }else if(course[i].level == 2){
+                zy = (xueba % 2 == 0)?left:right;
+                mb = '<div class="wy_list '+zy+'">'+mb;
+                $('#xueba').append(mb);
+                mianfei++;
+            }else if(course[i].level == 3){
+                zy = (jiangshi % 2 == 0)?left:right;
+                mb = '<div class="wy_list '+zy+'">'+mb;
+                $('#jiangshi').append(mb);
+                jiangshi++;
+            }else if(course[i].level == 4){
+                zy = (hehuoren % 2 == 0)?left:right;
+                mb = '<div class="wy_list '+zy+'">'+mb;
+                $('#hehuoren').append(mb);
+                hehuoren++;
+            }
+            $('#quanbu').append(quanbu);
+        }
+
+    }
+
+    $("#quanbu").delegate(".wy_li-a", "touchend", function () {
+        var id = $(this).attr("data-id");
+        var nn = $(this).attr("name");
+        $.ajax({
+            url : 'http://hr.hongrunet.com/Home/index/course',
+            dataType:'jsonp',
+            data:{id:id},
+            jsonp : 'jsonpCallback',
+            jsonpCallback: "jsonpReturn",
+            success : function(req){
+                if(req.status == 2){
+                    alert(req.msg);
+                    $(".wy_PopupBox").css("display", "block");
+                }else{
+                    if (req.status == 1) {
+                        window.location.href = nn;
+                    }else{
+                        alert("错误");
+                    }
+                   // window.location.href = "lf_videoDetail.html?id=84";
+                }
+            }
+        })
+    });
+
+    $(function(){
+        var classid = location.search.split('=')[1];
+        $.ajax({
+            url : 'http://hr.hongrunet.com/Home/index/course_class',
+            dataType:'jsonp',
+            data:{classid:classid},
+            jsonp : 'jsonpReturn',
+            success : function(req){
+                jsonpReturn(req);
+            }
+        })
+    });
+    $(".wy_closeBtn").on("touchend", function () {//关闭弹窗
+        $(".wy_PopupBox").css("display", "none");
+    });
+</script>
+</html>

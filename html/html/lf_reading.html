@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" />
+    <!-- 公共样式 -->
+    <link rel="stylesheet" href="../css/lf_style.css" />
+    <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/common.js"></script>
+    <!-- 引入公共js文件 -->
+    <title>鸿儒商学讲堂</title>
+</head>
+
+<body>
+    <!-- 控制页面大小 -->
+    <div class="big-box">
+        <!-- 头部 -->
+        <header class="header lf_header">
+            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+            <h2>阅读好文</h2>
+        </header>
+        <!-- 中间内容 -->
+        <div class="content" style="background-color:#fff" id="content">
+            <!-- 文章 -->
+        </div>
+        <!-- 尾部，如果没有需删除 -->
+        <footer class="footer lf_footer" style="border-top:1px solid #dadada">
+            <div class="lf_inscribe">
+                <span class="lf_time">
+                        <i class="iconfont icon-shijian"></i>
+                        <span id="shijian"></span>
+                </span>
+                <span class="lf_artnumber">
+                        <i class="iconfont icon-yuedu"></i>
+                        <span><a id="looknum"></a>人阅读</span>
+                </span>
+            </div>
+        </footer>
+
+    </div>
+</body>
+<!-- <script type="text/javascript" src="../js/lf_class.js"></script> -->
+<style>
+    img{
+        max-width:95vw;
+    }
+</style>
+</html>
+<script>
+    var id = location.search.split('=')[1];
+    $.ajax({
+        url: "http://hr.hongrunet.com/home/index/article",
+        dataType: 'jsonp',
+        data: {
+            id:id
+        },
+        jsonpCallback: 'jsonpReturn',
+        success: function(res) {
+            console.log(res);
+            var info = res.data.info;
+            var contentA = info.content.toString();
+            contentA = contentA.replace(/\&lt;/g, "<");
+            contentA = contentA.replace(/\&gt;/g, ">");
+            contentA = contentA.replace(/\&quot;/g, '"');
+            contentA = contentA.replace(/\&amp;/g, '　');
+            contentA = contentA.replace(/nbsp;/g,'');
+            contentA = contentA.replace(/\/Uploads\/ueditor/g,'http:\/\/hr.hongrunet.com\/Uploads\/ueditor');
+            var content = '<div class="lf_articalContent"><dl class="lf_art-title"><dt>'+info.title+'</dt><dd class="lf_line"></dd><dd class="lf_author">文/'+info.author+'</dd></dl><p class="lf_profileTxt">'+contentA+'</p></div>';
+            // var content = '<div class="lf_articalContent"><dl class="lf_art-title"><dt>'+info.title+'</dt><dd class="lf_line"></dd><dd class="lf_author">文/'+info.author+'</dd></dl><p class="lf_profileTxt">'+info.content+'</p></div>';
+            $('#content').html(content);
+            $('#shijian').html(info.createtime);
+            $('#looknum').html(info.looknum);
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    })
+</script>

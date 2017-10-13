@@ -1,0 +1,186 @@
+<include file="Public/head" />
+<style type="text/css">
+	table tr > td:first-child{padding-left:20px;padding-bottom:10px;width:40%;text-align:center;}
+	table tr > td:last-child input{width:80%;margin-bottom:10px;	}
+</style>
+<div>
+	<!-- <form action="" method="get" class="form-horizontal" role="form" id="form1"> -->
+		<div style="margin:24px;">
+			<select class="form-control" style="width:24%;height:36px;display:inline;border-radius:2px;" id="grade">
+				<option value="0">请选择文章类型</option>
+				<option value="1">时事新刊</option>
+				<option value="2">深度好文章</option>
+				<option value="3">公司简介</option>
+			</select>
+			<input style="height:36px;" type="text" size="24px" id="search" name="search" placeholder="请输入文章标题进行过滤查询"/>
+			<label>&nbsp;发表时间 :</label>
+			<input style="height:36px;" type="date" size="24px" id="insta" />至
+			<input style="height:36px;" type="date" size="24px" id="inend" />
+			<button style="margin-left:10px;width:100px;" class="btn btn-primary" onclick="searchState();">查询文章</button>
+			<a href="{:U('/Admin/Article/getinfo')}" style="margin-left:10px;width:100px;" type="button" class="btn btn-primary">添加文章</a>
+		</div>
+	<!-- </form> -->
+	<div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="userlist" style="padding-right: 20px;">
+			<table id="jqGrid" style="width: 100%;"></table>
+			<div id="jqGridPager"></div> 	
+	    </div>
+    	<div role="tabpanel" class="tab-pane" id="edituser">	
+		</div>
+	</div>
+<include file="Public/footer" />
+<script id="container" name="content" type="text/plain" style="min-height: 400px;">
+</script>
+<script src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<script>
+	$(function () {
+		$(".export").click(function () {
+			var search = $("#search").val();
+			// alert($("#search").val());
+			$.ajax({
+				url: "{:U('/Admin/Article/export')}",
+				dataType: "json",
+				async: false,
+				data: {"search":search},
+				type: "GET",   
+				success: function(data) {
+					// alert(data);
+					if(data >0)
+					{
+						alert('888');
+						// $(window.parent.document).find("#main_iframe").attr("src","{:U('/Admin/User/Follow')}"+"?fid="+data);
+					}else{
+						alert('导出数据失败!');
+					}
+				}
+		    });		
+		});
+	})
+</script>
+<script type="text/javascript">
+	// &nbsp;<a class='btn btn-danger' href='javascript:' onclick='deleteUser("+id+");'>删除</a> 
+	function formatLink(id) {
+		var url = "{:U('Admin/Article/getinfo')}"+"?id="+id;
+		return "<a href='"+url+"' class='btn btn-primary' >编辑</a>&nbsp;<a class='btn btn-danger' href='javascript:' onclick='deleteUser("+id+");'>删除</a>";
+	};
+	
+	function formatterImg(thumbnail){
+		if(thumbnail != ''){
+			return "<img src="+thumbnail+" style='width:60px;height:50px;'>";
+		}
+	}
+	
+	//模糊查询文章
+	function searchState(){
+		var search = $("#search").val();
+		var insta = $("#insta").val();
+		var inend = $("#inend").val();
+		var grade = $("#grade").val();
+		$.ajax({
+			url:"{:U('/Admin/Article/searchState')}",
+			type:'GET',
+			data:{'name':search,'start':insta,'end':inend,'grade':grade},
+			dataType:'json',
+			success:function(returndata){
+				$("#jqGrid").clearGridData();
+	       		$("#jqGrid").jqGrid('setGridParam', { data: returndata});
+	       		$("#jqGrid").trigger('reloadGrid');
+			}
+		});
+	}
+	function deleteUser(id){
+		if (confirm("你确定要删除吗?")) {
+			$.ajax({
+				url: "{:U('/Admin/Article/deleteUser')}",
+				dataType: "text",
+				async: true,
+				data: { "id": id},
+				type: "GET",   
+				success: function(req) {
+					if(req=="true")
+					{
+						$(window.parent.document).find("#main_iframe").attr("src","{:U('/Admin/Article/article')}");
+					}else{
+						alert('文章删除失败!');
+					}
+				}
+		    });			
+		}
+	}
+	//时间戳转换为日期格式
+	function time(nS){
+		 return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '); 
+	}
+	//保存添加或修改的文章信息
+	function saveUser(){
+		var userid     = $("#userid").val();
+		var title   = $("#title").val();
+		var classid   = $("#classid").val();
+		var author       = $("#author").val();
+		var thumbnail= $("#thumbnail").val();
+		var content     = $("#content").val();
+		var isenable   = $("#isenable option:selected").val();
+  		var preg_tel = /^1[34578]\d{9}$/; //手机号
+		var preg_name= /^[\u4E00-\u9FA5]{1,6}$/;  //姓名正则
+		if (title == '') {
+			alert('标题不能为空!');return;
+  		}
+			
+	  	$.ajax({
+	  		type     : "POST",
+	  		url      : "{:U('/Admin/Article/saveUser')}",
+	  		data     : {"userid":userid,"title":title,"author":author,"classid":classid,"content":content,"thumbnail":thumbnail,"isenable":isenable},
+	  		dataType : "json",
+	  		error		 : function(){},
+	  		success  : function(data){
+	    			console.log(data);
+	    			if(data.status){
+	    				$(window.parent.document).find("#main_iframe").attr("src",data.url);
+	    			}else{
+	    				alert(data.info);
+	    			}      				
+	  		}
+	  	});
+	}
+	function type(as) {
+		switch(parseInt(as)){
+			case 1:
+			  return "时事新刊";
+			  break;
+			case 2:
+			  return "深度好文章";
+			  break;
+			case 3:
+			  return "公司简介";
+			  break;
+		} 
+	}
+	$(document).ready(function($) {	
+		$("#jqGrid").jqGrid({
+			styleUI : 'Bootstrap',
+			colModel: [
+			    { label: '标题', name: 'title',width:'80'},
+			    { label: '作者', name: 'author',width:'100'},
+			    { label: '标题类别', name: 'classid',width:'100',formatter: type},
+			    { label: '缩图', name: 'thumbnail',width:'120',formatter: formatterImg},
+			    { label: '日期', name: 'createtime',width:'115',formatter: time },
+			    { label: '描述', name: 'description',width:'120'},
+			    { label: '观看数', name: 'looknum',width:'60'},
+			    // { label: '是否可用', name: 'isenable',width:'60',formatter: formatIs},
+			    { label: '操作', name: 'id',width:140,formatter: formatLink}
+			],
+			viewrecords: true,
+			rownumbers: true,
+			rownumWidth: 35,
+			height: document.documentElement.clientHeight-135,
+			autowidth:true,
+			rowNum: 9,
+			datatype: 'local',
+			loadonce:true,
+			pager: "#jqGridPager"
+		});
+		$("#jqGrid").jqGrid('setGridParam', { data: eval({$users})});
+		$("#jqGrid").trigger('reloadGrid');
+	});
+</script>

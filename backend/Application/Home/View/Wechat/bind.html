@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="__PUBLIC__/font/iconfont.css"/><!-- 引入font文件 -->
+        <link rel="stylesheet" href="__PUBLIC__/css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jyt_public.css"/>
+        <script src="__PUBLIC__/js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <!-- <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>引入公共js文件 -->
+        <script src="__PUBLIC__/js/jquery.cookie.js"></script>        
+        <title>绑定账号</title>
+    </head>
+    <body>
+        <!-- 控制页面大小 -->
+        <div class="big-box">
+            <!-- 头部 -->
+            <header class="header jyt_header_login">
+                <!-- <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a> -->
+                <h1 class="jyt_header_login_h1">绑定账号</h1>
+            </header>
+            <!-- 中间内容 -->
+            <div class="content jyt_refister_bg">
+                <img class="jyt_register_logo" src="__PUBLIC__/images/jyt_register_logo.png" />  
+                <div class="jyt_register_tit">
+                    <p class="jyt_register_tit_p1">欢迎来到鸿儒商学讲堂</p>
+                    <p class="jyt_register_tit_p2">WELCOME TO HONG RU BUSINESS LECTURE</p>
+                </div>
+                <form name="form1" method="post">
+                    <ul class="jyt_register_ul">
+                        <li class="jyt_register_ul_li">
+                            <i class="iconfont icon-geren"></i>
+                            <input class="jyt_register_ul_li_inp" id="username" placeholder="请输入手机号"/>
+                        </li>  
+                        <li class="jyt_register_ul_li">
+                            <i class="iconfont icon-suo"></i>
+                            <input class="jyt_register_ul_li_inp" id="pwd" type="password" placeholder="请输入密码"/>
+                        </li> 
+                         <li class="jyt_register_ul_li">
+                            <i class="iconfont icon-yanzhengmayanzheng"></i>
+                            <input style="width:38vw" class="jyt_register_ul_li_inp" id="jyt_code" placeholder="请输入验证码"/>
+                            <input class="jyt_register_ul_li_yanzheng btnyzm" type="button" id="yzm" value="获取验证码"/>
+                        </li>    
+                    </ul>
+
+                    <div class="jyt_login_but">
+                        <button class="jyt_login_but_login" type="button" id="login">注册</button>
+                    </div>
+                </form>
+            </div>
+            <!-- 尾部，如果没有需删除 -->
+            <!-- <footer class="footer">
+                
+            </footer> -->
+<script type="text/javascript">
+/*验证码验证及倒计时*/
+var wait=60;
+function time(o) {
+    if (wait == 0) {
+            o.removeAttribute("disabled");
+            o.value="获取验证码";
+            wait = 60;
+        } else {
+            o.setAttribute("disabled", true);
+            o.value="重新发送(" + wait + ")";
+            wait--;
+            setTimeout(function() {
+            time(o)
+        }, 1000)
+    }
+}
+
+$('#yzm').on("click",function() {
+    var phone = $("#username").val();
+    if(!phone){
+        alert('请输入手机号');return false;
+    }
+    $.ajax({
+        url : "/Home/UserCenter/getCodess",
+        type:'POST',
+        data:{
+            phone:phone,
+        },
+        success:function(req){
+            console.log(req);
+            if (req[0] == 1) {
+                time(yzm);
+            } else {
+                alert(req[2]);
+            }
+        }
+    });
+});
+                
+$("#login").on("click",function(){
+    var phone = $("#username").val();
+    var password = $("#pwd").val();
+    var code = $("#jyt_code").val();
+    var tel = /^1[34578]\d{9}$/;
+    var pwd  = /^[a-zA-Z0-9]{6,12}$/;
+    if (!tel.test(phone)) {alert("手机号不符合要求");return false;}
+
+    if(password.length<6){ 
+        alert("密码长度有误!");  
+        return; 
+    } 
+     if(!code){
+        alert("请输入验证码!")
+        return;
+    }
+    $.ajax({
+        url : "/Home/Wechat/bind",
+        type:'POST',
+        data:{
+            phone:phone,
+            password:password,
+            code:code
+        },
+        success : function(req){
+            if (req.status ==0 ) {
+                alert(req.msg);
+            }else{
+                window.location.href= "http://hr.hongrunet.com/Home/Wechat/wechat_login.html?type=10";
+            }
+        }
+    });
+});
+
+$("html").css("font-size", screen.width/640 * 16);
+// 控制内容盒子大小
+window.onload = function () {
+    var screenY = window.innerHeight ? window.innerHeight : document.body.clientHeight;//获取页面高
+    var screenX = window.innerWidth ? window.innerWidth : document.body.clientWidth;//获取页面宽
+    if ($(".footer").height()) {
+        $(".content").css("height", screenY - $(".header").height() - $(".footer").height());
+    } else {
+        $(".content").css("height", screenY - $(".header").height());
+    };
+    if ($(".header").height()) {
+        $(".content").css("top", Math.floor($(".header").height()));
+    } else {
+        $(".content").css("top", 0);
+    };
+
+};
+
+
+
+</script> 
+        </div>
+    </body>
+</html>

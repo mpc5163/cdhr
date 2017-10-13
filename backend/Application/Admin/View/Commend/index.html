@@ -1,0 +1,65 @@
+<include file="Public/head" />
+
+<!--   <div>
+    <a href="{:U('Admin/Commend/recommend')}" style="margin-left:10px;width:100px;" type="button" class="btn btn-primary">添加推荐</a>
+  </div> -->
+
+
+
+  <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="userlist" style="padding-right: 20px;">
+      <table id="jqGrid" style="width: 100%;"></table>
+      <div id="jqGridPager"></div>  
+      </div>
+      <div role="tabpanel" class="tab-pane" id="edituser">  
+      </div>
+  </div>
+  
+<include file="Public/footer" />
+<script type="text/javascript">
+  function  formatLink(id) {
+    return "<a href='recommend/id/"+id+"' class='btn btn-primary' style='margin-right:5px;'>编辑</a><a href='javascript:' class='btn btn-danger' id='com"+id+"' onclick='deleteRecom("+id+")'>删除</a>";
+  }
+  function  deleteRecom(id) {
+    if (confirm("确定删除吗?")) {
+      $.ajax({
+        url:"{:U('Admin/Commend/deleteRecom')}",
+        type:"get",
+        data:{"id":id},
+        success:function(res){
+          if (res == 'true'){
+            $("#com"+id).parent().parent().remove();
+          }else{
+            alert("删除失败!");
+          }
+        }
+      });
+    }
+  }
+  $(document).ready(function($) { 
+    $("#jqGrid").jqGrid({
+      styleUI : 'Bootstrap',
+      colModel: [
+          { label: '推荐名', name: 'name',width:'80'},
+          { label: '开始日期', name: 'begintime',width:'100'},
+          { label: '结束日期', name: 'endtime',width:'100'},
+          { label: '简介', name: 'info',width:'300' },       
+          { label: '操作', name: 'id',width:100,formatter: formatLink}
+      ],
+      viewrecords: true,
+      rownumbers: true,
+      rownumWidth: 35,
+      height: document.documentElement.clientHeight-135,
+      autowidth:true,
+      rowNum: 9,
+      datatype: 'local',
+      loadonce:true,
+      pager: "#jqGridPager"
+    });
+    $("#jqGrid").jqGrid('setGridParam', { data: eval({$activitys})});
+    $("#jqGrid").trigger('reloadGrid');
+
+
+  });
+</script>
+

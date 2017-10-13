@@ -1,0 +1,284 @@
+<include file="Public/head" />
+<script type="text/javascript" language="javascript">
+   		function iframeResize(iframe) {
+	        iframe.height = $(window).height()-155;
+	        iframe.width = $(window).width()-30;
+	    }
+	    function OpenPage(menu){
+	    	$("#headicon").removeClass();
+			$("#headicon").addClass(menu.attr("funtypeicon"));
+	    	$('#funtypename').html(menu.attr("funtype"));
+	    	$('#funname').html(menu.html());
+	    	if(menu.attr("data-url")==""){
+	    		alert('没有设置data-url');
+	    		return;
+	    	}
+	    	$('#main_iframe').attr("src",menu.attr("data-url"));
+	    }
+	</script>
+
+<div class="container maindiv">
+	<div id="nav" class="row">
+		<div class="headtitle">鸿儒</div>
+		<div class="headright">
+			欢迎您:&nbsp;{$_SESSION['username']}&nbsp;&nbsp;
+			<a href="{:U('/Admin/Main/index')}" style="color: #FFFFFF;">&nbsp;&nbsp;&nbsp;[后台首页]</a>
+			<a href="{:U('/Admin/Login/logout')}" style="color: #FFFFFF">&nbsp;[退出]</a>
+		</div>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2" style="padding-left: 0px;padding-right: 0px;">
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+			  <div class="panel panel-default finance">
+			    <div class="panel-heading" role="tab" id="One" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="font-weight:700;">
+			        	<span class="glyphicon glyphicon-cog"></span>
+			          系统管理
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="One">
+			      <div class="panel-body" style="padding: 0px;">
+			        <ul class="navul">
+			        	<li id="d1"><a href="javascript:" funtype="系统管理" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('/Admin/Admin/index')}" class="glyphicon glyphicon-user" onclick="OpenPage($(this));">&nbsp;管理员</a></li>
+			        	<li id="d2"><a href="javascript:" funtype="系统管理" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('/Admin/Admin/changepwd')}" class="	glyphicon glyphicon-lock" onclick="OpenPage($(this));">&nbsp;修改密码</a></li>
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+
+			  <div class="panel panel-default staff">
+			    <div class="panel-heading" role="tab" id="Two" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" style="font-weight:700;">
+			        	<span class="	glyphicon glyphicon-user"></span>
+			          系统设置
+			        </a>
+			      </h4>
+			   </div>
+			   <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Two">
+			      <div class="panel-body" style="padding: 0px;">
+			        <ul class="navul">
+			        	<li id="d3"><a href="javascript:" funtype="系统设置" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('Admin/Config/index')}" class="glyphicon glyphicon-th-large" onclick="OpenPage($(this));">&nbsp;系统设置</a></li>
+			        	
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+
+			  <div class="panel panel-default finance" >
+			    <div class="panel-heading" role="tab" id="Three" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTw" aria-expanded="true" aria-controls="collapseTw" style="font-weight:700;">
+			        	<span class="	glyphicon glyphicon-user"></span>
+			          数据统计
+			        </a>
+			      </h4>
+			   </div>
+			   <div id="collapseTw" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Three">
+			      <div class="panel-body" style="padding: 0px;">
+			        <ul class="navul">
+			        	<li id="d5"><a href="javascript:" funtype="数据统计" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('Admin/Data/index')}" class="glyphicon glyphicon-th-large" onclick="OpenPage($(this));">&nbsp;数据统计</a></li>
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+
+			  <div class="panel panel-default staff">
+			    <div class="panel-heading" role="tab"  id="Four" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseT" aria-expanded="true" aria-controls="collapseTwo" style="font-weight:700;">
+			        	<span class="	glyphicon glyphicon-user"></span>
+			          会员管理
+			        </a>
+			      </h4>
+			   </div>
+			   <div id="collapseT" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Four">
+			      <div class="panel-body" style="padding: 0px;">
+			        <ul class="navul">
+			        	<li id="d6"><a href="javascript:" funtype="会员管理" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('Admin/User/user')}" class="glyphicon glyphicon-th-large" onclick="OpenPage($(this));">&nbsp;所有会员管理</a></li>
+
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="panel panel-default" style="display: none;" id="user2">
+			    <div class="panel-heading" role="tab"  id="Four" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseT" aria-expanded="true" aria-controls="collapseTwo" style="font-weight:700;">
+			        	<span class="	glyphicon glyphicon-user"></span>
+			          会员管理
+			        </a>
+			      </h4>
+			   </div>
+			   <div id="collapseT" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Four">
+			      <div class="panel-body" style="padding: 0px;">
+			        <ul class="navul">
+			        	<li id="d6"><a href="javascript:" funtype="会员管理" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('Admin/User1/user')}" class="glyphicon glyphicon-th-large" onclick="OpenPage($(this));">&nbsp;所有会员管理</a></li>
+
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+
+			  	<div class="panel panel-default finance" >
+			    <div class="panel-heading" role="tab" id="Five" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" style="font-weight:700;">
+			        	<span class="glyphicon glyphicon-gift"></span>
+			         佣金管理
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Five">
+			      <div class="panel-body" style="padding: 0px;">
+			        <ul class="navul">
+			        	<li id="d7"><a href="javascript:" funtype="佣金管理" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('Admin/Account/index')}" class="glyphicon glyphicon-tag" onclick="OpenPage($(this));">&nbsp;所有佣金管理</a></li>
+			        	<li id="d8"><a href="javascript:" funtype="见点奖管理" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('Admin/Account/award')}" class="glyphicon glyphicon-tag" onclick="OpenPage($(this));">&nbsp;见点奖管理</a></li>
+
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+
+
+			  	<div class="panel panel-default staff">
+			    <div class="panel-heading" role="tab" id="Six" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion"  href="#collapsefor" aria-expanded="true" aria-controls="collapsefor" style="font-weight:700;">
+			        	<span class="glyphicon glyphicon-facetime-video"></span>
+			          课程/视频发布管理
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapsefor" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Six">
+			      <div class="panel-body" style="padding: 0px;">
+			         <ul class="navul">
+			        	<li id="d9"><a href="javascript:" funtype="视频发布管理" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('Admin/Video/index')}" class="glyphicon glyphicon-th-large" onclick="OpenPage($(this));">&nbsp;视频发布管理</a></li>
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+
+			  	<div class="panel panel-default finance">
+			    <div class="panel-heading" role="tab" id="Seven" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFiv" aria-expanded="true" aria-controls="collapseFiv" style="font-weight:700;">
+			        	<span class="	glyphicon glyphicon-facetime-video"></span>
+			          视频直播管理
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseFiv" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Seven">
+			      <div class="panel-body" style="padding: 0px;">
+			        <ul class="navul">
+			        	<li id="d10"><a href="javascript:" funtype="直播管理" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('/Admin/LetvList/index')}" class="glyphicon glyphicon-flag" onclick="OpenPage($(this));">&nbsp;直播管理</a></li>
+			        	<li id="d4"><a href="javascript:" funtype="直播价格设置" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('Admin/Config/letv')}" class="glyphicon glyphicon-th-large" onclick="OpenPage($(this));">&nbsp;讲师付费价格设置</a></li>
+			        	<li id="d11"><a href="javascript:" funtype="直播管理" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('/Admin/LetvList/price')}" class="glyphicon glyphicon-flag" onclick="OpenPage($(this));">&nbsp;学员付费讲师价格设定</a></li>
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+
+			  	<div class="panel panel-default staff" >
+			    <div class="panel-heading" role="tab" id="Eight" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix" style="font-weight:700;">
+			        	<span class="	glyphicon glyphicon-comment"></span>
+			          积分管理
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Eight">
+			      <div class="panel-body" style="padding: 0px;">
+			        <ul class="navul">
+			        	<li id="d12"><a href="javascript:" funtype="积分管理" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('Admin/Score/score')}" class="	glyphicon glyphicon-align-justify" onclick="OpenPage($(this));">&nbsp;会员积分列表</a></li>
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+
+			  	<div class="panel panel-default staff">
+			    <div class="panel-heading" role="tab" id="Nine" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFi" aria-expanded="true" aria-controls="collapseFive" style="font-weight:700;">
+			        	<span class="	glyphicon glyphicon-comment"></span>
+			          内容管理
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseFi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Nine">
+			      <div class="panel-body" style="padding: 0px;">
+			        <ul class="navul">
+			        	<li id="d13"><a href="javascript:" funtype="平台简介" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('/Admin/Article/article')}" class="glyphicon glyphicon-flag" onclick="OpenPage($(this));">&nbsp;文章管理</a></li>
+                    	
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+
+			  	<div class="panel panel-default finance">
+			    <div class="panel-heading" role="tab" id="Ten" style="padding-left: 5px;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseF" aria-expanded="true" aria-controls="collapseFive" style="font-weight:700;">
+			        	<span class="	glyphicon glyphicon-usd"></span>
+			          财务对账台
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseF" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Ten">
+			      <div class="panel-body" style="padding: 0px;">
+			        <ul class="navul">
+			        	<li id="d14"><a href="javascript:" funtype="财务对账" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('/Admin/State/index')}" class="glyphicon glyphicon-flag" onclick="OpenPage($(this));">&nbsp;财务对账列表管理</a></li>
+			        	<li id="d15"><a href="javascript:" funtype="充值中心" funtypeicon="glyphicon glyphicon-cog"  data-url="{:U('/Admin/State/coin')}" class="glyphicon glyphicon-flag" onclick="OpenPage($(this));">&nbsp;晋级币充值中心</a></li>
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-10" style="padding-left: 0px;padding-right: 0px;">
+			<div id="header" class="row contenthead">
+				<span id="headicon" class="glyphicon glyphicon-home"></span>
+				<span id="funtypename">后台首页</span>
+				<span id="headfh" style="margin-left: 2px; margin-right: 2px"> >> </span>
+				<span id="funname"></span>
+			</div>
+			<div>
+
+			</div>
+
+			<div class="row">
+				<iframe src="{:U('Admin/Main/sysdatainfo')}" id="main_iframe" name="main_iframe"
+					style="width: 100%;" frameborder="0" onload="iframeResize(this);" ></iframe>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	<?php
+		//echo $_SESSION['username'];
+		$where['username'] = $_SESSION['username'];
+		$user = M('adminuser')->where($where)->find();
+		$role = M('role')->where('id=%d',$user['roleid'])->find();
+		?>
+		var rid  = <?php echo $user['roleid'];?>;
+		console.log(rid);
+		//var menu = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'];
+		if(rid == 2){
+			// $('.finance').style.display='block';
+			// $('.staff').style.display='none';
+			$('.finance').css('display','block');
+			$('.staff').css('display','none');
+		}else if(rid == 3){
+			// $('.staff').attr('style','display:block');
+			// $('.finance').attr('style','display:none');
+			$('.finance').css('display','none');
+			$('.staff').css('display','block');
+		}
+</script>
+</div>
+
+<include file="Public/footer" />

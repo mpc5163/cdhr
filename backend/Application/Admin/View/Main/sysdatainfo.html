@@ -1,0 +1,47 @@
+<include file="Public/head" />
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">系统信息</h3>
+                </div>
+                <div class="box-body">
+                    <ul class="home_content">
+                        <li>服务器名： <?php echo $_SERVER['SERVER_NAME']; ?> </li>
+                        <li>MySql数据库： <?php echo showResult(function_exists('mysql_close')); ?> </li>
+                        <li>服务器IP： <?php echo gethostbyname($_SERVER['SERVER_NAME']); ?> </li>
+                        <li>ODBC数据库： <?php echo showResult(function_exists('odbc_close')); ?> </li>
+                        <li>服务器端口： <?php echo $_SERVER['SERVER_PORT']; ?> </li>
+                        <li>Socket支持： <?php echo showResult(function_exists('socket_accept')); ?> </li>
+                        <li>服务器时间： <?php echo date('Y年m月d日H点i分s秒'); ?> </li>
+                        <li>GD Library： <?php echo showResult(function_exists('imageline')); ?> </li>
+                        <li>PHP版本： <?php echo PHP_VERSION; ?> </li>
+                        <li>XML解析： <?php echo showResult(function_exists('xml_set_object')); ?> </li>
+                        <li>WEB服务器版本： <?php echo $_SERVER['SERVER_SOFTWARE']; ?> </li>
+                        <li>FTP登陆： <?php echo showResult(function_exists('ftp_login')); ?> </li>
+                        <li>脚本超时时间： <?php echo get_cfg_var('max_execution_time').'秒';; ?> </li>
+                        <li>PDF支持： <?php echo showResult(function_exists('pdf_close')); ?> </li>
+                        <li>脚本上传文件大小限制： <?php echo get_cfg_var('upload_max_filesize')?get_cfg_var('upload_max_filesize'):'不允许上传附件'; ?> </li>
+                        <li>显示错误信息： <?php echo showResult(get_cfg_var('display_errors')); ?> </li>
+                        <li>POST提交内容限制： <?php echo get_cfg_var('post_max_size'); ?> </li>
+                        <li>使用URL打开文件： <?php echo showResult(get_cfg_var('allow_url_fopen')); ?> </li>
+                        <li>脚本运行时可占最大内存： <?php echo get_cfg_var('memory_limit')?get_cfg_var('memory_limit'):'无'; ?> </li>
+                        <li>压缩文件支持(Zlib)： <?php echo showResult(function_exists('gzclose')); ?> </li>
+                        <li style="border-bottom:none;">服务器操作系统： <?php echo PHP_OS; ?> </li>
+                        <li style="border-bottom:none;">ZEND支持： <?php echo showResult(function_exists('zend_version')); ?> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<?php
+    function showResult($v)
+    {
+        if($v == 1) echo'<span class="ture" style="color:#1E90FF">支持</span>';
+        else echo'<span class="flase">不支持</span>';
+    }
+?>
+
+<include file="Public/footer" />

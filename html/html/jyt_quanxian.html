@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css"/>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+        <style>
+            .jyt_11121{}
+            .jyt_11121 h6{
+                font-weight: normal;
+                padding: 10px 3.9vw;
+                font-size: 16px;
+                line-height: 30px;
+            }
+            img{
+            	width: 100%;
+            	display: block;
+            }
+        </style>
+    </head >
+    <body style="background: #4ecca6;">
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header jyt_header_rise">
+                <a  href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_edit_h1" id="tit1"></h1>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content jyt_11121">
+                <img class="img1" src="../jyt_image/xuetong.jpg" />
+            </div>
+        </div>
+    </body>
+    <script>
+        var hh = $(".big-box").height();
+        $(".img1").css('height', hh);
+          var tit = sessionStorage.name + "权限"
+           $("#tit1").text(tit);
+           if(sessionStorage.name == "学童"){
+                $("img").attr("src","../jyt_image/xuetong.jpg");
+           }else if(sessionStorage.name == "学霸"){
+                $("img").attr("src","../jyt_image/xueba.jpg");
+           }else if(sessionStorage.name == "讲师"){
+                $("img").attr("src","../jyt_image/jiangshi.jpg");
+           }else{
+            	$("img").attr("src","../jyt_image/hesuoren.jpg");
+           }
+    </script>
+</html>

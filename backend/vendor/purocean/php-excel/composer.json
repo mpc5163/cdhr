@@ -1,0 +1,23 @@
+{
+    "name": "purocean/php-excel",
+    "type": "library",
+    "description": "方便快捷的 Excel 导出导入类，就俩静态方法",
+    "keywords": ["php", "excel", "office", "xls", "xlsx"],
+    "homepage": "https://github.com/purocean/php-excel",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/purocean/php-excel/issues",
+        "source": "https://github.com/purocean/php-excel"
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "phpoffice/phpexcel": "^1.8"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "YExcel\\": "src/"
+        }
+    }
+}

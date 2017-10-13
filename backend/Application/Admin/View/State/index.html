@@ -1,0 +1,90 @@
+<include file="Public/head" />
+<style type="text/css">
+	table tr > td:first-child{padding-left:20px;padding-bottom:10px;width:40%;text-align:center;}
+	table tr > td:last-child input{width:80%;margin-bottom:10px;	}
+</style>
+<div> 
+	<div style="margin:10px;">
+		<label>&nbsp;支付原因 :</label>
+		<!-- <input style="height:36px;" type="text" size="24px" placeholder="输入支付原因查询" id="yuan" /> -->
+		<select class="form-control" style="width:25%;height:36px;display:inline;border-radius:2px;" id="yuan">
+				<option value="0">请选择支付原因</option>
+				<option value="1">升级等级</option>
+				<option value="2">余额提现</option>
+				<!-- <option value="3">余额充值</option> -->
+				<option value="4">发出红包</option>
+				<!-- <option value="5">校友付费</option> -->
+				<option value="6">分佣金额</option>
+		</select>
+		<label>&nbsp;支付时间 :</label>
+		<input style="height:36px;" type="date" size="24px" placeholder="输入支付时间查询" id="insta" />至
+		<input style="height:36px;" type="date" size="24px" placeholder="输入支付时间查询" id="inend" />
+		<label>&nbsp;支付方式 :</label>
+		<input style="height:36px;" type="text" size="24px" placeholder="输入支付方式查询" id="paytype" />
+		<label>&nbsp;手机号 :</label>
+		<input style="height:36px;" type="text" size="24px" placeholder="输入手机号查询" id="mobph" />
+		<button style="margin-left:10px;width:100px;" class="btn btn-primary" onclick="searchState();">查询</button>
+		<!-- <button style="margin-left:10px;width:100px;" class="btn btn-primary" onclick="searchState();">导出</button> -->
+	</div>
+	
+	<div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="userlist" style="padding-right: 20px;">
+			<table id="jqGrid" style="width: 100%;"></table>
+			<div id="jqGridPager"></div> 	
+	    </div>
+    	<div role="tabpanel" class="tab-pane" id="edituser"> 		
+	</div>
+</div>
+<include file="Public/footer" />
+<script type="text/javascript">
+	var class1 = $("#class").val();
+	function fTime(createtime){
+		var timestamp3 = createtime;  
+		var newDate = new Date();
+		newDate.setTime(timestamp3 * 1000);
+		return newDate.toLocaleString();
+	}
+	//模糊查询课程
+	function searchState(){
+		var mobph = $("#mobph").val();
+		var yuan = $("#yuan").val();
+		var insta = $("#insta").val();
+		var inend = $("#inend").val();
+		var paytype = $("#paytype").val();
+		$.ajax({
+			url:"{:U('/Admin/State/searchState')}",
+			type:'GET',
+			data:{'phone':mobph,'reason':yuan,'start':insta,'end':inend,'type':paytype},
+			dataType:'json',
+			success:function(returndata){
+				$("#jqGrid").clearGridData();
+	       		$("#jqGrid").jqGrid('setGridParam', { data: returndata});
+	       		$("#jqGrid").trigger('reloadGrid');
+			}
+		});
+	}
+	$(document).ready(function($) {	
+		$("#jqGrid").jqGrid({
+			styleUI : 'Bootstrap',
+			colModel: [
+			    { label: '昵称', name: 'nikname',width:'80'},
+			    { label: '手机号', name: 'phone',width:'80'},
+			    { label: '支付原因', name: 'message',width:'110'},
+			    { label: '支付方式', name: 'paymenttype',width:'50' },
+			    { label: '支付金额', name: 'money',width:'50' },
+			    { label: '支付时间', name: 'createtime',width:'100',formatter: fTime}    
+			],
+			viewrecords: true,
+			rownumbers: true,
+			rownumWidth: 35,
+			height: document.documentElement.clientHeight-135,
+			autowidth:true,
+			rowNum: 9,
+			datatype: 'local',
+			loadonce:true,
+			pager: "#jqGridPager"
+		});
+		$("#jqGrid").jqGrid('setGridParam', { data: eval({$data})});
+		$("#jqGrid").trigger('reloadGrid');
+	});
+</script> 

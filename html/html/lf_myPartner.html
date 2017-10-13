@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css">
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+    </head>
+    <body>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header" style="background-color:#188eee">
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_edit_h1">我的伙伴</h1>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content jyt_jifen_con ">
+	               <ul id="jifen" class="jifen_con_ul">
+	               		<!-- <li class="jifen_con_ul_li">
+	               			<div  class="jifen_con_ul_li_classmate jyt_dengji_1 jyt_classmate">
+	               				<i class="iconfont icon-ertong"></i>
+	               			</div>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_1.jpg" />
+	               			<div class="jifen_con_ul_li_xq  jyt_mate_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h5 class="jyt_mate_con_ul_li_phone">13565896589</h5>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<div  class="jifen_con_ul_li_classmate jyt_dengji_2
+	               			jyt_classmate">
+	               				<i class="iconfont icon-xuexinzhuanhuan"></i>
+	               			</div>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_2.jpg" />
+	               			<div class="jifen_con_ul_li_xq jyt_mate_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h5 class="jyt_mate_con_ul_li_phone">13565896589</h5>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<div  class="jifen_con_ul_li_classmate jyt_dengji_3
+	               			jyt_classmate">
+	               				<i class="iconfont icon-jiangshi"></i>
+	               			</div>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_3.jpg" />
+	               			<div class="jifen_con_ul_li_xq jyt_mate_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h5 class="jyt_mate_con_ul_li_phone">13565896589</h5>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<div  class="jifen_con_ul_li_classmate jyt_dengji_4
+	               			jyt_classmate">
+	               				<i class="iconfont icon-hehuoren"></i>
+	               			</div>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_4.jpg" />
+	               			<div class="jifen_con_ul_li_xq jyt_mate_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h5 class="jyt_mate_con_ul_li_phone">13565896589</h5>
+	               		</li> -->
+	               	</ul>
+	    	</div>
+	    
+	    	
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+	    		
+	    	</footer> -->
+    	</div>
+    </body>
+    <script>
+
+$(document).ready(function() {
+	 var jifen  = $("#jifen");
+	 $.ajax({
+          url : 'http://hr.hongrunet.com/Home/UserCenter/mySchoolFellow',
+          dataType:'jsonp',
+          data:{
+          	type:1
+          },
+          jsonpCallback:'jsonpReturn',
+          success : function(req){
+            //console.log(req.data);  
+            $.each(req.data,function(index,value){
+              var $li = $("<li>").addClass('jifen_con_ul_li');
+          
+              var $img = $("<img>").addClass('jifen_con_ul_li_touxiang').attr("src",value.headimg);
+              var $div1 = $("<div>").addClass('jifen_con_ul_li_xq jyt_mate_ul_li_xq');
+              var $p = $("<p>").addClass('jifen_con_ul_li_xq_p').text(value.name);
+              var $i1 = $("<i>").addClass('jifen_con_ul_li_xq_i').text(value.createtime);
+              if(value.headimg==null || value.headimg==''){
+	          	  var $img = $("<img>").addClass('jifen_con_ul_li_touxiang').attr("src","../lf_img/lf_portrait.png");
+	          };
+              //console.log(value.grade);
+               if(value.grade=="1"){
+               	 var $div2 = $("<div>").addClass('jifen_con_ul_li_classmate jyt_classmate jyt_dengji_1');
+               	 var $i2 = $("<i>").addClass('iconfont icon-ertong');
+               	 $div2.append($i2);
+               };
+                if(value.grade=="2"){
+               	 var $div2 = $("<div>").addClass('jifen_con_ul_li_classmate jyt_classmate jyt_dengji_2');
+               	 var $i2 = $("<i>").addClass('iconfont icon-xuexinzhuanhuan');
+               	 $div2.append($i2);
+               };
+                if(value.grade=="3"){
+               	 var $div2 = $("<div>").addClass('jifen_con_ul_li_classmate jyt_classmate jyt_dengji_3');
+               	 var $i2 = $("<i>").addClass('iconfont icon-jiangshi');
+               	 $div2.append($i2);
+               };
+                if(value.grade=="4"){
+               	 var $div2 = $("<div>").addClass('jifen_con_ul_li_classmate jyt_classmate jyt_dengji_4');
+               	 var $i2 = $("<i>").addClass('iconfont icon-hehuoren');
+               	 $div2.append($i2);
+               };
+              var $h5 = $("<h5>").addClass('jyt_mate_con_ul_li_phone').text(value.phone);
+              
+              $li.append($div2);
+              $li.append($img);
+              $li.append($div1.append($p).append($i1)).append($h5);
+              jifen.append($li);
+            });
+         } 
+   });
+});
+  	
+    </script>
+</html>

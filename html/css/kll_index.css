@@ -1,0 +1,507 @@
+/*线条样式*/
+.kll_index-xian {
+    width: 100%;
+    background: #eee;
+    height: 0.75rem;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+/*头部*/
+.kll_header {
+    background: #188eee;
+}
+.kll_header-left  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10%;
+    text-align: center;
+    line-height: 12.84vw;
+    font-size: 2rem;
+    color: #fff;
+}
+.kll_header-h1 {
+    font-size: 2rem;
+    font-weight: normal;
+    width: 100%;
+    text-align: center;
+    line-height: 12.84vw;
+    color: #fff;
+}
+
+/*首页*/
+
+/*banner图*/
+.kll_index-banner_pic {
+    width: 100vw;
+    display: block;
+    height: 45.45vw;
+}
+
+/*列表*/
+.kll_index-list {
+    width: 100%;
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */ 
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */ 
+    display: -ms-flexbox; /* TWEENER - IE 10 */ 
+    display: -webkit-flex; /* NEW - Chrome */ 
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
+   -webkit-justify-content:center;
+    justify-content:center;
+    -moz-box-pack:center;
+    -webkit--moz-box-pack:center;
+    box-pack:center;
+
+    -webkit-flex-wrap:wrap;
+    -webkit-box-lines:multiple;
+    -moz-flex-wrap:wrap;
+    flex-wrap:wrap;
+}
+
+.kll_index-list-a {
+    width: 25%;
+    text-align: center;
+    padding-top: 5.25vw;
+    display: block;
+}
+
+.kll_index-list-h4 {
+    width: 13.4375vw;
+    height: 13.4375vw;
+    text-align: center;
+    line-height: 13.4375vw;
+    display: inline-block;
+    border-radius: 50%;
+    font-size: 2.75rem;
+    color: #fff;
+    box-shadow: 1px 1px 5px 1px #ccc;
+    font-weight: normal;
+}
+
+.kll_index-list-a:nth-child(1) .kll_index-list-h4 {
+    border: 1px solid #61be1e;
+    background: linear-gradient(to left top, #9edb70, #5cc212, #9edb70);
+}
+
+.kll_index-list-a:nth-child(2) .kll_index-list-h4 {
+    border: 1px solid #ee9649;
+    background: linear-gradient(to left top, #f4ac6e, #ee9649, #f4ac6e);
+}
+
+.kll_index-list-a:nth-child(3) .kll_index-list-h4 {
+    border: 1px solid #8f81e6;
+    background: linear-gradient(to left top, #a79beb, #8f81e6, #a79beb);
+}
+
+.kll_index-list-a:nth-child(4) .kll_index-list-h4 {
+    border: 1px solid #f67e95;
+    background: linear-gradient(to left top, #f69aac, #f67e95, #f69aac);
+}
+
+.kll_index-list-a:nth-child(5) .kll_index-list-h4 {
+    border: 1px solid #24baf7;
+    background: linear-gradient(to left top, #72d1fc, #24baf7, #72d1fc);
+}
+
+.kll_index-list-a:nth-child(6) .kll_index-list-h4 {
+    border: 1px solid #08d3e3;
+    background: linear-gradient(to left top, #44d9e4, #08d3e3, #44d9e4);
+}
+
+.kll_index-list-a:nth-child(7) .kll_index-list-h4 {
+    border: 1px solid #fa6c5b;
+    background: linear-gradient(to left top, #fb8a7f, #fa6c5b, #fb8a7f);
+}
+
+.kll_index-list-a:nth-child(8) .kll_index-list-h4 {
+    border: 1px solid #fb3fa0;
+    background: linear-gradient(to left top, #fc85c4, #fb3fa0, #fc85c4);
+}
+
+.kll_index-list-p {
+    color: #333;
+    font-size: 1.375rem;
+    line-height: 3rem;
+}
+
+.kll_index-other {
+    width: 100%;
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */ 
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */ 
+    display: -ms-flexbox; /* TWEENER - IE 10 */ 
+    display: -webkit-flex; /* NEW - Chrome */ 
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-flex-wrap:wrap;
+    -webkit-box-lines:multiple;
+    -moz-flex-wrap:wrap;
+    flex-wrap:wrap;
+}
+
+.kll_index-other-a {
+    width: 50%;
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */ 
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */ 
+    display: -ms-flexbox; /* TWEENER - IE 10 */ 
+    display: -webkit-flex; /* NEW - Chrome */ 
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
+   -webkit-justify-content:center;
+    justify-content:center;
+    -moz-box-pack:center;
+    -webkit--moz-box-pack:center;
+    box-pack:center;
+
+    
+    box-sizing: border-box;
+    border: 1px solid #d9d9d9;
+    align-items:center;
+    -webkit-align-items:center;
+    box-align:center;
+    -moz-box-align:center;
+    -webkit-box-align:center;
+   
+    height: 7.625rem;
+}
+
+.kll_index-other-pic {
+    width: 9.375vw;
+}
+
+.kll_index-other-div {
+    padding-left: 1rem;
+}
+
+.kll_index-other-h6 {
+    font-size: 1.375rem;
+    font-weight: normal;
+}
+
+.kll_index-other-a:nth-child(1) {
+    color: #62b331;
+    border-top: 0;
+    border-left: 0;
+}
+
+.kll_index-other-a:nth-child(2) {
+    color: #ea872e;
+    border-right: 0;
+    border-top: 0;
+}
+
+.kll_index-other-a:nth-child(3) {
+    color: #8b7be3;
+    border-bottom: 0;
+    border-left: 0;
+}
+
+.kll_index-other-a:nth-child(4) {
+    color: #fd5d49;
+    border-right: 0;
+    border-bottom: 0;
+}
+.kll_index-other-a:nth-child(5) {
+    color: #ff4773;
+    border-bottom: 0;
+    border-left: 0;
+}
+
+.kll_index-other-a:nth-child(6) {
+    color: #008ddd;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+
+.kll_index-other-p {
+    font-size: 1.125rem;
+    color: #737373;
+}
+
+/*首页分享经济*/
+.kll_index-share {
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+.kll_index-title {
+    width: 100%;
+    text-align: center;
+    line-height: 4.375rem;
+    font-weight: normal;
+    color: #0dabe4;
+    font-size: 1.625rem;
+    overflow-x: auto;
+}
+
+.kll_index-title .icon-caizhengjinrong {
+    font-size: 3rem;
+    text-shadow: 0.25rem 0.25rem 0.33rem #ccc;
+}
+
+.kll_index-share-ul {
+    width: 100%;
+    position: relative;
+}
+
+.kll_index-share-li {
+    width: 38.75vw;
+    padding: 0 1vw;
+   /*  position: absolute;
+   top: 0;
+   left: 0; */
+}
+
+.kll_index-share-a {
+    display: block;
+    width: 100%;
+}
+
+.kll_index-share-pic {
+    width: 38.75vw;
+    height: 24.84375vw;
+    display: block;
+}
+
+.kll_index-share-p {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.5rem;
+    color: #333;
+    padding-top:2.5vw;
+}
+
+/*深度好文章*/
+.kll_index-active {
+    display: block;
+    width: 100%;
+    position: relative;
+    height: 20.5vw;
+}
+
+.kll_index-active-pic {
+    display: block;
+    width: 100%;
+    height: 20.5vw;
+}
+
+.kll_index-active-p {
+    position: absolute;
+    top: 7vw;
+    left: 12.5vw;
+    color: #ff1d00;
+    font-size: 1.75rem;
+}
+
+
+/*尾部*/
+.kll_index-footer {
+    border-top: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.kll_footer-a {
+    display: block;
+    width: 20%;
+    text-align: center;
+    color: #666;
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+}
+
+.kll_footer-a_change {
+    color: #188eee;
+}
+
+.kll_footer-p {
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+
+/*我的课程*/
+.kll_myclass-li {
+    border-bottom: 1px solid #e6e6e6;
+    padding: 6.875vw 3.75vw;
+    display: flex;
+    position: relative;
+}
+
+.kll_mycalss-pic {
+    width: 30.625vw;
+    height: 20.1875vw;
+}
+
+.kll_myclass-a {
+    color: #090909;
+    display: block;
+    padding-left: 2.65625vw;
+    flex-grow: 2;
+}
+
+.kll_myclass-h4 {
+    font-size: 1.4375rem;
+    line-height: 2.625rem;
+    width: 60vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.kll_myclass-time {
+    font-size: 1.1875rem;
+    line-height: 2.25rem;
+    color: #999;
+}
+
+.kll_myclass-num {
+    font-size: 1.1875rem;
+    line-height: 2.25rem;
+    color: #999;
+}
+
+.kll_myclass-person {
+    font-size: 1.4375rem;
+    position: absolute;
+    bottom: 6.25vw;
+    right: 3.75vw;
+}
+
+.kll_myclass-money {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.kll_myclass-free {
+    color: #62b51f;
+    font-weight: bold;
+}
+
+/*积分支付*/
+.kll_content-integral {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 4.6875vw;
+}
+
+.kll_integral-p {
+    line-height: 6rem;
+    border-bottom: 1px solid #b3b3b3;
+    font-size: 1.5625rem;
+}
+
+.kll_integral-p_left {
+    display: inline-block;
+    width: 9rem;
+}
+
+.kll_integral-p_del {
+    color: #f00;
+}
+
+.kll_integral-btn {
+    width: 100%;
+    line-height: 11.25vw;
+    background: #188eee;
+    color: #fff;
+    border-radius: .5rem;
+    font-size: 1.5625rem;
+    margin-top: 5rem;
+    outline: none;
+}
+
+/*支付页面*/
+.kll_payment-top {
+    width: 100%;
+    padding-top: 1.5rem;
+    background: #ededed;
+    text-align: center;
+}
+
+.kll_payment-top_title {
+    font-size: 1.625rem;
+}
+
+.kll_payment-top_money {
+    font-size: 4.6875rem;
+    line-height: 7.125rem;
+}
+
+.kll_payment-option {
+    padding: 1.5rem 3.75vw 0;
+}
+
+.kll_payment-option_li {
+    display: flex;
+    height: 5.375rem;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.kll_payment-option_icon {
+    font-size: 2.5rem;
+    padding-right: 1rem;
+}
+
+.icon-wxpay {
+    color: #00aa5c;
+}
+
+.icon-zhifubaozhifu {
+    color: #388cff;
+}
+
+.icon-icon {
+    color: #f78b26;
+}
+
+.kll_payment-option_p {
+    font-size: 1.5rem;
+    flex-grow: 2;
+}
+
+.kll_payment-option_change {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    border: 2px solid #09abf4;
+    text-align: center;
+    display: block;
+    line-height: 1.75rem;
+    color: #fff;
+}
+
+.kll_payment-option_ok {
+    background: #09abf4;
+}
+
+.kll_payment-btn {
+    display: block;
+    width: 92.1875vw;
+    background: #188eee;
+    color: #fff;
+    margin: 5rem auto;
+    border-radius: .5rem;
+    font-size: 1.5rem;
+    line-height: 11.25vw;
+    outline: none;
+}
+
+/*购买权限*/
+.kll_paycom-top_money {
+    font-size: 3.125rem;
+    line-height: 7.125rem;
+    color: #666;
+}
+
+.kll_paycom-top_span {
+    color: #188eee;
+    font-size: 1.875rem;
+    padding: 0 1.5rem;
+}

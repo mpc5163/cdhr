@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css">
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+        <style>
+			.jyt_111{
+				display: block;
+				width: 100%;
+			}
+        </style>
+    </head>
+    <body>
+    	<!-- 控制页面大小 -->
+    	
+        <header class="header jyt_header_edit">
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_edit_h1">OBS视频直播软件使用教程</h1>
+            </header>
+    		<img class="jyt_111" src="../jyt_image/jyt_1111.jpg">
+            
+            
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+	    		
+	    	</footer> -->
+    	
+    </body>
+</html>
+<!-- <script type="text/javascript">
+	$(function(){
+		
+	})
+</script> -->
+<script type="text/javascript">
+
+	var $lid = window.location.href.split("?")[1].split('=')[1];
+	$("#pc").on("touchstart", function (){
+		window.location.href = "http://hr2.hongrunet.com/html/wy_myVideo.html?id="+$lid;
+	});
+	$("#phone").on("touchstart", function (){
+		window.location.href = "http://hr2.hongrunet.com/html/lf_phonePort.html";
+	});
+</script>

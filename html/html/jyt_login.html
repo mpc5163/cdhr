@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"/><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/com.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css"/>
+        <script src="../js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <!-- <script type="text/javascript" src="../js/common.js"></script> --><!-- 引入公共js文件 -->
+        <script src="../js/jquery.cookie.js"></script>
+        <title>鸿儒商学讲堂</title>
+    </head>
+    <body>
+        <!-- 控制页面大小 -->
+        <div class="big-box">
+            <!-- 头部 -->
+            <header class="header jyt_header_login">
+                <!-- <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a> -->
+                <h1 class="jyt_header_login_h1">登录</h1>
+            </header>
+            <!-- 中间内容 -->
+            <div class="content jyt_refister_bg">
+                <img class="jyt_register_logo" src="../jyt_image/jyt_logo1.jpg" />  
+                <div class="jyt_register_tit">
+                    <p class="jyt_register_tit_p1">欢迎来到鸿儒商学讲堂</p>
+                    <p class="jyt_register_tit_p2">WELCOME TO HONG RU BUSINESS LECTURE</p>
+                </div>
+                <form name="form1" method="post">
+                    <ul class="jyt_register_ul">
+                        <li class="jyt_register_ul_li">
+                            <i class="iconfont icon-geren"></i>
+                            <input class="jyt_register_ul_li_inp" id="username" placeholder="请输入您的账号"/>
+                        </li>  
+                        <li class="jyt_register_ul_li">
+                            <i class="iconfont icon-suo"></i>
+                            <input class="jyt_register_ul_li_inp" id="pwd" type="password" placeholder="请输入您的密码"/>
+                        </li>  
+                    </ul>
+                    <div class="jyt_login_div">
+                        <label class="jyt_login_div_la">
+                            <input class="jizhu_inp" id="ck_rmbUser" type="checkbox" checked="checked" name="1"/>
+                            <p class="jizhu_p">记住密码</p>
+                            <div class="clear"></div>
+                        </label>
+                            <a class="wangji_a" href="jyt_forgetPwd.html">忘记密码?</a>
+                    </div>
+                    <div class="jyt_login_but">
+                        <button type="button" class="jyt_login_but_reg" onclick="javascript:window.location.href='jyt_register.html'">注册</button>
+                        <button class="jyt_login_but_login" type="button" id="login">登录</button>
+                    </div>
+                </form>
+            </div>
+            <!-- 尾部，如果没有需删除 -->
+            <!-- <footer class="footer">
+                
+            </footer> -->
+<script type="text/javascript">
+
+$("html").css("font-size", screen.width/640 * 16);            
+function manySend(href){
+var form = document.form1;
+form.action = href;//传想要跳转的路径
+form.submit();
+}
+$("#login").on("click",function(){
+     Save();
+    var phone = $("#username").val();
+    var password = $("#pwd").val();
+    $.ajax({
+        url : 'http://hr.hongrunet.com/Home/UserCenter/login',
+        dataType:'jsonp',
+        data:{
+            phone:phone,
+            password:password,
+        },
+        jsonpCallback:'jsonpReturn',
+        success : function(req){
+            // jsonpReturn(req);
+            console.log(req);
+            if (req.status == 1) {
+               
+               window.location.href = "kll_index.html";
+            } else{
+                alert(req.msg);
+                //window.location.href = "jyt_register.html";
+            }
+        }
+    })
+});
+
+$(".jyt_login_div_la").on("touchstart", function () {
+    if ($("#ck_rmbUser").attr("name") == "1") {
+        $("#ck_rmbUser").attr("name",2);
+    } else {
+        $("#ck_rmbUser").attr("name",1);
+    }
+});
+
+//记住密码
+ $(document).ready(function(){
+ 
+         var strName = localStorage.getItem('keyName');
+         var strPass = localStorage.getItem('keyPass');
+        if(strName){
+             $('#username').val(strName);
+
+         }
+         if(strPass){
+             $('#pwd').val(strPass);
+         }
+
+     });
+ 
+function Save(){
+     var strName = $('#username').val();
+     var strPass = $('#pwd').val();
+     localStorage.setItem('keyName',strName);
+     //localStorage.setItem('keyPass',strPass);
+     console.log($('#ck_rmbUser').attr("checked"));
+    if($('#ck_rmbUser').attr("name") == "1"){
+         localStorage.setItem('keyPass',strPass);
+    }else{
+         localStorage.removeItem('keyPass');
+     }
+}
+
+
+
+</script> 
+        </div>
+    </body>
+</html>

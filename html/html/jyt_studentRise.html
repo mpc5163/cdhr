@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css">
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+    </head>
+    <body>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header jyt_header_edit">
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_edit_h1">学员升级</h1>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content jyt_student_con">
+                <ul class="jyt_student_con_ul">
+                    <li class=" jyt_student_con_ul_li" onclick="javascript:window.location.href='lf_kefuCenter.html'">
+                        <p class=" jyt_student_con_ul_li_p"><i class="iconfont icon-hehuoren1"></i>直接成为合伙人</p>
+                        <i class="iconfont icon-you"></i>
+                    </li>
+                    <li class=" jyt_student_con_ul_li" id="jjsq" >
+                        <p class=" jyt_student_con_ul_li_p"><i class="iconfont icon-dingdan"></i>晋级申请</p>
+                        <i class="iconfont icon-you"></i>
+                    </li>
+                     <!-- <li class=" jyt_student_con_ul_li" id="jjsq" >
+                        <p class=" jyt_student_con_ul_li_p"><i class="iconfont icon-xuexinzhuanhuan"></i>免费升学霸</p>
+                        <i id="alertTC" style="float:right; margin-top:4.2vw; width: 0;height: 0;border-top: 8px solid transparent;border-left: 16px solid #000;border-bottom: 8px solid transparent;"></i>
+                    </li> -->
+                    <!--  <li class=" jyt_student_con_ul_li" id="jjsq" >
+                        <p style="color:red;float:left;line-height:6vw">注：学童积分累计达到1199后，系统将自动升级为学霸！<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;积分不等同晋级学分！</p>
+                    </li> -->
+                     <li class=" jyt_student_con_ul_li" id="jjsq" >
+                        <p style="color:red;float:left;line-height:6vw">注：学童积分累计达到1199后，系统将自动升级为学霸！积分不等同晋级学分！</p>
+                    </li>
+                 
+                </ul>
+	    	</div>
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+	    		
+	    	</footer> -->
+    	</div>
+        <script>
+            $("#alertTC").on("click",function(){
+                alert("学童积分累计达到1199后，\n系统将自动升级为学霸！\n积分与晋级学分不同。")
+            })
+            $("#jjsq").on("touchstart",function(){
+                $.ajax({
+                    url:"http://hr.hongrunet.com/Home/UserCenter/jjsq",
+                    dataType:"jsonp",
+                    data:{},
+                    jsonpCallback:'jsonpReturn',
+                    success: function (msg) {
+                        if (msg.status == 0) {
+                            alert(msg.msg);
+                        }else{
+                            window.location.href='jyt_riseApply.html';
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

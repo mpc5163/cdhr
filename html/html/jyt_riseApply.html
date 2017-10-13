@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css"/>
+         <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+        <style>
+            #loading{
+              position:absolute;width:100%;height:100%;background-color:#fff;z-index:99;
+              /* text-align:center; */
+            }
+            #loading>img{
+              display:block;
+              margin:40vw auto;
+              width:60vw;
+              height:60vw;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="loading" style=""></div>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header jyt_header_edit">
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_edit_h1">晋级申请</h1>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content">
+                <div class="jyt_riseapply_con">
+                    <form>
+                        <ul class="jyt_riseapply_con_ul">
+                            <li class="jyt_riseapply_con_ul_li">
+                                <p class="jyt_riseapply_con_ul_li_p">现有等级：</p>
+                                <h3 id="nowgrade" class="jyt_riseapply_con_ul_li_h3"></h3>
+                            </li>
+                            <li class="jyt_riseapply_con_ul_li">
+                                <p class="jyt_riseapply_con_ul_li_p">申请等级：</p>
+                                <select id="selectItems" class="jyt_riseapply_con_ul_li_sel selectitems">
+<!--                                     <option value="1">学霸</option>
+                                    <option value="2">讲师</option>
+                                    <option value="3">合伙人</option> -->
+                                </select>
+                                <i class="jyt_riseapply_con_ul_li_xing">*</i>
+                            </li>
+                             <li class="jyt_riseapply_con_ul_li">
+                                <p class="jyt_riseapply_con_ul_li_p">还需付款：</p>
+                                <h4 id="money" class="jyt_riseapply_con_ul_li_h4">2800元</h4>
+                            </li>
+                            <li class="jyt_riseapply_con_ul_li">
+                                <p class="jyt_riseapply_con_ul_li_p">支付方式：</p>
+                                <i class="jyt_riseapply_con_ul_li_xing">*</i>
+                            </li>
+                        </ul>
+                        <ul class="jyt_payment_page_ul">
+                            <li class="jyt_bg_gou jyt_bg_gou_1 jyt_payment_page_ul_li" id="pay1">
+                                <img class="jyt_payment_page_ul_li_img" src="../jyt_image/jyt_13.jpg" >
+                                <p  class="jyt_payment_page_ul_li_p">微信支付</p>
+                            </li>
+                            <li class="jyt_bg_gou_1 jyt_payment_page_ul_li" id="pay2">
+                                <img class="jyt_payment_page_ul_li_img" src="../jyt_image/jyt_14.jpg" >
+                                <p  class="jyt_payment_page_ul_li_p">支付宝支付</p>
+                            </li>
+                            <li class="jyt_bg_gou_1 jyt_payment_page_ul_li" id="pay3">
+                                <img class="jyt_payment_page_ul_li_img" src="../jyt_image/jyt_15.jpg" >
+                                <p  class="jyt_payment_page_ul_li_p">余额支付</p>
+                            </li>
+                        </ul>
+                        <button type="button" class="jyt_riseapply_but" id="paybutton">立即支付</button>
+                    </form>
+                </div>                
+	    	</div>
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+	    		
+	    	</footer> -->
+    	</div>
+    </body>
+      <script type="text/javascript" src="../js/weixin_app.js"></script> 
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+     
+    <script >
+        $(".jyt_payment_page_ul li").on("touchstart", function (){
+          $(".jyt_payment_page_ul li").removeClass('jyt_bg_gou');
+          $(this).addClass("jyt_bg_gou");
+          var box = $(this);
+          var index = goIndex(box);
+         // console.log(index);
+         });
+        function goIndex(it) {
+            var big = it.parent();
+            for (var i = 0; i < big.children().length; i++) {
+                if (big.children().eq(i)[0] == it[0]) {
+                    return i;
+                }
+            }
+        };
+
+         $.ajax({
+            url : 'http://hr.hongrunet.com/Home/UserCenter/studentUpgrade',
+            dataType:'jsonp',
+            data:{},
+            jsonpCallback:'jsonpReturn',
+            beforeSend:function(XMLHttpRequest){ 
+                $("#loading").html("<img src='../lf_img/8.gif'/>"); //在后台返回success之前显示loading图标
+            },
+            success : function (req) {
+               $("#loading").remove(); //ajax返回成功，清除loading图标
+               // console.log(req); 
+               var grade = req.data.level;
+               var count = grade.length;
+               if (grade <=0) {
+                alert("此用户已是最高等级");return false;
+               }
+               var option = "";
+               for (var i = 0; i < count; i++) {
+                   option += "<option value='"+grade[i]["level"]+"'>"+grade[i]["name"]+"</option>";
+               }
+               $("#selectItems").append(option);
+
+               $("#nowgrade").text(req.data.nowgrade);
+               $("#money").text(grade[0].money+"元");
+
+               $("#selectItems").on("change",function(){
+                    var selectVal =  $("#selectItems option:selected").val();
+                    for (var i = 0; i < count; i++) {
+                        if (selectVal == grade[i]["level"]) {
+                            $("#money").text(grade[i]["money"]+"元");                                               
+                        }
+                   }
+                    
+               }); 
+               
+
+            }  
+        });
+
+         //提交支付
+         $("#paybutton").on("touchstart",function(){
+            var str  = $("li.jyt_bg_gou").attr("id");
+            var type = $.trim(str.replace('pay', ""));
+            if(is_kingkr_obj() && type==1){
+              type=4;
+            } 
+            // type=4;
+            var level= $("#selectItems option:selected").val();  
+            $.ajax({
+                url:"http://hr.hongrunet.com/Home/UserCenter/paymentApplication",
+                dataType:"jsonp",
+                data:{'paymenttype':type,'level':level},
+                jsonpCallback:'jsonpReturn',
+                success: function (msg) {
+                    if (msg.status == 0) {
+                        alert(msg.msg);
+                    }else{
+                        if (msg.data.class=="支付宝") {
+                            window.location.href=msg.data.res;
+                        }else if(msg.data.class == "微信APP"){
+                                var orderId = msg.data.oid;
+                                $.ajax({
+                    　　　　　　　　url: "http://hr.hongrunet.com/Home/WxAppPay/sendRequest", 
+                                    data:{'orderId':orderId},
+                    　　　　　　　　dataType:'jsonp',
+                    　　　　　　　　async: true,
+　　　　　　　　                    timeout: 200000,
+                                    jsonpCallback:"jsonpReturn1",
+                    　　　　　　　　success: function(data){　
+                                        if(data.status){
+                                            payType(data.data,'WEIXIN','PayResult');
+                                        }else{
+                                            alert(data.error_message);
+                                        }
+                    　　　　　　　　}
+                    　　　　　　});
+                            }else if (msg.data.class=="微信"){
+                            payConfig = msg.data.payConfig;
+                            //注入 Jsapi 配置
+                            wx.config(eval('(' +msg.data.jsapi + ')'));                            
+                           // 调用支付
+                           WeixinJSBridge.invoke(
+                            'getBrandWCPayRequest', {
+                            "appId":payConfig.appId,     //公众号名称，由商户传入
+                            "timeStamp":payConfig.timeStamp, //时间戳，自1970年以来的秒数
+                            "nonceStr":payConfig.nonceStr, //随机串
+                            "package":payConfig.package,
+                            "signType":payConfig.signType, //微信签名方式：
+                            "paySign":payConfig.paySign //微信签名
+                           },
+                           function(res){
+                               if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                                $('#loading').hide();
+                                // 支付成功
+                                alert('付款成功');
+                                // window.location = '/Myinfo/index.html';
+                              }else{
+                                $('#loading').hide();
+                                // 支付失败
+                                alert('支付取消');
+                                // window.location = '/Goods/show.html?id={{$_GET["id"]}}';
+                              }
+                           }
+                         );
+
+
+                        }else{
+                            if (msg.status == 1) {
+                                alert("支付成功");
+                                window.location.href="lf_personal.html";
+                            }else{
+                                alert("支付失败");
+                            }
+                        }
+                    }
+                }
+            });
+         })
+
+      　function payResult(r) {
+      　　　　if(r == 0){
+      　　　　setTimeout(function(){
+        　　　　$('#loading').hide();
+
+                      alert('付款成功');
+
+      　　　　}, 2000);
+      　　　　}else{
+      　　　　　　setTimeout(function(){
+      　　　　　　alert('支付失败请刷新后再试！');
+      　　　　}, 2000);
+      　　}
+      }
+    </script>
+
+</html>

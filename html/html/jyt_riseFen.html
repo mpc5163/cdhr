@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css"/>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+        <style>
+            .riseCenter{
+               width:95%;
+               margin:0 auto;
+               text-align:center;
+               line-height:5vw;
+               font-size:1.5rem;
+               color:#333;
+            }
+            table{
+                width:95%;
+                margin:2vw auto;
+                text-align:center;
+                border:1px solid #333;
+                font-size:1.3rem;
+                color:#333;
+            }
+            table th{
+                font-size:1.5rem;
+                color:#188eee;
+            }
+            table tr{
+                height:6vw;
+            }
+            table tr:nth-child(2)>td{
+                color:#188eee;
+            }
+            table td{
+                border-bottom:1px solid #333;
+                border-right:1px solid #333;
+            }
+            table tr>td:nth-child(3){
+                border-right:0;
+            }
+            table tr:nth-child(2) td{
+                border-top:1px solid #333;
+            }
+            table tr:nth-child(6) td{
+                border-bottom:0;
+            }
+            table tr>td:nth-child(1){
+                width:25%;
+            }
+            table tr>td:nth-child(2){
+                width:25%;
+            }
+            table tr>td:nth-child(3){
+                width:50%;
+            }
+            .riseCenter p{
+                display:none;
+            }
+            .riseCenter p span{
+                color:#f00;
+            }
+            .jyt_butt11{
+                display: block;
+                margin-left: -15px;
+                margin-top: 10px;
+                border: 0;
+                background: none;
+                border-radius: 5px;
+                background-color: #0577d7;
+                color: #fff;
+                padding: 3px;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header jyt_header_rise">
+                <a  href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_edit_h1">晋级学分</h1>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content">
+               <div class="jyt_rise_top">
+                   <div style="margin:0 auto;overflow: hidden;width: 75vw;">
+                        <button style="float: left;margin-top:8vw;"  onclick="javascript:window.location.href='jyt_studentRise.html'" class="jyt_rise_top_but">学员升级</button>
+                        <img style="float: left;margin:0 3vw;" id="jyt_rise_top_touxiang" class="jyt_rise_top_touxiang" src=""/>
+                        <button style="float: left;margin-top:8vw;"  onclick="javascript:window.location.href='lf_myVirtualcoin.html'" class="jyt_rise_top_but">晋级币升级</button>
+                   </div>
+                    <p class="jyt_rise_top_p">当前等级：<i class="jyt_rise_top_p_i"></i></p>
+                    
+                    <div class="jyt_rise_dengji ">
+                        <div class="jyt_rise_whiter">
+                            <div class="jyt_rise_liang"></div>
+                        </div>
+                            <div  class="jifen_rise_dengji_list jyt_left1  jyt_xuetong ">
+                                <i class="iconfont icon-ertong"></i>
+                            </div>
+                            <div  class="jifen_rise_dengji_list jyt_left2 jyt_bg_yes  jyt_xueba">
+                                <i class="iconfont icon-xuexinzhuanhuan"></i>
+                            </div>
+                            <div  class="jifen_rise_dengji_list jyt_left3 jyt_jiangshi ">
+                                <i class="iconfont icon-jiangshi"></i>
+                            </div>
+                            <div  class="jifen_rise_dengji_list jyt_left4 jyt_hehuo ">
+                                <i class="iconfont icon-hehuoren"></i>
+                            </div>
+                            <b class="jyt_rise_dengji_b jyt_b_left1">学童
+                                <button class="jyt_butt11" name="学童" type="button">我的权限</button>
+                            </b>
+                            <b class="jyt_rise_dengji_b jyt_b_left2">学霸
+                                <button class="jyt_butt11" name="学霸" type="button" >我的权限</button>
+                            </b>
+                            <b  class="jyt_rise_dengji_b jyt_b_left3">讲师
+                                <button style="margin-left: -20px;"  class="jyt_butt11" name="讲师" type="button" >我的权限</button>
+                            </b>
+                            <b class="jyt_rise_dengji_b jyt_b_left4">合伙人
+                                <button style="margin-left: -16px;" class="jyt_butt11" name="合伙人" type="button">我的权限</button>
+                            </b>
+                    </div>
+               </div>
+               <div class="riseCenter">
+                   <p class="lf-xueba">
+                       您现在是学霸，距离讲师还差<span></span>晋级学分，<br/>加油，努力一定有收获！
+                   </p>
+                   <p class="lf-jiangshi">
+                       您现在是讲师，距离合伙人还差<span></span>晋级学分，<br/>加油，努力一定有收获！
+                   </p>
+               </div>
+               <!-- <table cellspacing="0">
+                    <tr>
+                        <th colspan="3">晋级规则</th>
+                    </tr>
+                    <tr>
+                        <td>等级</td>
+                        <td>付费金额</td>
+                        <td>晋级规则</td>
+                    </tr>
+                    <tr>
+                        <td>学童</td>
+                        <td>0</td>
+                        <td>扫码关注注册</td>
+
+                    </tr>
+                    <tr>
+                        <td>学霸</td>
+                        <td>198</td>
+                        <td>直接付费<br/>或者自身积分达到1199积分<br/>可以兑换学霸</td>   
+                    </tr>
+                    <tr>
+                        <td>讲师</td>
+                        <td>2980</td>
+                        <td>直接购买<br/>或者同学累积达到31798晋级学分<br/>可以晋级讲师</td>     
+                    </tr>
+                    <tr>
+                        <td>合伙人</td>
+                        <td>15800</td>
+                        <td>直接购买<br/>或者同学累积达到66180晋级学分<br/>可以晋级合伙人</td>
+                    </tr>
+               </table> -->
+               <div class="jyt_rise_bottom">
+                    <p class="jyt_rise_bottom_p">去升级获得更多权益</p>
+                    <div class="jyt_rise_bottom_video">
+                        <a class="jyt_rise_bottom_a" href="wy_shuangchuang.html?classid=2">
+                            <i class="iconfont icon-video"></i>
+                            <h3 class="jyt_rise_bottom_video_h3">看视频</h3>
+                        </a>
+                    </div>
+                    <div class="jyt_rise_bottom_live">
+                        <a class="jyt_rise_bottom_a" href="wy_LivList.html">
+                            <i class="iconfont icon-shipin"></i>
+                            <h3 class="jyt_rise_bottom_live_h3">直播</h3>
+                        </a>
+                    </div>
+                    <div class="jyt_rise_bottom_attract">
+                        <a class="jyt_rise_bottom_a" id="xyxy" href="">
+                            <i class="iconfont icon-fenxiang"></i>
+                            <h3 class="jyt_rise_bottom_attract_h3">吸引校友</h3>
+                        </a>
+                    </div>
+               </div>
+	    	</div>
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+	    		
+	    	</footer> -->
+    	</div>
+    </body>
+    <script>
+         $.ajax({
+                url : 'http://hr.hongrunet.com/Home/UserCenter/promotionCredit',
+                dataType:'jsonp',
+                data:{},
+                jsonpCallback:'jsonpReturn4',
+                success : function (req) {
+                console.log(req);
+                $('#xyxy').attr('href','jyt_erweima.html?id='+req.data.res.id)
+                $(".jyt_rise_top_p_i").text(req.data.res.gradename);
+                var name = $(".jyt_rise_top_p_i").text();
+                //console.log(name);
+                $("#jyt_rise_top_touxiang").attr("src",req.data.res.headimg);/*"http://hr.hongrunet.com"+*/
+                if(req.data.res.headimg ==null){
+                     $("#jyt_rise_top_touxiang").attr("src","../lf_img/lf_portrait.png");
+                };
+                if (name == "学童") {
+                    //$(".jyt_rise_top_p_i").text("学童");
+                    $(".jyt_rise_liang").css('width', 0);
+                    $(".jifen_rise_dengji_list").removeClass('jyt_bg_yes');
+                    $(".jyt_xuetong").addClass('jyt_bg_yes');
+                }else if (name == "学霸") {
+                    //$(".jyt_rise_top_p_i").text("学霸");
+                    $(".jyt_rise_liang").css('width', "32%");
+                    $(".jifen_rise_dengji_list").removeClass('jyt_bg_yes');
+                    $(".jyt_xueba").addClass('jyt_bg_yes');
+                    $(".riseCenter .lf-xueba").css('display','block');
+                    $(".riseCenter .lf-xueba span").text(req.data.yue);
+                    console.log(req.data.yue);
+                }else if (name == "讲师") {
+                    //$(".jyt_rise_top_p_i").text("讲师");
+                    $(".jyt_rise_liang").css('width', "65%");
+                    $(".jifen_rise_dengji_list").removeClass('jyt_bg_yes');
+                    $(".jyt_jiangshi").addClass('jyt_bg_yes');
+                    $(".riseCenter .lf-jiangshi").css('display','block');
+                    $(".riseCenter .lf-jiangshi span").text(req.data.yue);
+                    console.log(req.data.yue);
+                }else if (name == "合伙人") {
+                    //$(".jyt_rise_top_p_i").text("合伙人");
+                    $(".jyt_rise_liang").css('width', "93%");
+                    $(".jifen_rise_dengji_list").removeClass('jyt_bg_yes');
+                    $(".jyt_hehuo").addClass('jyt_bg_yes');
+                };
+
+            }  
+        });
+        
+       $(".jyt_butt11").on("click",function () {
+           sessionStorage.name = $(this).attr("name");
+           window.location.href="jyt_quanxian.html"
+       })
+    
+    </script>
+</html>

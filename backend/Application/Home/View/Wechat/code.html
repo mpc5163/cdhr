@@ -1,0 +1,75 @@
+<html class="am-touch js cssanimations"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>开始推广</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="__PUBLIC__/css/amazeui.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css">
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/js/amazeui.min.js"></script>
+</head>
+
+<body>
+<style type="text/css">header{ display: none; }canvas{ display: none; }img{ display: block; width: 100%; height: auto; }</style>
+<!--[if lt IE9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<img id="imagea" src="" style="vertical-align: top;">
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript">
+	wx.config({$jsapi_config});
+
+	wx.ready(function(){
+		wx.onMenuShareTimeline({
+		    title: '承德鸿儒', // 分享标题
+		    link: "http://hr.hongrunet.com/Home/Wechat/code.html?pid="+{$pid}, // 分享链接
+		    imgUrl: 'http://{$_SERVER['HTTP_HOST']}/images/logo.jpg', // 分享图标
+		    success: function() {
+
+		        // 用户确认分享后执行的回调函数
+		        window.href = "http://hr.hongrunet.com/Home/wechat/code.html?pid="+{$pid};
+		    },
+		    cancel: function() {
+
+		        // 用户取消分享后执行的回调函数
+		        window.href = "http://hr.hongrunet.com/Home/wechat/code.html?pid="+{$pid};
+		    }
+		});
+		wx.onMenuShareAppMessage({
+		    title: '承德鸿儒', // 分享标题
+		    desc: '商学讲堂', // 分享描述
+		    link: "http://hr.hongrunet.com/Home/Wechat/code.html?pid="+{$pid}, // 分享链接
+		    imgUrl: 'http://{$_SERVER['HTTP_HOST']}/images/logo.jpg', // 分享图标
+		    type: '', // 分享类型,music、video或link，不填默认为link
+		    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		    success: function() {
+
+		         // 用户确认分享后执行的回调函数
+		        window.href= "http://hr.hongrunet.com/Home/wechat/code.html?pid="+{$pid};
+		    },
+		    cancel: function() {
+
+		         // 用户取消分享后执行的回调函数
+		        window.href= "http://hr.hongrunet.com/Home/wechat/code.html?pid="+{$pid};
+		    }
+		});
+	});
+	wx.error(function(res){
+	    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+	});
+</script><script type="text/javascript">
+var data={shopname:"0.22",image:["__PUBLIC__/images/qrcode.jpg","/Home/Wechat/http.html?url={$qrcode}","__PUBLIC__/images/logo.png"]},imgPath;
+function draw(){var a=document.createElement("canvas");document.body.appendChild(a);var d=data.image.length;a.width=640;a.height=1280;if(a.getContext){var f=function(b){if(b<d){var e=new Image;e.src=data.image[b];0==b?(e.onerror=function(){f(b+1)},e.onload=function(){c.drawImage(e,0,0,a.width,2*a.width);f(b+1)}):1==b?(e.onerror=function(){c.fillStyle="#fff";c.stokeStyle="#dfdfdf";c.fillRect(100,100,100,100);c.strokeRect(100,100,100,100);c.font="24px \u5fae\u8f6f\u96c5\u9ed1";c.textAlign="center";
+c.textBaseline="middle";c.fillStyle="#333";f(b+1)},e.onload=function(){c.drawImage(e,.32*a.width,.5*a.width,.34*a.width,.33*a.width);f(b+1)}):2==b&&(e.onload=function(){c.drawImage(e,.45*a.width,.63*a.width,50,50);f(b+1)})}else imgPath=a.toDataURL("image/jpeg"),document.getElementsByTagName("img")[0].src=imgPath},c=a.getContext("2d");f(0)}}
+CanvasRenderingContext2D.prototype.roundRect=function(a,d,f,c,b){var e=Math.min(f,c);b>e/2&&(b=e/2);this.beginPath();this.moveTo(a+b,d);this.arcTo(a+f,d,a+f,d+c,b);this.arcTo(a+f,d+c,a,d+c,b);this.arcTo(a,d+c,a,d,b);this.arcTo(a,d,a+f,d,b);this.closePath();return this};function convertCanvasToImage(a){var d=new Image;d.src=a.toDataURL("image/png");return d}draw();
+</script></body></html>

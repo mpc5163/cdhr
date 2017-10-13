@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" href="../css/lf_style.css"/>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+    </head>
+    <body>
+        <!-- 控制页面大小 -->
+        <div class="big-box">
+            <!-- 头部 -->
+            <header class="header lf_header">
+                 <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+                 <h2>公司简介</h2>
+            </header>
+            <!-- 中间内容 -->
+            <div class="content" style="margin-top:1.5%;">
+                <!-- 内容填充部分 -->
+                <a class="lf_kefu" href="lf_kefuCenter.html">客&nbsp;服 </a>
+            </div>
+            <!-- 尾部，如果没有需删除 -->
+        </div>
+    </body>
+    <style>
+        img{
+            max-width:100vw;
+        }
+    </style>
+</html>
+<script>
+    $.ajax({
+        url: "http://hr.hongrunet.com/home/index/company",
+        dataType: 'jsonp',
+        data: {},
+        jsonpCallback: 'jsonpReturn',
+        success: function(res) {
+            console.log(res);
+            var content = res.data.info.content;
+            content = content.replace(/&lt;/g, "<");
+            content = content.replace(/&gt;/g, ">");
+            content = content.replace(/&quot;/g, '"');
+            content = content.replace(/&amp;/g,'');
+            content = content.replace(/nbsp;/g,'　');
+            content = content.replace(/\/Uploads\/ueditor/g,'http:\/\/hr.hongrunet.com\/Uploads\/ueditor');
+            $('.content').append(content);
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    })
+</script>

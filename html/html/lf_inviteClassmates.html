@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="author" content="ZZJBS" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    <meta name="format-detection" content="telephone=no" />
+
+    <meta name="format-detection" content="email=no" />
+
+    <!-- 引入文件 -->
+
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <!-- 引入font文件 -->
+
+    <link rel="stylesheet" href="../css/common.css" />
+    <!-- 公共样式 -->
+
+    <link rel="stylesheet" href="../css/lf_style.css" />
+
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <!-- 引入zepto文件 -->
+
+    <!--  <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script> -->
+
+    <script type="text/javascript" src="../js/common.js"></script>
+    <!-- 引入公共js文件 -->
+
+    <title>鸿儒商学讲堂</title>
+
+</head>
+
+<body>
+
+    <!-- 控制页面大小 -->
+
+    <div class="big-box">
+
+        <!-- 头部 -->
+
+        <header class="header lf_header">
+
+            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+
+            <h2>邀请同学</h2>
+            <button class="lf_createRoom" style="margin-right:50px;" id="quanxuan">全选</button>
+            <button class="lf_createRoom" id="tianjia">确认</button>
+
+        </header>
+
+        <!-- 中间内容 -->
+
+        <div class="content">
+
+            <ul class="lf_classmateList" id="content">
+                <!-- 内容部分 -->
+            </ul>
+
+            <div class="lf_english">
+
+                <button>A</button>
+
+                <button>B</button>
+
+                <button>C</button>
+
+                <button>D</button>
+
+                <button>E</button>
+
+                <button>F</button>
+
+                <button>G</button>
+
+                <button>H</button>
+
+                <button>I</button>
+
+                <button>J</button>
+
+                <button>K</button>
+
+                <button>L</button>
+
+                <button>M</button>
+
+                <button>N</button>
+
+                <button>O</button>
+
+                <button>P</button>
+
+                <button>Q</button>
+
+                <button>R</button>
+
+                <button>S</button>
+
+                <button>T</button>
+
+                <button>U</button>
+
+                <button>V</button>
+
+                <button>W</button>
+
+                <button>X</button>
+
+                <button>Y</button>
+
+                <button>Z</button>
+
+                <button>#</button>
+
+            </div>
+
+        </div>
+
+        <!-- 尾部，如果没有需删除 -->
+
+    </div>
+
+</body>
+
+<!-- <script type="text/javascript" src="../js/lf_class.js"></script> -->
+
+</html>
+<script>
+    var id = location.search.split('=')[1];
+    $.ajax({
+        url : 'http://hr.hongrunet.com/home/index/add_room_user',
+        data : {id:id},
+        dataType : 'jsonp',
+        jsonpCallback : 'jsonpReturn',
+        success : function(res){
+            console.log(res);
+            var user = res.data.user;
+            var content = '';
+            for(var i in user){
+                content = '<li class="lf_adminList lf_adminList2"><img src="'+user[i].headimg+'"><span class="lf_setName">'+user[i].name+'</span><span class="iconfont icon-not_selected lf_xuanze" user="'+user[i].id+'"></span></li>';
+                $('#content').append(content);
+            }
+
+            $(".lf_adminList2").on("touchend",function(){
+                $(this).find($(".lf_xuanze")).toggleClass("icon-xuanzhong1");
+            });
+        },
+        error : function(err){
+            console.log(err);
+        }
+    })
+    $('#quanxuan').on("touchend",function(){
+        $('.lf_xuanze').toggleClass('icon-xuanzhong1');
+    })
+    $('#tianjia').on("touchend",function(){
+        var uid = '';
+        $('.icon-xuanzhong1').each(function(){
+            uid += ','+$(this).attr('user');
+        })
+        $.ajax({
+            url : 'http://hr.hongrunet.com/home/index/do_add_room_user',
+            data : {
+                id : id,
+                uid : uid,
+            },
+            dataType : 'jsonp',
+            jsonpCallback : 'jsonpReturn',
+            success : function(res){
+                alert(res.msg);
+                location.reload();
+            },
+            error : function(err){
+                console.log(err);
+            }
+        })
+    })
+</script>

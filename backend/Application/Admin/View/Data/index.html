@@ -1,0 +1,103 @@
+<include file="Public/head" />
+	<style>
+		.test{float:left;margin:2rem;background-color: #66B3FF;width:18rem;height:8rem;border-radius: .5rem;border:1px solid #66B3FF;}
+		/*.test .left{width:40%;margin:left;}*/
+		.test .right{width:100%;text-align: center;}
+		.test .right .font{color:white;font-size: 1.6rem;margin:1.5rem;line-height: 4rem;}
+		.test .right p{color:white;font-size: 2rem;text-align: center;}
+
+	</style>
+	<div>
+		<div class="test" style="background-color:#73BF00;">
+			<div></div>
+			<div class="right">
+				<span class="font">累计会员总量</span>
+				<p>{$num}</p>
+			</div>
+		</div>
+		<div class="test">
+			<div></div>
+			<div class="right">
+				<span class="font">今日新增会员量</span>
+				<p>{$numtoday}</p>
+			</div>
+		</div>
+		<div class="test">
+			<div></div>
+			<div class="right">
+				<span class="font">历史累计红包和分佣金额</span>
+				<p>{$money}</p>
+			</div>
+		</div>
+	<!-- 	<div class="test">
+		<div></div>
+		<div class="right">
+			<span class="font">历史累计收入总额</span>
+			<p>{$money}</p>
+		</div>
+	</div>
+	<div class="test">
+		<div></div>
+		<div class="right">
+			<span class="font">历史累计收入总额</span>
+			<p>{$money}</p>
+		</div>
+	</div> -->
+		<div class="test" style="background-color:#00E3E3;">
+			<div></div>
+			<div class="right">
+				<span class="font">已发放提现总额</span>
+				<p>{$rest}</p>
+			</div>
+		</div>
+		<div class="test" style="background-color:#73BF00;">
+			<div></div>
+			<div class="right">
+				<span class="font">会员账户月总计</span>
+				<p>{$monthmoney}</p>
+			</div>
+		</div>
+		<div class="test">
+			<div></div>
+			<div class="right">
+				<span class="font">会员积分累计</span>
+				<p>{$score}</p>
+			</div>
+		</div>
+		<div class="test">
+			<div></div>
+			<div class="right">
+				<span class="font">今日提现总额</span>
+				<p>{$today}</p>
+			</div>
+		</div>
+		<div class="test" style="background-color:#00E3E3;">
+			<div></div>
+			<div class="right">
+				<span class="font">今日提现手续费总计</span>
+				<p>{$todayfee}</p>
+			</div>
+		</div>
+		<div class="test" style="background-color:#73BF00;">
+			<div></div>
+			<div class="right">
+				<span class="font">分销佣金总计</span>
+				<p>{$a}</p>
+			</div>
+		</div>
+		<div class="test" style="background-color:#00E3E3;">
+			<div></div>
+			<div class="right">
+				<span class="font">今日分销佣金总计</span>
+				<p>{$b}</p>
+			</div>
+		</div>
+		<div class="test">
+			<div></div>
+			<div class="right">
+				<span class="font">今日收入累计</span>
+				<p>{$input}</p>
+			</div>
+		</div>
+	</div>
+<include file="Public/footer" />

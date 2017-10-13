@@ -1,0 +1,1784 @@
+.lf_recorditem>.lf_time/*
+* @Author: Administrator
+* @Date:   2017-04-27 11:35:51
+* @Last Modified by:   Administrator
+* @Last Modified time: 2017-06-06 15:30:52
+*/
+input,button,textarea,select{
+    outline:none;
+    background:none;
+}
+/* 公共样式 */
+
+a.lf_jump{
+    display:block;color:#333;height:100%;
+}
+.clear{
+    clear: both;
+}
+.lf_clearFloat:after{
+    content:".";
+    height:0;
+    display:block;
+    clear:both;
+    overflow:hidden;
+    visibility:hidden;
+}
+.lf_header{
+    position:relative;
+    background-color:#188eee;
+    color:#fff;
+}
+.lf_header .iconfont{
+    color:#fff;
+    line-height:12.84vw;
+    position:absolute;
+    display:block;
+    padding-left:3.125vw;
+    font-size:2rem;
+}
+.lf_header h2{
+    text-align: center;
+    line-height:12.84vw;
+    font-size:2rem;
+    font-weight:normal;
+}
+.lf_footer{
+    background-color:#fff;
+}
+/* 积分互转页面 */
+.lf_integral{
+    padding:0 3.75vw;
+}
+.lf_integralTop{
+    padding:1.56vw 0;
+}
+.lf_integralTop>ul{
+    padding:0.625vw;
+    border:1px solid #188eee;
+    border-radius:1.5vw;
+    box-sizing:border-box;
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */ 
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */ 
+    display: -ms-flexbox; /* TWEENER - IE 10 */ 
+    display: -webkit-flex; /* NEW - Chrome */ 
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+     -webkit-box-orient:horizontal;
+    -webkit-box-direction:normal;
+    -moz-box-orient:horizontal;
+    -moz-box-direction:reverse;
+    -webkit-flex-direction:row;
+    flex-direction:row;
+    -webkit-justify-content:space-around;
+    -moz-box-pack:space-around;
+    -webkit--moz-box-pack:space-around;
+    box-pack:space-around;
+    justify-content:space-around;
+}
+.lf_integralTop .lf_integralitem{
+    width:50%;
+    border-radius:1.5vw;
+    color:#188eee;
+    font-size:1.5rem;
+    height:8.75vw;
+    line-height:8.75vw;
+    text-align:center;
+}
+.lf_integralTop .lf_integralitemon{
+    background-color:#188eee;
+    color:#fff;
+}
+.lf_integral-huzhuan{
+    padding:7.5vw 0;
+}
+.lf_integral-input{
+    padding:5vw 0;
+    border-bottom:1px solid #b3b3b3;
+}
+.lf_integral-input>label{
+    display:block;
+    float:left;
+    width:25vw;
+    line-height:8.75vw;
+    font-size:1.5rem;
+    color:#333333;
+    text-align:right;
+}
+.lf_integral-input>input{
+    display:block;
+    float:left;
+    width:56.125vw;
+    height:8.4375vw;
+    font-size:1.5rem;
+    color:#333333;
+    padding-left:2vw;
+    border:1px solid #188eee;
+    border-radius: 1.5vw
+}
+.lf_integral-input>.lf_xing{
+    display:block;
+    float:right;
+    line-height:10vw;
+    font-size:2rem;
+    color:#333333;
+    padding-right:3.125vw;
+    color:#f00;
+}
+.lf_integral-input>.lf_tips{
+    display:block;
+    margin-top:11.56vw;
+    margin-left:25vw;
+    font-size:1.125rem;
+    color:#f00;
+}
+.lf_sureoutput{
+    padding:15.625vw 0;
+    text-align:center;
+}
+.lf_sureoutput>button{
+    background-color:#188eee;
+    color:#fff;
+    font-size:1.875rem;
+    width:92vw;
+    height:11.25vw;
+    border-radius:1.5vw;
+}
+/* 积分互转 */
+.lf_integral-record{
+    display:none;
+}
+.lf_recorditem{
+    padding:2.5vw 0;
+    border-bottom:1px solid #eaeaea;
+}
+.lf_recorditem>.lf_time{
+    float:left;
+    width:21.56vw;
+    padding-left:2vw;
+}
+.lf_recorditem>.lf_time>p{
+    font-size:1.5rem;
+    color:#aeaeae;
+}
+.lf_recorditem>.lf_time>.lf_pbot{
+    font-size:1.125rem;
+    padding-top:3.125vw;
+}
+.lf_recorditem>.lf_righttime{
+    float:right;
+    height:13.125vw;
+    line-height:13.125vw;
+    padding-right:5vw;
+    font-size:2rem
+}
+.lf_recorditem>img{
+    display:block;
+    width:13.125vw;
+    height:13.125vw;
+    float:left;
+    border-radius:50%;
+}
+.lf_recorditem>.lf_recordCon{
+    float:left;
+    padding-left:3.4375vw;
+    width:50vw;
+}
+.lf_recorditem>.lf_recordCon>h3{
+    font-size:1.5rem;
+    color:#252525;
+    font-weight:normal;
+}
+.lf_recorditem>.lf_recordCon>.lf_pbot{
+    font-size:1.2rem;
+    color:#6c6c6c;
+    padding-top:2vw;
+}
+
+
+/* 侧边栏客服 */
+a.lf_kefu{
+    display:block;
+    width:10.5vw;
+    height:10.5vw;
+    position:fixed;
+    bottom:22%;
+    right:0;
+    background:url("../lf_img/lf_connect.png") no-repeat;
+    background-size: cover;
+    z-index:999;
+    line-height: 26vw;
+    text-align: center;
+    color: #188eee;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+/* 个人中心----见点奖 */
+.lf_jiang{
+    width:100vw;
+    height:100vh;
+    position:fixed;
+    top:0;
+    background:rgba(0,0,0,.5);
+    z-index:10;
+    color:#101010;
+    font-size:1.5rem;
+   
+}
+.lf_jianJiang{
+    display:none;
+}
+.lf_jiangbox{
+    width:85.625vw;
+    height:56.25vw;
+    background-color:#fff;
+    border-radius:3vw;
+    margin:50vw auto;
+}
+.lf_biaoti{
+    height:12vw;
+    line-height:12vw;
+    position:relative;
+    text-align:center;
+    font-size:1.5rem;
+}
+.lf_biaoti>.iconfont{
+    position: absolute;
+    top:0;
+    right:2.56vw;
+    font-size:2rem;
+}
+.lf_ptext{
+    padding:0 6.8vw;
+    line-height:6.25vw;
+    font-weight:bold;
+    padding-bottom:3.75vw;
+    border-bottom:1px solid #c5c5c5;
+}
+.lf_btns{
+    box-sizing:border-box;
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */ 
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */ 
+    display: -ms-flexbox; /* TWEENER - IE 10 */ 
+    display: -webkit-flex; /* NEW - Chrome */ 
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+     -webkit-box-orient:horizontal;
+    -webkit-box-direction:normal;
+    -moz-box-orient:horizontal;
+    -moz-box-direction:reverse;
+    -webkit-flex-direction:row;
+    flex-direction:row;
+    -webkit-justify-content:space-around;
+    -moz-box-pack:space-around;
+    -webkit--moz-box-pack:space-around;
+    box-pack:space-around;
+    justify-content:space-around;
+    padding:0 2.18vw;
+}
+.lf_btns>button{
+   box-sizing:border-box;
+   height:9vw;
+   line-height:9vw;
+   font-size:1.5rem;
+   color:#0e7dfa;
+   width:48%;
+}
+.lf_btns .lf_quxiao{
+    border-right:1px solid #c5c5c5;
+}
+/* 领取见点奖 */
+/* 失败 */
+.lf_fail{
+    display:none;
+}
+.lf_fail .lf_jiangbox{
+    height:16vw;
+    width:85.625vw;
+    padding-bottom:9vw;
+    background-color:#fff;
+    border-radius:3vw;
+    margin:60vw auto;
+}
+.lf_fail p{
+    padding:0 6.8vw;
+    text-align:center;
+    line-height:5vw;
+    font-weight:bold;
+}
+/* 成功 */
+.lf_success{
+    display:none;
+}
+.lf_success .lf_jiangbox{
+    height:21vw;
+    width:85.625vw;
+    padding-bottom:9vw;
+    background-color:#fff;
+    border-radius:3vw;
+    margin:60vw auto;
+}
+.lf_success p{
+    padding:0 6.8vw;
+    text-align:center;
+    line-height:5vw;
+    font-weight:bold;
+}
+/* 客服中心 */
+.lf_kefuimg{
+    width:100%;
+    height:68vw;
+    background-color:#fff;
+}
+.lf_kefuimg>img{
+    display:block;
+    width:100%;
+}
+.lf_kefuPhone{
+    padding:3.125vw 5vw;
+}
+.lf_kefuPhone>img{
+    display:block;
+    float:left;
+    width:10.9vw;
+}
+.lf_kefuPhone>h3{
+    float:left;
+    padding-left:4.375vw;
+    height:9vw;
+    line-height:9vw;
+    font-size:2rem;
+    color:#5e5e5e;
+    font-weight:normal;
+}
+.lf_kefuPhone>h3>span{
+    color:#cc1a11;
+    font-weight:bolder;
+}
+.lf_dailing{
+    display:block;
+    margin:0 auto 7.8vw;
+    width:37.8vw;
+    height:9.6vw;
+    background:url("../lf_img/lf_buttonbg.png") no-repeat;
+    background-size:cover;
+}
+.lf_code{
+    background:url("../lf_img/lf_codebg.png") no-repeat;
+    background-size:cover;
+   /*  margin:0 auto; */
+    width:42.8125vw;
+    height:42.8125vw;
+    padding:2vw;
+    float:left;
+    position:relative;
+}
+.lf_code>p{
+    position: absolute;
+    top: -6vw;
+    width: 100%;
+    text-align: center;
+    font-size:1.5rem;
+}
+.lf_code>img{
+    width:42.8vw;
+    height:42.8vw;
+}
+.lf_codeWord{
+    font-size:1.5rem;
+    color:#333333;
+    text-align:center;
+    height:10vw;
+    line-height:10vw;
+}
+
+/* 课程分类页面 */
+.lf_classify{
+    background-color:#fff;
+    padding:0 5.47vw;
+    margin-bottom:2.19vw;
+    height:16.875vw;
+    line-height:16.875vw;
+    border-top:1px solid #e6e6e6;
+    border-bottom:1px solid #e6e6e6;
+    font-size:1.4375rem;
+}
+.lf_classify .lf_jump .icon-you{
+    display:block;
+    float:right;
+    font-size:1.5rem;
+    color:#666;
+}
+.lf_classify .lf_jump .lf_icon-zuo{
+    display:block;
+    float:left;
+    font-size:2.5rem;
+}
+.lf_classify .lf_jump .lf_leaguer{
+    display:block;
+    float:left;
+    padding-left:3.75vw;
+}
+/* 课程分类底部 */
+.lf_botlinks{
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */ 
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */ 
+    display: -ms-flexbox; /* TWEENER - IE 10 */ 
+    display: -webkit-flex; /* NEW - Chrome */ 
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+     -webkit-box-orient:horizontal;
+    -webkit-box-direction:normal;
+    -moz-box-orient:horizontal;
+    -moz-box-direction:reverse;
+    -webkit-flex-direction:row;
+    flex-direction:row;
+    -webkit-justify-content:space-around;
+    -moz-box-pack:space-around;
+    -webkit--moz-box-pack:space-around;
+    box-pack:space-around;
+    justify-content:space-around;
+    padding:2.5vw 0;
+}
+.lf_botlinks li .lf_jump{
+    color:#666;
+    text-align:center;
+    font-size:0;
+    font-size:1.2rem;
+}
+.lf_botlinks .lf_jump .lf_icon-top{
+    display:block;
+    font-size:2rem;
+    height:5.5vw;
+    line-height:4vw;
+}
+/* 公司简介 */
+.lf_profiletop{
+    color:#333;
+}
+.lf_profileimg{
+    display:block;
+    width:100vw;
+    margin-bottom:4vw;
+}
+.lf_profileTxt{
+    line-height:5.625vw;
+    padding:0 3.75vw;
+    font-size:1.375rem;
+    padding-bottom:1.875vw;
+}
+.lf_ourEncourage{
+    padding-top:2.5vw;
+    color:#333;
+}
+.lf_ourEncourage h3{
+    height:8.4375vw;
+    line-height:8.4375vw;
+    padding:0 3.75vw;
+    font-size:1.625rem;
+}
+.lf_ourService h3{
+    height:9.375vw;
+    line-height:9.375vw;
+    padding:0 3.75vw;
+    font-size:1.625rem;
+}
+.lf_ourPromise{
+    padding-top:5.3vw;
+    color:#333;
+}
+.lf_ourPromise h3{
+    height:9.375vw;
+    line-height:9.375vw;
+    padding:0 3.75vw;
+    font-size:1.625rem;
+}
+/* 个人中心 */
+.lf_headbot{
+   height:38.125vw;
+}
+.lf_portraits{
+    padding-left:18.5vw;
+    padding-right:13.5vw;
+    height: 24.375vw;
+}
+.lf_portraits>li{
+    float:left;
+    text-align:center;
+}
+.lf_partner{
+    padding-top:7.2vw;
+    width:10vw;
+}
+.lf_partner img{
+    display:block;
+    height:10vw;
+    width:10vw;
+    margin:0 auto;
+}
+.lf_partner span{
+    display:block;
+    height:5vw;
+    line-height:5vw;
+    font-size:1.125rem;
+    color:#fff;
+}
+.lf_portrait{
+    width:43.125vw;
+}
+.lf_portrait img{
+    display:block;
+    margin:0 auto;
+    height: 20.375vw;
+    width:20.375vw;
+    margin:0 atuo;
+    border-radius:50%;
+    border:2vw solid rgba(255,255,255,0.13);
+}
+.lf_portraits .lf_set{
+    float:right;
+    width:14vw;
+}
+.lf_portraitname{
+    height:7.8vw;
+    line-height:7.8vw;
+    font-size:1.5rem;
+    font-weight:normal;
+    text-align:center;
+}
+.lf_myDaoshi{
+    height:4.375vw;
+    line-height:4.375vw;
+    text-align:center;
+}
+.lf_myPartners{
+    height:15.3vw;
+    line-height:15.3vw;
+    background:url("../lf_img/lf_personbg2.png") no-repeat;
+    background-size:cover;
+}
+.lf_myPartners>ul{
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */ 
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */ 
+    display: -ms-flexbox; /* TWEENER - IE 10 */ 
+    display: -webkit-flex; /* NEW - Chrome */ 
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+     -webkit-box-orient:horizontal;
+    -webkit-box-direction:normal;
+    -moz-box-orient:horizontal;
+    -moz-box-direction:reverse;
+    -webkit-flex-direction:row;
+    flex-direction:row;
+    -webkit-justify-content:space-around;
+    -moz-box-pack:space-around;
+    -webkit--moz-box-pack:space-around;
+    box-pack:space-around;
+    justify-content:space-around;
+}
+.lf_myPartners .lf_myClassmate{
+    color:#fff;
+    padding:2.8vw 0;
+    font-size:1.125rem;
+    text-align:center;
+}
+.lf_myPartners .lf_myClassmate>p{
+    height:4.69vw;
+    line-height:4.69vw;
+   /*  filter:alpha(opacity=90); */
+    opacity:0.9;
+}
+.lf_myPartners .lf_myClassmate>span{
+    display:block;
+    height:5.9vw;
+    line-height:5.9vw;
+}
+.lf_classItems{
+    padding-top:3.125vw;
+}
+.lf_classItems .lf_itemlist{
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */ 
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */ 
+    display: -ms-flexbox; /* TWEENER - IE 10 */ 
+    display: -webkit-flex; /* NEW - Chrome */ 
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-box-orient:horizontal;
+    -webkit-box-direction:normal;
+    -moz-box-orient:horizontal;
+    -moz-box-direction:reverse;
+    -webkit-flex-direction:row;
+    flex-direction:row;
+    -webkit-justify-content:space-around;
+    -moz-box-pack:space-around;
+    -webkit--moz-box-pack:space-around;
+    box-pack:space-around;
+    justify-content:space-around;
+    box-sizing:border-box;
+    overflow:hidden;
+    background-color:#fff;
+    height:27.8vw;
+}
+.lf_classItems .lf_itemContent{
+    padding-top:5.19vw;
+    text-align:center;
+    width:33.6vw;
+}
+.lf_classItems .lf_itemContent>a i{
+    display:block;
+    margin:0 auto;
+    font-size: 3.2rem
+}
+.lf_classItems .lf_itemContent>a span{
+    display:block;
+    margin:0 auto;
+    height:9.375vw;
+    line-height: 9.375vw;
+    font-size: 1.375rem;
+    color:#5b5b5b;
+}
+.lf_classItems .lf_itemlist>li:nth-child(1){
+    border-bottom:1px solid #f5f5f5;
+}
+.lf_classItems .lf_itemlist>li:nth-child(2){
+    border:1px solid #f5f5f5;
+    border-top:0;
+}
+.lf_classItems .lf_itemlist>li:nth-child(3){
+    border-bottom:1px solid #f5f5f5;
+}
+/* 深度好文章页面 */
+.lf_articals .lf_artical-list{
+    background-color:#fff;
+    margin-top:3.125vw;
+    border-top:1px solid #e6e6e6;
+    border-bottom:1px solid #e6e6e6;
+    padding-top:4.375vw;
+}
+.lf_articals .lf_art-title{
+    padding:0 6.875vw;
+    color:#282828;
+}
+.lf_articals .lf_art-title>dt{
+    font-size:2.25rem;
+    line-height:8.125vw;
+}
+.lf_articals .lf_art-title>dd{
+    font-size:1.625rem;
+    line-height:9.6875vw;
+}
+.lf_articals .lf_artimg{
+    display: block;
+    margin:3.44vw auto 0;
+    width:95vw;
+    height:53.125vw;
+}
+.lf_articals .lf_artPara{
+    width:86.6vw;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    height:6.25vw;
+    line-height:6.25vw;
+    padding:0 6.875vw;
+    font-size:1.5rem;
+    color:#3c3c3c;
+    padding-top:4.375vw;
+
+}
+.lf_articals .lf_inscribe{
+    padding:0 6.875vw;
+    height:10.9vw;
+    line-height:10.9vw;
+    font-size:1.125rem;
+    color:#787878;
+}
+.lf_articals .lf_inscribe .iconfont{
+    font-size:1.5rem;
+    padding-right:1.25vw;
+}
+/* 干货分享页面 */
+.lf_sharebox .lf_shareItem{
+    background-color:#fff;
+    padding:3.75vw 2.5vw;
+    height:20.625vw;
+    border-bottom:1px solid #d9d9d9;
+}
+.lf_sharebox .lf_share-dt{
+    width:66.25vw;
+    overflow:hidden;
+    float:left;
+}
+.lf_sharebox .lf_share-dt h3{
+    font-size:1.625rem;
+    color:#333;
+    height:10vw;
+    line-height: 5vw;
+    font-weight:normal;
+}
+.lf_sharebox .lf_share-dt .lf_sharePara{
+    font-size:1.125rem;
+    color:#999;
+    width:66.25vw;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    height:5.6vw;
+    line-height:5.6vw;
+}
+.lf_sharebox .lf_share-dt .lf_shaerInscribe{
+    height:4.375vw;
+    line-height:4.375vw;
+    font-size:0rem;
+    font-size:0.875rem;
+    color:#a6a6a6;
+}
+.lf_sharebox .lf_share-dt .lf_shaerInscribe .lf_artnumber{
+    display:block;
+    float:left;
+}
+.lf_sharebox .lf_share-dt .lf_shaerInscribe .lf_time{
+    display:block;
+    float:right;
+}
+.lf_sharebox .lf_share-dd{
+    width:26.6vw;
+    overflow:hidden;
+    float:right;
+}
+.lf_sharebox .lf_share-dd img{
+    width:26.6vw;
+}
+/* 阅读好文页面 */
+.lf_footer .lf_inscribe{
+    height:12.84vw;
+    line-height:12.84vw;
+    padding:0 4.375vw;
+    font-size:1.25rem;
+    color:#787878;
+}
+.lf_footer .lf_inscribe>span{
+    display:block;
+    float:left;
+}
+.lf_footer .lf_inscribe  .lf_artnumber{
+    margin-left:7.8vw;
+}
+.lf_footer .lf_inscribe .iconfont{
+    padding-right:1.5vw;
+    display:block;
+    float:left;
+}
+/* 内容 */
+.lf_articalContent{
+    padding:7.19vw 6.25vw 0 4.375vw;
+}
+.lf_articalContent .lf_art-title dt{
+    color:#282828;
+    font-size:2.625rem;
+    line-height:10vw;
+}
+.lf_articalContent .lf_art-title .lf_line{
+    width:22.5vw;
+    height:1.25vw;
+    background-color:#282828;
+    margin:4.375vw 0 3.125vw;
+}
+.lf_articalContent .lf_art-title .lf_author{
+    font-size:1.625rem;
+    color:#282828;
+    height:14.69vw;
+    line-height:14.69vw;
+}
+.lf_articalContent .lf_readPara{
+    font-size:1.625rem;
+    color:#3c3c3c;
+    line-height:;
+    margin-bottom:3.125vw;
+}
+/* 提现记录页面 */
+.lf_summary{
+    padding:2.1875vw 3.75vw;
+}
+.lf_summary-wrap{
+    background-color:#fff;
+    padding:3.4375vw 0;
+    text-align:center;
+}
+.lf_summary-wrap>h3{
+    font-size:1.625rem;
+    color:#434343;
+    height:7.8125vw;
+    line-height:7.8125vw;
+    font-weight:normal;
+}
+.lf_summary-wrap>p{
+    font-size:2.5rem;
+    color:#2074fd;
+    height:9.375vw;
+    line-height:9.375vw;
+}
+.lf_txitems{
+    background-color:#fff;
+}
+.lf_tx-item{
+    border-bottom:1px solid #f5f5f5;
+    padding:2.9vw 3.75vw;
+}
+.lf_tx-item>.iconfont{
+    display:block;
+    float:left;
+    font-size:3.125rem;
+    color:#00d8cb;
+    line-height:7.95vw
+}
+.lf_summaryCon{
+    float:left;
+    margin-left:3.9vw;
+}
+.lf_summaryCon>span{
+    display:block;
+}
+.lf_summaryCon>.lf_time{
+	padding-top:1vw;
+}
+.lf_summaryCon .lf_summaryTxt{
+    font-size:1.375rem;
+    color:#333;   
+}
+.lf_summaryCon .lf_time{
+    font-size:1rem;
+    color:#999;
+}
+.lf_tx-item .lf_jinE{
+    float:right;
+    font-size:1.75rem;
+    color:#333;
+    height:7.95vw;
+    line-height:7.95vw;
+}
+/* 我的粉丝页面 */
+.lf_myfans .lf_fans-item{
+    background-color:#fff;
+    border-bottom:1px solid #ededed;
+    padding:3.125vw;
+    height:15.625vw;
+}
+.lf_fans-item .lf_fansPortrait{
+    display:block;
+    float:left;
+    width:15.625vw;
+    height:15.625vw;
+    border-radius:50%;
+}
+.lf_fans-item .lf_fansCon{
+    float:left;
+    padding:2.5vw 0  2vw;
+    margin-left:4vw;
+}
+.lf_fans-item .lf_fansCon>span{
+    display:block;
+
+}
+.lf_fans-item .lf_fansCon .lf_fansTxt{
+    font-size:1.5rem;
+    color:#333;
+    height:7.19vw;
+    line-height:7.19vw;
+}
+.lf_fans-item .lf_fansCon .lf_fansnum{
+    font-size:1.125rem;
+    color:#999;
+    height:4vw;
+    line-height:4vw;
+}
+.lf_fans-item .lf_fansCon .lf_fansnum>.iconfont{
+    font-size:0rem;
+    font-size:0.7rem;
+    color:#f44336;
+    padding-right:1vw;
+}
+.lf_fans-item .lf_fansicon{
+    float:right;
+    padding:2.5vw 0 3.125vw;
+    text-align:center;
+    font-size:1.125rem;
+    color:#188eee;
+}
+.lf_fans-item .lf_fansicon .iconfont{
+    display:block;
+    height:7.19vw;
+    line-height:8vw;
+}
+.lf_fans-item .lf_fansicon>span{
+    display:block;
+}
+/* 我的关注页面 */
+.lf_motaikuang{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    background:rgba(0,0,0,0.5);
+    display:none;
+}
+.lf_motaikuang .lf_center{
+    width:75vw;
+    height:40.275vw;
+    background-color:#fff;
+    border-radius:4vw;
+    margin:44vw auto;
+    padding:3.125vw 3.75vw 0;
+}
+.lf_motaikuang .lf_center>h3{
+    font-size:2rem;
+    height:10vw;
+    line-height:10vw;
+    color:#454545;
+    text-align:center;
+    border-bottom:1px solid #d1d1d1;
+}
+.lf_motaikuang .lf_center>p{
+    font-size:2rem;
+    height:12.5vw;
+    line-height:12.5vw;
+    color:#454545;
+    text-align:center;
+}
+.lf_motaikuang .lf_center .lf_buttons>button{
+    display:block;
+    width:32.8vw;
+    height:9vw;
+    line-height:9.5vw;
+    box-sizing:border-box;
+    border-radius:4vw;
+    font-size:1.5rem;
+    overflow:hidden;
+}
+.lf_motaikuang .lf_center .lf_buttons .lf_cancel{
+    float:left;
+    border:1px solid #188eee;
+    color:#188eee;
+}
+.lf_motaikuang .lf_center .lf_buttons .lf_confirm{
+    float:right;
+    background-color:#188eee;
+    color:#fff;
+}
+
+/* 成为合伙人页面 */
+.lf_comFooter{
+    height:11.34vw;
+    width:93.75vw;
+    padding:1.5vw 3.125vw 0;
+}
+
+
+/* 留言区域*/
+.lf_liuyanContent{
+    padding:3.425vw 3.125vw 0;
+    width:93.75vw;
+}
+.lf_kefudescript{
+    background-color:#fdf8de;
+    text-align:center;
+    padding:3vw 0;
+}
+.lf_kefudescript>p{
+    line-height:4.74vw;
+    font-size:1.125rem;
+    color:#313131;
+}
+.lf_kefudescript>p a{
+    color:#42a5f5;
+}
+/* 留言面板 */
+.lf_liuyanArea{
+    padding-top:7.19vw;
+}
+.lf_liuyanArea li:after{
+    content:".";
+    height:0;
+    display:block;
+    overflow:hidden;
+    clear:both;
+    visibility:hidden;
+}
+.lf_kefu{
+    display:block;
+    float:left;
+}
+
+.lf_kefu>img{
+    border-radius:50%;
+    width:11.875vw;
+}
+.lf_robot{
+    height:4.97vw;
+    line-height:4.97vw;
+    color:#7d7d7d;
+    font-size:1.125rem;
+}
+.lf_kefuTxt{
+    float:left;
+    padding-left:2.19vw;
+    font-size:1.5rem;
+    color:#282828;
+}
+
+.lf_robotTxt{
+    background:url("../lf_img/lf_robotbg.png") no-repeat;
+    background-size:cover;
+    width:57.54vw;
+    padding:2.34vw 4.53vw;
+    line-height:5vw;
+    min-height: 11vw;
+}
+.lf_liuyanArea .lf_time{
+    height:15.6vw;
+    line-height:15.6vw;
+    font-size:1.125rem;
+    color:#8d8d8d;
+    text-align:center;
+}
+.lf_liuyanArea .lf_public{
+    float:right;
+}
+.lf_liuyanArea .lf_publicTxt{
+    float:right;
+    padding-right:2.19vw;
+}
+.lf_publicTxt .lf_robotTxt{
+    background:url("../lf_img/lf_publicbg.png") no-repeat;
+    background-size:cover;
+    width:57.54vw;
+    padding:2.14vw 4.53vw;
+    line-height: 6.25vw;
+    min-height: 6.25vw;
+    font-size:1.5rem;
+    color:#282828;
+    
+}
+.lf_publicTxt .lf_robot{
+    text-align:right;
+}
+/* 合伙人底部 */
+.lf_zhuankefu{
+    display:block;
+    float:left;
+    line-height:5.13vw;
+    padding-right:1.56vw;
+    font-size:1.125rem;
+    color:#188eee;
+    text-align:center;
+    
+}
+.lf_zhuankefu i{
+    display:block;
+    font-size:2.5rem;
+}
+.lf_zhuankefu span{
+    display:block;
+}
+#lf_yourProblem{
+    display:block;
+    float:left;
+    width:70.275vw;
+    height:9.375vw;
+    border:1px solid #188eee;
+    border-radius:5px;
+    font-size:1.5rem;
+    padding-left:3.125vw;
+    outline:none;
+}
+.lf_footer #lf_jia{
+    font-size:3rem;
+    color:#188eee;
+    display:block;
+    float:right;
+}
+/* 直播详情页面 */
+div.lf_liveimg>img{
+    width:100vw;
+}
+.lf_jiangshi{
+    padding:0.625vw 3.4375vw 3.75vw;
+    border-bottom:1px solid #d9d9d9;
+}
+.lf_jiangshi>dl:after{
+    content:".";
+    height:0;
+    clear:both;
+    display:block;
+    overflow:hidden;
+    visibility:hidden;
+}
+.lf_livedt{
+    float:left;
+    width:14.53vw;
+    padding-top:4.06vw;
+    margin-right:4.06vw
+}
+.lf_livedt>img{
+    width:14.53vw;
+    height:14.53vw;
+}
+.lf_livedd{
+    float:left;
+}
+.lf_livedd>h3{
+    width:73vw;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:no-wrap;
+    height:9.69vw;
+    line-height:9.69vw;
+    font-size:1.875rem;
+    color:#343434;
+}
+.lf_live_jiangshi{
+    padding:0.78vw 0;
+}
+.lf_live_jiangshi:after{
+    content:".";
+    height:0;
+    display:block;
+    overflow:hidden;
+    clear:both;
+    visibility:hidden;
+}
+.lf_live_jiangshi>span:nth-of-type(1){
+    display:block;
+    padding:0.625vw 0.9375rem;
+    float:left;
+    text-align:center;
+    border:1px solid #188eee;
+    font-size:0rem;
+    font-size:0.875rem;
+    color:#188eee;
+    border-radius:1vw;
+}
+.lf_live_jiangshi>span:nth-of-type(1)>.iconfont{
+    font-size:0.75rem;
+    display:inline-block;
+}
+.lf_live_jiangshi>span:nth-of-type(2){
+    display:block;
+    padding-left:1.875vw;
+    float:left;
+    font-size:1.375rem;
+    color:#343434;
+}
+.lf_livedd>span{
+    display:inline-block;
+    padding-top:2.1875vw;
+    font-size:1.125rem;
+    color:#999;
+}
+.lf_livedd>span>.iconfont{
+    font-size:1rem;
+}
+.lf_livedd>.lf_guanzhu{
+   float:right;
+   padding:1vw 1.7vw;
+   border:1px solid #f00;
+   font-size:1.25rem;
+   color:#f00;
+   border-radius:1vw;
+   position:relative;
+   top:-3vw;
+}
+.lf_livedd>.lf_guanzhu>.iconfont{
+    font-size:1.5rem;
+}
+.lf_livechatbox>h3{
+    padding:2.5vw 3.4375vw;
+    font-size:1.3rem;
+    color:#343434;
+}
+.lf_livechatbox>h3>.iconfont{
+    font-size:1.7rem;
+    display:inline-block;
+    color:#188eee;
+}
+.lf_chatarea{
+    background-color:#eeeded;
+    padding:2.5vw 3.4375vw;
+    margin-bottom:10vw;
+}
+.lf_chatarea li{
+    padding:0.9vw 0;
+}
+.lf_chatarea  li:after{
+    content:".";
+    height:0;
+    display:block;
+    overflow:hidden;
+    clear:both;
+    visibility:hidden;
+}
+.lf_chatarea .lf_student{
+    display:block;
+    float:left;
+    width:5.47vw;
+}
+.lf_chatarea  .lf_studentname{
+    display:block;
+    float:left;
+    width:84.375vw;
+    line-height:4.06vw;
+    padding-top:1vw;
+    padding-left:1.4vw;
+    font-size:1.125rem;
+    color:#333;
+}
+.lf_chatarea  .lf_studentname>span{
+    color:#188eee;
+}
+.lf_livefooter{
+    width:96.88vw;
+    padding:0 1.56vw;
+    line-height:12.84vw;
+}
+.lf_shang{
+    display:block;
+    float:left;
+    line-height:13.5vw;
+    font-size:4rem;
+    color:#fc583f;
+}
+.lf_livefooter form{
+    display:block;
+    float:left;
+    padding:1.56vw 0 1.56vw 1.56vw;
+}
+.lf_livefooter>form input{
+    display:block;
+}
+.lf_livefooter>form input:nth-of-type(1){
+    box-sizing:border-box;
+    float:left;
+    width:65.8vw;
+    padding-left:2vw;
+    height:10vw;
+    border:1px solid #bfbfbf;
+    border-radius:1vw;
+}
+.lf_livefooter>form input:nth-of-type(2){
+    float:right;
+    margin-left:1.875vw;
+    width:15vw;
+    height:10vw;
+    background-color:#fd573d;
+    border-radius:1vw;
+    border:0;
+    color:#fff;
+    font-size:1.25rem;
+}
+/* 直播-打赏 */
+.lf_motaikuang-live{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:-0.1vw;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    z-index:100000000;
+}
+.lf_motaikuang-live .lf_center{
+    width:73.4vw;
+    height:70vw;
+    background:url("../lf_img/lf_hongbao.png") no-repeat;
+    background-size:73.4vw 70vw;
+    
+    margin:40vw auto;
+}
+.lf_motaikuang-live .lf_hongbao{
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */ 
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */ 
+    display: -ms-flexbox; /* TWEENER - IE 10 */ 
+    display: -webkit-flex; /* NEW - Chrome */ 
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-justify-content:space-around;
+    -moz-box-pack:space-around;
+    -webkit--moz-box-pack:space-around;
+    box-pack:space-around;
+    justify-content:space-around;
+    -webkit-flex-wrap:wrap;
+    -webkit-box-lines:multiple;
+    -moz-flex-wrap:wrap;
+    flex-wrap:wrap;
+    padding:7.5vw 4.6875vw 2.5vw;
+}
+   
+.lf_motaikuang-live .lf_hongbao>.lf_jump{
+    margin:0 1.875vw 4.6875vw;
+    width:17.5vw;
+    height:9.69vw;
+    line-height:9.69vw;
+    text-align:center;
+    background-color:#f64300;
+    font-size:1.5rem;
+    color:#fff;
+    border-radius:1.5vw;
+}
+.lf_motaikuang-live .lf_textbox{
+    padding:.1vw;
+    text-align:center;
+}
+.lf_motaikuang-live .lf_textbox>img{
+    display: block;
+    margin: 0 auto;
+    width: 15vw;
+    height: 15vw;
+    border-radius: 50%;
+}
+.lf_motaikuang-live .lf_textbox>p{
+    font-size:1.25rem;
+    color:#fff;
+    height:7vw;
+    line-height:7vw;
+}
+.lf_motaikuang-live .lf_close{
+    width:100%;
+    position:absolute;
+    text-align:center;
+    bottom:20vw;
+}
+.lf_motaikuang-live .lf_close>.iconfont{
+    font-size:3.5rem;
+    color:#fff;
+}
+/* 视频详情 页面 */
+.lf_videobox{
+    width:100vw;
+    height:55.9vw;
+    z-index:1;
+}
+.lf_video-description{
+    padding:2vw 3.4375vw 2.8vw;
+    border-bottom:1px solid #d9d9d9;
+}
+.lf_video-description>h3{
+    font-size:1.875rem;
+    color:#343434;
+    font-weight:normal;
+    height:9.69vw;
+    overflow:hidden;
+    line-height:11vw;
+    padding-right:5vw;
+}
+.lf_video-description>h3>.iconfont{
+    display:block;
+    font-size:3.8rem;
+    color:#fc583f;
+    float:right;
+    line-height:9.69vw;
+}
+.lf_video-con{
+    padding:2.18vw 0;
+}
+.lf_video-con:after{
+    content:".";
+    height:0;
+    display:block;
+    clear:both;
+    overflow:hidden;
+    visibility:hidden;
+}
+.lf_video-con>p:nth-of-type(1){
+    display:inline-block;
+    float:left;
+}
+.lf_video-con>p:nth-of-type(2){
+    display:inline-block;
+    float:right;
+}
+.lf_video-con>p>.iconfont{
+    display:block;
+    float:left;
+    padding-right:1.56vw;
+    font-size:1.5rem;
+    color:#929292;
+    line-height:3.4vw
+}
+.lf_video-con>p{
+    font-size:1.125rem;
+    color:#343434;
+    height:3.4375vw;
+}
+.lf_video-con>p>span{
+	display:block;
+	float:left;
+	line-height:3.4vw
+}
+.lf_lesson{
+    padding:0 3.4375vw 2.8125vw;
+}
+.lf_lesson>h3{
+    padding:3.5vw 0;
+    color:#343434;
+    font-size:1.3rem;
+    overflow:hidden;
+    font-weight:normal;
+}
+.lf_lesson>h3>.iconfont{
+    display:block;
+    float:left;
+    color:#b3b3b3;
+    line-height:4vw;
+    padding-right:1.56vw;
+}
+.lf_lesson>p{
+    font-size:1.25rem;
+    color:#4f4f4f;
+    line-height:4.6875vw;
+}
+.lf_videobg{
+    height:1.875vw;
+    background-color:#eee;
+    border-top:1px solid #d9d9d9;
+    border-bottom:1px solid #d9d9d9;
+}
+.lf_video-jiangshi{
+    padding:0 4vw 0 3.4375vw;
+    position:relative;
+}
+.lf_video-jiangshi>h3{
+    font-size:1.3rem;
+    color:#343434;
+    padding:4vw 0;
+    font-weight:normal;
+}
+.lf_video-jiangshi>h3>.iconfont{
+    display:block;
+    float:left;
+    color:#b3b3b3;
+    line-height:4vw;
+    padding-right:1.25vw;
+}
+.lf_video-js{
+    height:14.53vw;
+    margin-bottom:12.84vw;
+}
+.lf_video-js .lf_videodt{
+    float:left;
+}
+.lf_video-js .lf_videodt>img{
+    width:14.53vw;
+    height:14.53vw;
+}
+.lf_video-js .lf_videodd{
+    padding-left:3.125vw;
+    float:left;
+}
+.lf_video-js .lf_guanzhu{
+    position:absolute;
+    top:13.75vw;
+    right:4.375vw;
+    padding:1vw 1.7vw;
+    border:1px solid #f00;
+    font-size:1.25rem;
+    color:#f00;
+    border-radius:1vw;
+}
+.lf_video-js .lf_guanzhu>.iconfont{
+    font-size:1.5rem;
+}
+.lf_videodd .lf_video_jiangshi{
+    padding:1vw 0;
+    color:#343434;
+    font-size:1.35rem;
+}
+.lf_video_jiangshi:after{
+    content:".";
+    height:0;
+    display:block;
+    clear:both;
+    overflow:hidden;
+    visibility:hidden;
+}
+.lf_video_jiangshi>span{
+    display:block;
+    float:left;
+    font-size:1.375rem;
+    color:#343434;
+}
+.lf_video_jiangshi>span:nth-of-type(1){
+    line-height:7vw;
+    padding-right:2.1875vw;
+}
+.lf_video_jiangshi>span:nth-of-type(2){
+    color:#188eee;
+    font-size:0;
+    font-size:0.875rem;
+    padding:0.625vw 0.9375vw;
+    border:1px solid #188eee;
+    border-radius:1vw;
+}
+.lf_video_jiangshi>span:nth-of-type(2)>.iconfont{
+    font-size:1rem;
+}
+.lf_videoCon{
+    padding:0.5vw 0;
+    font-size:1.25rem;
+    color:#a3a3a3;
+}
+/* 直播结束页面 */
+.lf_big-box{
+    height:100%;
+    background:url("../lf_img/lf_videobg.png") no-repeat;
+    background-size:cover;
+}
+/* 直播结束页面蒙版 */
+.lf_videoendContent{
+    width:100vw;
+    height:100%;
+    background:url("../lf_img/lf_videobg2.png") no-repeat;
+    background-size:cover;
+}
+.lf_videoendContent .lf_close{
+    padding:5.47vw 6.56vw;
+    color:#fff;
+    text-align:right;
+    font-weight:normal;
+}
+.lf_videoendContent .lf_close>span{
+    font-size:1.875rem;
+}
+.lf_closeCon{
+    padding-top:8vw;
+}
+.lf_closeTX{
+    width:24.375vw;
+    border:2px solid #fff;
+    border-radius:50%;
+    margin:0 auto;
+}
+.lf_closeTX>img{
+    display:block;
+    width:24.375vw;
+    height:24.375vw;
+}
+.lf_closeteacher{
+    padding:4.375vw;
+    text-align:center;
+    font-size:1.75rem;
+    color:#fff;
+}
+.lf_videoEnd{
+    padding:1.56vw;
+    font-size:2.625rem;
+    color:#fff;
+    text-align:center;
+    font-weight:normal;
+}
+.lf_videoNum{
+    padding-top:5.47vw;
+    padding-bottom:13.75vw;
+}
+.lf_videoNum>span{
+    display:block;
+    padding:1.25vw 0;
+    text-align:center;
+    color:#fff;
+    font-size:1.5rem;
+}
+.lf_videoNum .lf_videonumber{
+    font-size:2.875rem;
+    color:#fdd835;
+}
+.lf_closeBtns{
+    padding-top:5.625vw;
+    margin:0 12.5vw;
+    border-top:1px solid #8c8c8c;
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */ 
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */ 
+    display: -ms-flexbox; /* TWEENER - IE 10 */ 
+    display: -webkit-flex; /* NEW - Chrome */ 
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-justify-content:space-around;
+    -moz-box-pack:space-around;
+    -webkit--moz-box-pack:space-around;
+    box-pack:space-around;
+    justify-content:space-around;
+    -webkit-flex-wrap:wrap;
+    -webkit-box-lines:multiple;
+    -moz-flex-wrap:wrap;
+    flex-wrap:wrap;
+    text-align:center;
+}
+.lf_closeBtns span{
+    color:#fff;
+    display:block;
+    padding:3.125vw 0;
+    font-size:1.625rem;
+}
+.lf_closeBtns .iconfont{
+    color:#fff;
+    display:block;
+    font-size:2.875rem;
+}
+/* 设置管理员页面 */
+.lf_administratorList{
+    padding:2.1875vw 1.25vw 17.375vw;
+}
+.lf_administratorList>li{
+    height:17.1875vw;
+    line-height:17.1875vw;
+    padding:0 4.375vw 0 5.625vw;
+    background:url("../lf_img/lf_setlibg.png") no-repeat;
+    background-size:100% 100%;
+    position:relative;
+    margin-bottom:2vw;
+}
+
+.lf_adminList>img{
+    display:block;
+    float:left;
+    width:9vw;
+    height:9vw;
+    margin-top:4vw;
+}
+.lf_adminList .lf_setName{
+    display:block;
+    float:left;
+    padding-left:4.6875vw;
+    font-size:1.625rem;
+    color:#333333;
+}
+.lf_adminList .lf_setAdmin{
+    display:block;
+    float:right;
+    height:100%;
+    text-align:center;
+    font-size:1.25rem;
+    color:#00aa5c;
+    overflow:hidden;
+}
+.lf_adminList .lf_setAdmin>.iconfont{
+    display:block;
+    height:4.5vw;
+    line-height:13vw;
+    font-size:3rem;
+}
+.lf_adminList .lf_setAdmin>span{
+    display:block;
+}
+.lf_seting{
+    position:absolute;
+    top:10vw;
+    right:20vw;
+    z-index:1;
+    background-color:#fff;
+    display:none;
+    box-shadow:1px 1px 2px #ccc,-1px -1px 2px #ccc;
+}
+.lf_seting>li{
+    height:7.5vw;
+    line-height:7.5vw;
+    padding:0 3.125vw;
+    font-size:1.25rem;
+    color:#00aa5c;
+    border-bottom:1px solid #d9d9d9;
+}
+.lf_seting>li:nth-child(3){
+    border:0;
+}
+/* 同学聊天室页面 */
+.lf_createRoom{
+    display:block;
+    position:absolute;
+    right:3.125vw;
+    font-size:1.5rem;
+    color:#fff;
+    top:0;
+    line-height: 13.75vw;
+}
+.lf_chatRoom{
+    padding:3.125vw;
+}
+.lf_chatRoomlist{
+    width:45.3125vw;
+    height:45.3125vw;
+    margin-bottom:3.125vw;
+    position:relative;
+    overflow:hidden;
+    float:left;
+}
+.lf_chatRoom>li:nth-child(odd){
+    margin-right:2.8125vw;
+}
+.lf_chatRoomlist>img{
+    width:45.3125vw;
+    height:30.625vw;
+    display:block;
+}
+.lf_chatRoomCon .lf_descriptionCon{
+    height:10vw;
+    line-height:10vw;
+    font-size:1.375rem;
+    color:#090909;
+    width:45vw;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.lf_chatRoomCon .lf_yiguankan{
+    text-align:right;
+    font-size:1.125rem;
+    color:#919191;
+}
+.lf_zhezhao{
+    position: absolute;
+    top:23.2vw;
+    width:93%;
+    background-color:rgba(0,0,0,0.5);
+    padding:0.78vw 1.56vw;
+}
+.lf_zhezhao>img{
+    display: block;
+    float:left;
+    width:5.625vw;
+    height:5.625vw;
+}
+.lf_zhezhao>span{
+    display: block;
+    float:left;
+    color:#fff;
+    font-size:1.25rem;
+    padding-top:0.5vw;
+    padding-left:1.56vw;
+}
+/* 邀请同学 */
+.lf_classmateList{
+    padding:2.1875vw 1.25vw 17.375vw;
+}
+.lf_classmateList>li{
+    height:17.1875vw;
+    line-height:17.1875vw;
+    padding:0 4.375vw 0 5.625vw;
+    background:url("../lf_img/lf_setlibg.png") no-repeat;
+    background-size:100% 100%;
+    position:relative;
+}
+.lf_xuanze{
+    display:block;
+    float:right;
+    font-size:2rem;
+    color:#03a9f4;
+    padding-right:8vw;
+}
+.lf_english{
+    position:fixed;
+    padding-top:2vh;
+    top:12.84vw;
+    right:3vw;
+    width:8vw;
+    text-align:center;
+}
+.lf_english>button{
+    display:block;
+    height:3.3vh;
+    line-height:3.3vh;
+    color:#333;
+    font-size:1.625rem;
+    text-align:center;
+    width:8vw;
+}

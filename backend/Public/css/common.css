@@ -1,0 +1,81 @@
+/*
+* @Author: CLS
+* @Date:   2017-04-13 10:52:54
+* @Last Modified by:   Administrator
+* @Last Modified time: 2017-05-10 13:44:37
+*/
+/* 样式重置reset */
+body, ul, h1, h2, h3, h4, h5, h6, p, dl, div, dd, hr, fieldset {
+	margin: 0;
+}
+
+ul, input, textarea, button, option, div, ol, fieldset, legend {
+	padding: 0;
+}
+
+html {
+	font-size: 14px;
+}
+
+body,
+body button {
+	font-family: "微软雅黑";
+}
+
+ul {
+	list-style: none;
+}
+
+img, button {
+	border-style: none;
+}
+
+a {
+	text-decoration: none;
+	outline: none;
+}
+input[type="button"], input[type="submit"], input[type="reset"] {
+-webkit-appearance: none;
+}
+textarea { -webkit-appearance: none;}
+button{
+	 -webkit-appearance: none;
+}
+
+/* 控制页面大小 */
+.big-box {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+}
+
+/* 头部样式 */
+.header {
+	width: 100vw;
+	height: 12.84vw;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #fff;
+	z-index: 10;
+}
+
+/* 内容样式 */
+.content {
+	width: 100vw;
+	position: absolute;
+	top: 12.84vw;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+/* 尾部样式 */
+.footer {
+	width: 100vw;
+	height: 12.84vw;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background-color:#fff;
+}

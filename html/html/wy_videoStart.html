@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+
+    <link rel="stylesheet" href="../css/wy_main.css"/>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <title>鸿儒商学讲堂-开始直播</title>
+</head>
+<body>
+<!-- 控制页面大小 -->
+<div class="big-box">
+    <!-- 头部 -->
+    <!--<header class="header wy_video_head">-->
+    <!--</header>-->
+    <!-- 中间内容 -->
+    <div class="content">
+        <div class="wy_videoBg_box">
+            <div class="wy_mask"></div>
+
+            <a href="javascript:history.go(-1);" class="iconfont icon-error wy_font30 wy_start-close"></a>
+
+            <input class="wy_v_input wy_input-btn wy_font36" type="text" placeholder="给直播写个标题吧"/>
+
+            <button onclick="javascript:window.location.href='wy_myVideo.html' " class="wy_font30 wy_input-btn wy_btn">开始直播</button>
+        </div>
+    </div>
+    <!-- 尾部，如果没有需删除 -->
+    <!--<footer class="footer">-->
+
+    <!--</footer>-->
+</div>
+</body>
+<script>
+    $(function(){
+        $("input:text").focus(function(){
+            $(this).attr('placeholder','');
+        });
+        $("input:text").blur(function(){
+            $(this).attr('placeholder','给直播写个标题吧');
+        })
+    });
+</script>
+</html>

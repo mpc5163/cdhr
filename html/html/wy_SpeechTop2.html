@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link href="images/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+    <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../layui/layui.js"></script><!-- 引入公共js文件 -->
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+   <!--  <script type="text/javascript" src="../js/qiniu.js"></script>引入公共js文件 -->
+    <!-- <script type="text/javascript" src="../js/plupload/js/plupload.full.min.js"></script> -->
+    <!-- <script type="text/javascript" src="../js/plupload/js/moxie.js"></script>
+    <script type="text/javascript" src="../js/plupload/js/plupload.dev.js"></script>
+    <script type="text/javascript" src="../js/plupload/js/i18n/zh_CN.js"></script> -->
+    <link rel="stylesheet" href="../layui/layui.css">
+    <link rel="stylesheet" href="../css/wy_main.css"/>
+    <title>鸿儒商学讲堂-上传视频</title>
+    <style>
+        .wy_img-list .wy_label{
+            font-size: 1.5625rem;
+            display: block;
+            width: 19vw;
+            float: left;
+        }
+        .wy_img-list .wy_label{
+            font-size: 1.5625rem;
+            display: block;
+            width: 19vw;
+            float: left;
+        }
+        .wy_img-list{
+            padding: 5vw 0;
+            border-bottom: 1px solid #b3b3b3;
+            overflow: hidden;
+        }
+        .wy_img-list .wy_img{
+            width: 26.25vw;
+            height: 26.25vw;
+            border: 1px solid #808080;
+            border-radius: 5px;
+            float: left;
+            margin-left: 1vw;
+            margin-right: 5vw;
+        }
+    </style>
+</head>
+<body style="background: none;">
+<!-- 控制页面大小 -->
+<div class="big-box">
+    <!-- 头部 -->
+    <header class="header wy_header wy_font32 wy_header-a">
+        <div class="wy_header-title">
+            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui wy_backBtn"></a>
+            <span>上传视频</span>
+        </div>
+    </header>
+    <!-- 中间内容 -->
+    <div class="content wy_speech-body">
+   <!--  <div class="col-md-12">
+                        <div id="container">
+                            <a class="btn btn-default btn-lg " id="pickfiles" href="#" >
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>选择文件</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div style="display:none" id="success" class="col-md-12">
+                        <div class="alert-success">
+                            队列全部文件处理完毕
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <table class="table table-striped table-hover text-left"   style="margin-top:40px;display:none">
+                            <thead>
+                              <tr>
+                                <th class="col-md-4">文件名</th>
+                                <th class="col-md-2">文件大小</th>
+                                <th class="col-md-6">上传详情</th>
+                              </tr>
+                            </thead>
+                            <tbody id="fsUploadProgress">
+                            </tbody>
+                        </table>
+                    </div> -->
+            <div style="overflow:hidden;" id="loading">
+                <button class="" style="float:left;width: 22.65vw;height: 8.75vw;background: #e4e6eb;border-radius: 8px; margin-top:10px;" onclick="javascript:$('.update_file').click();">上传视频</button>
+                <input style="display:none;" type="file" name="files" class="update_file" lay-type="file" value="上传视频">
+                <input type="hidden" id="video" value="">
+                <a id="shipin" style="float:left;margin-left:10px;height: 8.75vw;line-height:8.75vw;margin-top:10px;
+                font-size:12px;color:#f00;"></a>
+
+            </div>
+            <h5 style="margin-left:10px;margin-top:10px;font-size:14px;color:#f00;">注:视频大小不超过500M，视频时长15分钟左右。</h5>
+            <div>
+                <td>
+                    <h2 class="wy_speech-title wy_font25"><span class="wy_star">*</span>视频类别</h2>
+                </td>
+                <td>
+                    <select id="classid" name="classid" class="wy_input wy_input-btn">
+                        <option value="2">双创平台</option>
+                        <option value="3">人际沟通</option>
+                        <option value="4">团队企管</option>
+                        <option value="5">农建商道</option>
+                        <option value="6">健康养生</option>
+                        <option value="7">家庭教育</option>
+                        <option value="8">微商制造</option>
+                        <option value="9">演讲高手</option>
+                    </select>
+                </td>
+            </div>
+            <div>
+                <td>
+                    <h2 class="wy_speech-title wy_font25"><span class="wy_star">*</span>视频类别</h2>
+                </td>
+                <td>
+                    <select id="fid" name="fid" class="wy_input wy_input-btn">
+                        <option value="1">学童专享</option>
+                        <option value="2">学霸专享</option>
+                        <option value="3">讲师专享</option>
+                        <option value="4">合伙人专享</option>            
+                    </select>
+                </td>
+            </div>
+            <div>
+                <h2 class="wy_speech-title wy_font25"><span class="wy_star">*</span>视频名称</h2>
+                <input style="width:88.5vw" class="wy_input wy_input-btn" type="text" id="videoname" placeholder="请输入视频名称"/>
+            </div>
+            <div class="wy_img-list">
+                    <label class="wy_label">封面图片&nbsp;:</label>
+                    <img id="imgurl" name="imgurl" class="wy_img" src="../jyt_image/jyt_jifen_touxiang_2.jpg"/>
+                    <input type="file" lay-type="images"  name="picname" id="picname" />
+                    <input type="hidden" name="coverImgUrl" id="coverImgUrl" value="" />
+                    <a id="tupian" style="float:left;margin-left:10px;height: 8.75vw;line-height:8.75vw;margin-top:10px;
+                font-size:14px;color:#f00;"></a>
+                </div>
+            <div>
+                <h2 class="wy_speech-title wy_font25"><!-- <span class="wy_star"></span> -->视频简介</h2>
+                <input style="width:88.5vw" class="wy_input wy_input-btn" type="text" id="videointro" placeholder="请输入视频简介"/>
+            </div>
+            <div class="wy_xieyi">
+                <div class="wy_checkboxFive">
+                    <input type="checkbox" id="checkboxFiveInput" checked="checked" name="1"/>
+                    <label class="labelclick" for="checkboxFiveInput">
+                    </label>
+                </div>
+
+                <!--<input class="wy_checkbox" type="checkbox"/>-->
+                <a class="wy_font25 wy_a" href="javascript:void(0)"><u class="wy-em">我已阅读</u>，同意<span class="wy_span">“用户注册协议”</span> </a>
+            </div>
+            <button style="outline:none" type="button" id="jyt_edit_sub" class="wy_finishBtn wy_input-btn wy_font30">确认提交</button>
+    </div>
+ 
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">七牛云存储 - JavaScript SDK</a>
+        </div> -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+          
+        </div>
+      </div>
+    </nav> 
+
+    <div class="container" style="padding-top: 60px;">
+        <!-- <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#demo" id="demo-tab" role="tab" data-toggle="tab" aria-controls="demo" aria-expanded="true">示例</a>
+            </li>
+            <li role="presentation">
+                <a href="#code" id="code-tab" role="tab" data-toggle="tab" aria-controls="code">代码</a>
+            </li>
+            <li role="presentation">
+                <a href="#log" id="log-tab" role="tab" data-toggle="tab" aria-controls="log">日志</a>
+            </li>
+        </ul> -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="demo" aria-labelledby="demo-tab">
+
+                <div class="row" style="margin-top: 20px;">
+                    <input type="hidden" id="domain" value="http://7xocov.com1.z0.glb.clouddn.com/">
+                    <input type="hidden" id="uptoken_url" value="uptoken">
+                    <!-- <ul class="tip col-md-12 text-mute">
+                        <li>
+                            <small>
+                                JavaScript SDK 基于 Plupload 开发，可以通过 Html5 或 Flash 等模式上传文件至七牛云存储。
+                            </small>
+                        </li>
+                        <li>
+                            <small>临时上传的空间不定时清空，请勿保存重要文件。</small>
+                        </li>
+                        <li>
+                            <small>Html5模式大于4M文件采用分块上传。</small>
+                        </li>
+                        <li>
+                            <small>上传图片可查看处理效果。</small>
+                        </li>
+                        <li>
+                            <small>本示例限制最大上传文件100M。</small>
+                        </li>
+                    </ul> -->
+                    <div class="col-md-12">
+                        <div id="container">
+                            <a class="btn btn-default btn-lg " id="pickfiles" href="#" >
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>选择文件</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    </div>
+                    <div class="col-md-12 ">
+                        <table class="table table-striped table-hover text-left"   style="margin-top:40px;display:none">
+                            <thead>
+                              <tr>
+                                <th class="col-md-4">Filename</th>
+                                <th class="col-md-2">Size</th>
+                                <th class="col-md-6">Detail</th>
+                              </tr>
+                            </thead>
+                            <tbody id="fsUploadProgress">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="code" aria-labelledby="code-tab">
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-12">
+                        <pre><code>
+                        //引入Plupload 、qiniu.js后
+                        var uploader = Qiniu.uploader({
+                            runtimes: 'html5,flash,html4',    //上传模式,依次退化
+                            browse_button: 'pickfiles',       //上传选择的点选按钮，**必需**
+                            uptoken_url: '/token',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+                            // uptoken : '<Your upload token>', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+                            // unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+                            // save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+                            domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
+                            get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+                            container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+                            max_file_size: '100mb',           //最大文件体积限制
+                            flash_swf_url: 'js/plupload/Moxie.swf',  //引入flash,相对路径
+                            max_retries: 3,                   //上传失败最大重试次数
+                            dragdrop: true,                   //开启可拖曳上传
+                            drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                            chunk_size: '4mb',                //分块上传时，每片的体积
+                            auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+                            init: {
+                                'FilesAdded': function(up, files) {
+                                    plupload.each(files, function(file) {
+                                        // 文件添加进队列后,处理相关的事情
+                                    });
+                                },
+                                'BeforeUpload': function(up, file) {
+                                       // 每个文件上传前,处理相关的事情
+                                },
+                                'UploadProgress': function(up, file) {
+                                       // 每个文件上传时,处理相关的事情
+                                },
+                                'FileUploaded': function(up, file, info) {
+                                       // 每个文件上传成功后,处理相关的事情
+                                       // 其中 info 是文件上传成功后，服务端返回的json，形式如
+                                       // {
+                                       //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+                                       //    "key": "gogopher.jpg"
+                                       //  }
+                                       // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+
+                                       // var domain = up.getOption('domain');
+                                       // var res = parseJSON(info);
+                                       // var sourceLink = domain + res.key; 获取上传成功后的文件的Url
+                                },
+                                'Error': function(up, err, errTip) {
+                                       //上传出错时,处理相关的事情
+                                },
+                                'UploadComplete': function() {
+                                       //队列文件处理完毕后,处理相关的事情
+                                },
+                                'Key': function(up, file) {
+                                    // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                                    // 该配置必须要在 unique_names: false , save_key: false 时才生效
+
+                                    var key = "";
+                                    // do something with key here
+                                    return key
+                                }
+                            }
+                        });
+
+                        // domain 为七牛空间（bucket)对应的域名，选择某个空间后，可通过"空间设置->基本设置->域名设置"查看获取
+
+                        // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
+                        </code></pre>
+                    </div>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="log" aria-labelledby="log-tab">
+                <pre id="qiniu-js-sdk-log"></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="display: none;">
+
+        <div class="text-left col-md-12 wrapper">
+            <h1 class="text-left col-md-12 ">
+                七牛云存储 - JavaScript SDK
+                <a class="btn btn-default view_code" id="show_code">
+                    查看初始化代码
+                </a>
+                <a class="btn btn-default view_github" href="https://github.com/qiniupd/qiniu-js-sdk" target="_blank">
+                    <img src="http://qtestbucket.qiniudn.com/GitHub-Mark-32px.png">
+                    View Source on Github
+                </a>
+            </h1>
+        </div>
+        <div class="body">
+    <!-- <div class="col-md-12" id="qiniu-js-sdk-log"></div> -->
+        </div>
+        <div class="modal fade body" id="myModal-code" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查看初始化代码</h4>
+              </div>
+              <div class="modal-body">
+                <pre><code>
+                //引入Plupload 、qiniu.js后
+                var uploader = Qiniu.uploader({
+                    runtimes: 'html5,flash,html4',    //上传模式,依次退化
+                    browse_button: 'pickfiles',       //上传选择的点选按钮，**必需**
+                    uptoken_url: '/token',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+                    // uptoken : '<Your upload token>', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+                    // unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+                    // save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+                    domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
+                    get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+                    container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+                    max_file_size: '100mb',           //最大文件体积限制
+                    flash_swf_url: 'js/plupload/Moxie.swf',  //引入flash,相对路径
+                    max_retries: 3,                   //上传失败最大重试次数
+                    dragdrop: true,                   //开启可拖曳上传
+                    drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                    chunk_size: '4mb',                //分块上传时，每片的体积
+                    auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+                    init: {
+                        'FilesAdded': function(up, files) {
+                            plupload.each(files, function(file) {
+                                // 文件添加进队列后,处理相关的事情
+                            });
+                        },
+                        'BeforeUpload': function(up, file) {
+                               // 每个文件上传前,处理相关的事情
+                        },
+                        'UploadProgress': function(up, file) {
+                               // 每个文件上传时,处理相关的事情
+                        },
+                        'FileUploaded': function(up, file, info) {
+                               // 每个文件上传成功后,处理相关的事情
+                               // 其中 info 是文件上传成功后，服务端返回的json，形式如
+                               // {
+                               //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+                               //    "key": "gogopher.jpg"
+                               //  }
+                               // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+
+                               // var domain = up.getOption('domain');
+                               // var res = parseJSON(info);
+                               // var sourceLink = domain + res.key; 获取上传成功后的文件的Url
+                        },
+                        'Error': function(up, err, errTip) {
+                               //上传出错时,处理相关的事情
+                        },
+                        'UploadComplete': function() {
+                               //队列文件处理完毕后,处理相关的事情
+                        },
+                        'Key': function(up, file) {
+                            // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                            // 该配置必须要在 unique_names: false , save_key: false 时才生效
+
+                            var key = "";
+                            // do something with key here
+                            return key
+                        }
+                    }
+                });
+
+                // domain 为七牛空间（bucket)对应的域名，选择某个空间后，可通过"空间设置->基本设置->域名设置"查看获取
+
+                // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
+                </code></pre>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade body" id="myModal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">图片效果查看</h4>
+              </div>
+              <div class="modal-body">
+                <div class="modal-body-wrapper text-center">
+                    <a href="" target="_blank" >
+                        <img src="" alt="" data-key="" data-h="">
+                    </a>
+                </div>
+                <div class="modal-body-footer">
+                    <div class="watermark">
+                        <span>水印控制：</span>
+                        <a href="#" data-watermark="NorthWest" class="btn btn-default">
+                            左上角
+                        </a>
+                        <a href="#" data-watermark="SouthWest" class="btn btn-default">
+                            左下角
+                        </a>
+                        <a href="#" data-watermark="NorthEast" class="btn btn-default">
+                            右上角
+                        </a>
+                        <a href="#" data-watermark="SouthEast" class="btn btn-default disabled">
+                            右下角
+                        </a>
+                        <a href="#" data-watermark="false" class="btn btn-default">
+                            无水印
+                        </a>
+                    </div>
+                     <div class="imageView2">
+                        <span>缩略控制：</span>
+                        <a href="#" data-imageview="large" class="btn btn-default disabled">
+                            大缩略图
+                        </a>
+                        <a href="#" data-imageview="middle" class="btn btn-default">
+                            中缩略图
+                        </a>
+                        <a href="#" data-imageview="small" class="btn btn-default">
+                            小缩略图
+                        </a>
+                    </div>
+                    <div class="imageMogr2">
+                        <span>高级控制：</span>
+                        <a href="#" data-imagemogr="left" class="btn btn-default no-disable-click" >
+                            逆时针
+                        </a>
+                        <a href="#" data-imagemogr="right" class="btn btn-default no-disable-click">
+                            顺时针
+                        </a>
+                        <a href="#" data-imagemogr="no-rotate" class="btn btn-default">
+                            无旋转
+                        </a>
+                    </div>
+                    <div class="text-warning">
+                        备注：小图片水印效果不明显，建议使用大图片预览水印效果
+                    </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    </div>
+
+</div>
+
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">七牛云存储 - JavaScript SDK</a>
+        </div> -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+          
+        </div>
+      </div>
+    </nav> 
+
+    <div class="container" style="padding-top: 60px;">
+        <!-- <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#demo" id="demo-tab" role="tab" data-toggle="tab" aria-controls="demo" aria-expanded="true">示例</a>
+            </li>
+            <li role="presentation">
+                <a href="#code" id="code-tab" role="tab" data-toggle="tab" aria-controls="code">代码</a>
+            </li>
+            <li role="presentation">
+                <a href="#log" id="log-tab" role="tab" data-toggle="tab" aria-controls="log">日志</a>
+            </li>
+        </ul> -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="demo" aria-labelledby="demo-tab">
+
+                <div class="row" style="margin-top: 20px;">
+                    <input type="hidden" id="domain" value="http://7xocov.com1.z0.glb.clouddn.com/">
+                    <input type="hidden" id="uptoken_url" value="uptoken">
+                    <!-- <ul class="tip col-md-12 text-mute">
+                        <li>
+                            <small>
+                                JavaScript SDK 基于 Plupload 开发，可以通过 Html5 或 Flash 等模式上传文件至七牛云存储。
+                            </small>
+                        </li>
+                        <li>
+                            <small>临时上传的空间不定时清空，请勿保存重要文件。</small>
+                        </li>
+                        <li>
+                            <small>Html5模式大于4M文件采用分块上传。</small>
+                        </li>
+                        <li>
+                            <small>上传图片可查看处理效果。</small>
+                        </li>
+                        <li>
+                            <small>本示例限制最大上传文件100M。</small>
+                        </li>
+                    </ul> -->
+                    <div class="col-md-12">
+                        <div id="container">
+                            <a class="btn btn-default btn-lg " id="pickfiles" href="#" >
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>选择文件</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12 ">
+                        <table class="table table-striped table-hover text-left"   style="margin-top:40px;display:none">
+                            <thead>
+                              <tr>
+                                <th class="col-md-4">Filename</th>
+                                <th class="col-md-2">Size</th>
+                                <th class="col-md-6">Detail</th>
+                              </tr>
+                            </thead>
+                            <!-- <tbody id="fsUploadProgress">
+                            </tbody> -->
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="code" aria-labelledby="code-tab">
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-12">
+                        <pre><code>
+                        //引入Plupload 、qiniu.js后
+                        var uploader = Qiniu.uploader({
+                            runtimes: 'html5,flash,html4',    //上传模式,依次退化
+                            browse_button: 'pickfiles',       //上传选择的点选按钮，**必需**
+                            uptoken_url: '/token',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+                            // uptoken : '<Your upload token>', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+                            // unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+                            // save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+                            domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
+                            get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+                            container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+                            max_file_size: '100mb',           //最大文件体积限制
+                            flash_swf_url: 'js/plupload/Moxie.swf',  //引入flash,相对路径
+                            max_retries: 3,                   //上传失败最大重试次数
+                            dragdrop: true,                   //开启可拖曳上传
+                            drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                            chunk_size: '4mb',                //分块上传时，每片的体积
+                            auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+                            init: {
+                                'FilesAdded': function(up, files) {
+                                    plupload.each(files, function(file) {
+                                        // 文件添加进队列后,处理相关的事情
+                                    });
+                                },
+                                'BeforeUpload': function(up, file) {
+                                       // 每个文件上传前,处理相关的事情
+                                },
+                                'UploadProgress': function(up, file) {
+                                       // 每个文件上传时,处理相关的事情
+                                },
+                                'FileUploaded': function(up, file, info) {
+                                       // 每个文件上传成功后,处理相关的事情
+                                       // 其中 info 是文件上传成功后，服务端返回的json，形式如
+                                       // {
+                                       //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+                                       //    "key": "gogopher.jpg"
+                                       //  }
+                                       // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+
+                                       // var domain = up.getOption('domain');
+                                       // var res = parseJSON(info);
+                                       // var sourceLink = domain + res.key; 获取上传成功后的文件的Url
+                                },
+                                'Error': function(up, err, errTip) {
+                                       //上传出错时,处理相关的事情
+                                },
+                                'UploadComplete': function() {
+                                       //队列文件处理完毕后,处理相关的事情
+                                },
+                                'Key': function(up, file) {
+                                    // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                                    // 该配置必须要在 unique_names: false , save_key: false 时才生效
+
+                                    var key = "";
+                                    // do something with key here
+                                    return key
+                                }
+                            }
+                        });
+
+                        // domain 为七牛空间（bucket)对应的域名，选择某个空间后，可通过"空间设置->基本设置->域名设置"查看获取
+
+                        // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
+                        </code></pre>
+                    </div>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="log" aria-labelledby="log-tab">
+                <pre id="qiniu-js-sdk-log"></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="display: none;">
+
+        <div class="text-left col-md-12 wrapper">
+            <h1 class="text-left col-md-12 ">
+                七牛云存储 - JavaScript SDK
+                <a class="btn btn-default view_code" id="show_code">
+                    查看初始化代码
+                </a>
+                <a class="btn btn-default view_github" href="https://github.com/qiniupd/qiniu-js-sdk" target="_blank">
+                    <img src="http://qtestbucket.qiniudn.com/GitHub-Mark-32px.png">
+                    View Source on Github
+                </a>
+            </h1>
+        </div>
+        <div class="body">
+    <!-- <div class="col-md-12" id="qiniu-js-sdk-log"></div> -->
+        </div>
+        <div class="modal fade body" id="myModal-code" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查看初始化代码</h4>
+              </div>
+              <div class="modal-body">
+                <pre><code>
+                //引入Plupload 、qiniu.js后
+                var uploader = Qiniu.uploader({
+                    runtimes: 'html5,flash,html4',    //上传模式,依次退化
+                    browse_button: 'pickfiles',       //上传选择的点选按钮，**必需**
+                    uptoken_url: '/token',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+                    // uptoken : '<Your upload token>', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+                    // unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+                    // save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+                    domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
+                    get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+                    container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+                    max_file_size: '100mb',           //最大文件体积限制
+                    flash_swf_url: 'js/plupload/Moxie.swf',  //引入flash,相对路径
+                    max_retries: 3,                   //上传失败最大重试次数
+                    dragdrop: true,                   //开启可拖曳上传
+                    drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                    chunk_size: '4mb',                //分块上传时，每片的体积
+                    auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+                    init: {
+                        'FilesAdded': function(up, files) {
+                            plupload.each(files, function(file) {
+                                // 文件添加进队列后,处理相关的事情
+                            });
+                        },
+                        'BeforeUpload': function(up, file) {
+                               // 每个文件上传前,处理相关的事情
+                        },
+                        'UploadProgress': function(up, file) {
+                               // 每个文件上传时,处理相关的事情
+                        },
+                        'FileUploaded': function(up, file, info) {
+                               // 每个文件上传成功后,处理相关的事情
+                               // 其中 info 是文件上传成功后，服务端返回的json，形式如
+                               // {
+                               //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+                               //    "key": "gogopher.jpg"
+                               //  }
+                               // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+
+                               // var domain = up.getOption('domain');
+                               // var res = parseJSON(info);
+                               // var sourceLink = domain + res.key; 获取上传成功后的文件的Url
+                        },
+                        'Error': function(up, err, errTip) {
+                               //上传出错时,处理相关的事情
+                        },
+                        'UploadComplete': function() {
+                               //队列文件处理完毕后,处理相关的事情
+                        },
+                        'Key': function(up, file) {
+                            // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                            // 该配置必须要在 unique_names: false , save_key: false 时才生效
+
+                            var key = "";
+                            // do something with key here
+                            return key
+                        }
+                    }
+                });
+
+                // domain 为七牛空间（bucket)对应的域名，选择某个空间后，可通过"空间设置->基本设置->域名设置"查看获取
+
+                // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
+                </code></pre>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade body" id="myModal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">图片效果查看</h4>
+              </div>
+              <div class="modal-body">
+                <div class="modal-body-wrapper text-center">
+                    <a href="" target="_blank" >
+                        <img src="" alt="" data-key="" data-h="">
+                    </a>
+                </div>
+                <div class="modal-body-footer">
+                    <div class="watermark">
+                        <span>水印控制：</span>
+                        <a href="#" data-watermark="NorthWest" class="btn btn-default">
+                            左上角
+                        </a>
+                        <a href="#" data-watermark="SouthWest" class="btn btn-default">
+                            左下角
+                        </a>
+                        <a href="#" data-watermark="NorthEast" class="btn btn-default">
+                            右上角
+                        </a>
+                        <a href="#" data-watermark="SouthEast" class="btn btn-default disabled">
+                            右下角
+                        </a>
+                        <a href="#" data-watermark="false" class="btn btn-default">
+                            无水印
+                        </a>
+                    </div>
+                     <div class="imageView2">
+                        <span>缩略控制：</span>
+                        <a href="#" data-imageview="large" class="btn btn-default disabled">
+                            大缩略图
+                        </a>
+                        <a href="#" data-imageview="middle" class="btn btn-default">
+                            中缩略图
+                        </a>
+                        <a href="#" data-imageview="small" class="btn btn-default">
+                            小缩略图
+                        </a>
+                    </div>
+                    <div class="imageMogr2">
+                        <span>高级控制：</span>
+                        <a href="#" data-imagemogr="left" class="btn btn-default no-disable-click" >
+                            逆时针
+                        </a>
+                        <a href="#" data-imagemogr="right" class="btn btn-default no-disable-click">
+                            顺时针
+                        </a>
+                        <a href="#" data-imagemogr="no-rotate" class="btn btn-default">
+                            无旋转
+                        </a>
+                    </div>
+                    <div class="text-warning">
+                        备注：小图片水印效果不明显，建议使用大图片预览水印效果
+                    </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+var flog = false;
+    layui.use('upload', function(){
+      layui.upload({
+        url: '../qiniu.php',
+        elem :'.update_file',
+        unwrap: true,
+          before: function(input){
+            //返回的参数item，即为当前的input DOM对象
+            $('#shipin').html('视频缓存中...');
+            layer.msg('加载中', {
+              icon: 16
+              ,shade: 0.01
+            });
+          },
+          success: function(res){
+            if(res.status==0){
+                layer.msg(res.message);
+            }else{
+                layer.msg(res.message);
+                $('#video').val(res.url);
+                $('#shipin').html('视频已缓存完成');
+                flog=true;
+            } 
+          }
+      });
+    });
+</script>
+<script type="text/javascript">
+      var head_url = '';
+      
+      $(document).ready(function(){
+            layui.use('upload', function(){
+                layui.upload({
+                  elem:'#picname',
+                  url: '../upload.php',
+                  before: function(input){
+		            //返回的参数item，即为当前的input DOM对象
+		            $('#tupian').html('图片缓存中...');
+		            layer.msg('加载中', {
+		               icon: 16,
+		               shade: 0.01
+		            });
+		          },
+                  success: function(res){
+                  	$('#tupian').html('缓存成功');
+                    if(res.status==0){
+                        console.log(res.message);
+                    }
+                    if(res.status==1){
+                        $('#imgurl').attr('src',res.url);
+                        $('#coverImgUrl').attr('value',res.url);
+                        head_url = res.url;
+                    }
+                  }
+                });
+            });
+        });
+</script>
+<script>
+    $(function(){
+        // var cid = location.search;
+        $.ajax({
+            url : 'http://hr.hongrunet.com/Home/index/speech',
+            dataType:'jsonp',
+            data:{},
+            jsonp : 'jsonpReturn',
+            success : function(req){
+                jsonpReturn(req);
+            }
+        })
+    });
+    function jsonpReturn(req){
+        console.log(req);
+        if(req.status == '3'){
+        	alert(req.msg);
+            window.location.href = req.data;
+        }
+        if(req.status == '5'){
+            window.location.href = req.data;
+        }
+        if(req.status == '4'){
+            //location.href = req.data;
+        }
+    }
+</script>
+
+<script>
+    $("#jyt_edit_sub").on("click",function(){
+        //input 框状态
+        $(".labelclick").off("touchstart").on("touchstart", function () {
+            if ($("#checkboxFiveInput").attr("name") == "1") {
+                $("#checkboxFiveInput").attr("name",2);
+            } else {
+                $("#checkboxFiveInput").attr("name",1);
+            }
+        });
+        var phone               =$("#phone").val();
+        var videoname           = $("#videoname").val();
+        var videointro          = $("#videointro").val();
+        var checkboxFiveInput   = $("#checkboxFiveInput").attr("name");
+        var video               = $("#video").val();
+        var classid             = $("#classid").val();
+        var fid                 = $("#fid").val();
+        var thumbnail           = $("#coverImgUrl").val();
+        var preg_tel            = /^1[34578]\d{9}$/; //手机号
+
+        if(!flog){
+        	alert('视频正在缓存，请耐心等待！');return;
+        }
+
+        /*if(!preg_tel.test(phone)) {
+            alert('请输入有效的手机号码!');return;
+        }*/
+        if (videoname == '') {
+            alert('视频名称不能为空!');return;
+        }
+        if (classid == '') {
+            alert('视频类别不能为空!');return;
+        }
+        if (checkboxFiveInput == 2) {
+            alert('请同意用户注册协议!');return;
+        }
+        if (video == "") {
+            alert('请先上传视频!');return;
+        }
+        if (thumbnail == "") {
+            alert('请先上传封面!');return;
+        }
+        if(videoname && classid && checkboxFiveInput && video && thumbnail){
+          $.ajax({
+                    url      : "http://hr.hongrunet.com/Home/index/speech",
+                    data     : {"classid":classid,
+                                "videointro":videointro,
+                                "videoname":videoname,
+                                "phone":phone,
+                                "video":video,
+                                "fid":fid,
+                                "thumbnail":thumbnail,
+                                "checkboxFiveInput":checkboxFiveInput
+                            },
+                    dataType : "jsonp",
+                    jsonpCallback:'jsonpReturn',
+                    async:false,
+                    success:function(data){
+                        console.log(data);
+                        if(data.status == '5'){
+                            location.href = data.data;
+                        }else if(data.status == '1'){
+                          alert(data.msg);
+                          window.location.href=('./lf_personal.html');
+                        }else{
+                           alert(data.msg);
+                        }
+                    },
+                    error:function(data){
+
+                    }
+                });
+        }
+
+    });
+</script>
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/moxie.js"></script>
+<script type="text/javascript" src="../js/plupload.dev.js"></script>
+<!-- <script type="text/javascript" src="bower_components/plupload/js/plupload.full.min.js"></script> -->
+<script type="text/javascript" src="../js/i18n/zh_CN.js"></script>
+<script type="text/javascript" src="../js/ui.js"></script>
+<script type="text/javascript" src="../js/qiniu.js"></script>
+<script type="text/javascript" src="../js/highlight.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+</script>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" />
+    <!-- 公共样式 -->
+    <link rel="stylesheet" href="../css/lf_style.css" />
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/common.js"></script>
+    <!-- 引入公共js文件 -->
+    <title>鸿儒商学讲堂</title>
+</head>
+
+<body>
+    <!-- 控制页面大小 -->
+    <div class="big-box">
+        <!-- 头部 -->
+        <header class="header lf_header">
+            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+            <h2 id='title'>深度好文章</h2>
+        </header>
+        <!-- 中间内容 -->
+        <div class="content" style="background-color:#f5f5f5">
+            <div class="lf_articals">
+                <ul id="content">
+                    <!-- 内容部分 -->
+                </ul>
+            </div>
+        </div>
+        <!-- 尾部，如果没有需删除 -->
+        <footer class="footer lf_footer" style="border-top:1px solid #d9d9d9">
+            <ul class="lf_botlinks">
+                <li>
+                    <a class="lf_jump" href="kll_index.html">
+                            <i class="iconfont icon-shouye lf_icon-top"></i>
+                            <span class="lf_botxt">首页</span>
+                        </a>
+
+                </li>
+                <li id="app">
+                    <a class="lf_jump" href="http://www.appbsl.com/index.php?ctl=app_download&code=pbiouqOgtLTQyMDk3LS0wA%3D%3D">
+                            <i class="iconfont icon-app1 lf_icon-top"></i>
+                            <span class="lf_botxt">APP</span>
+                        </a>
+
+                </li>
+                 <script type="text/javascript" src="../js/weixin_app.js"></script>
+                 <script type="text/javascript">
+                    if(is_kingkr_obj()){
+
+                              $('#app').css('display','none');
+
+                            }
+                </script>
+                <!-- <li>
+                    <a class="lf_jump" href="lf_classify.html">
+                            <i class="iconfont icon-fenlei lf_icon-top"></i>
+                            <span class="lf_botxt">课程分类</span>
+                        </a>
+
+                </li> -->
+                <li>
+                <a class="lf_jump" href="lf_comprofile.html">
+                    <i class="iconfont icon-kefu lf_icon-top"></i>
+                    <span class="lf_botxt">公司客服</span>
+                </a>
+
+            </li>
+                <li>
+                    <a class="lf_jump" href="lf_personal.html">
+                            <i class="iconfont icon-geren lf_icon-top"></i>
+                            <span class="lf_botxt">个人中心</span>
+                        </a>
+
+                </li>
+            </ul>
+        </footer>
+
+    </div>
+</body>
+<!-- <script type="text/javascript" src="../js/lf_class.js"></script> -->
+
+</html>
+<script>
+    $.ajax({
+        url: "http://hr.hongrunet.com/home/index/info",
+        dataType: 'jsonp',
+        data: {
+            classid: 2
+        },
+        jsonpCallback: 'jsonpReturn',
+        success: function(res) {
+            console.log(res);
+            if(res.status == '5'){
+                location.href = res.data;
+            }
+            $('#title').html(res.data.class_name);
+            var info = res.data.info;
+            var content = '';
+            for (var i in info) {
+                content =
+                    '<li class="lf_artical-list"><a href="lf_reading.html?id='+info[i].id+'" class="lf_jump"><dl class="lf_art-title"><dt >'+info[i].title+'</dt><dd>文/'+info[i].author+'</dd></dl><img class="lf_artimg" src="http://hr.hongrunet.com'+info[i].thumbnail+'" alt ="" /><p class="lf_artPara">'+info[i].description+'</p></a><div class="lf_inscribe"><span class="lf_time" ><i class="iconfont icon-shijian"></i><span class="lf_timeUpdate">'+info[i].createtime +'</span></span><span class="lf_artnumber"> <i class="iconfont icon-yuedu" ></i>'+ info[i].looknum+'人阅读</span></div></li>';
+                $('#content').append(content);
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    })
+</script>

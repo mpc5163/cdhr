@@ -1,0 +1,41 @@
+ 
+
+<head>	
+<title>Camera and Video Control with HTML5 Example</title>
+<style>	
+	video,img { display: block; margin: 0 0 20px 0; }
+</style>
+</head>
+<body>
+<div id="player" style="width:100%;height:450px;">
+    <script type="text/javascript" charset="utf-8" src="http://yuntv.letv.com/player/live/blive.js"></script>
+    <script>
+        var player = new CloudLivePlayer();
+        player.init({activityId:"A2017052800000cc"});
+    </script>
+</div>
+    
+</div>
+<div id="page">
+
+<div id="contentHolder">
+
+<section class="left">
+<h1>Camera and Video Control with HTML5</h1>
+	<video id="video" autoplay=""></video>
+	<button id="btn">Take Photo</button><br>	
+	<img id="photo">
+	<script>
+		var player = new CloudLivePlayer ();
+		player.init(playerConf,'playerid');
+	</script>
+		
+</section>
+
+
+</div>
+
+
+
+</div></body>
+ 

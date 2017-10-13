@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css"/><!-- 引入font文件 -->
+    <!-- <link rel="stylesheet" href="../css/common.css" /> --><!-- 公共样式 -->
+    <link rel="stylesheet" href="../css/com.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/jyt_public.css"/>
+    <link rel="stylesheet" href="/layui/layui.css"/>
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <!-- <script type="text/javascript" src="../js/common.js"></script> --><!-- 引入公共js文件 -->
+    <title>鸿儒商学讲堂</title>
+    <style>
+        input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+            color: #000;
+        }
+        input:-moz-placeholder, textarea:-moz-placeholder {
+            color: #000;
+        }
+        input::-moz-placeholder, textarea::-moz-placeholder {
+            color: #000;
+        }
+        input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+            color: #000;
+        } 
+        #loading{
+             position:absolute;width:100%;height:100%;background-color:#fff;z-index:99;
+          /* text-align:center; */
+        }
+        #loading>img{
+              display:block;
+              margin:40vw auto;
+              width:60vw;
+              height:60vw;
+        }
+    </style>
+</head>
+<body>
+ <div id="loading" style=""></div>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header jyt_header_edit">
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_edit_h1">编辑资料</h1>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content ">
+                <form>
+    	    		<ul class="jyt_edit_ul">
+                        <li class="jyt_edit_ul_li">
+                            <p class="jyt_edit_ul_li_p_1">头&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp像：</p>
+                            <img id="imgurl" name="imgurl" class="jyt_edit_ul_li_img11" src=""/>
+                            <input type="file" name="picname" id="picname"/>
+                            <input type="hidden" name="headimg" id="headimg"/>
+                        </li>
+                        <li class="jyt_edit_ul_li">
+                            <p class="jyt_edit_ul_li_p">手&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp机：</p>
+                            <input id="jyt_phone" class="jyt_edit_ul_li_inp" type="text"/>
+                        </li> 
+                        <li class="jyt_edit_ul_li">
+                            <p class="jyt_edit_ul_li_p">姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名：</p>
+                            <input id="rname" class="jyt_edit_ul_li_inp" type="text"/>
+                        </li>
+                        <li class="jyt_edit_ul_li">
+                            <p class="jyt_edit_ul_li_p">昵&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp称：</p>
+                            <input id="name" class="jyt_edit_ul_li_inp" type="text"/>
+                        </li>
+                        <li class="jyt_edit_ul_li">
+                            <p class="jyt_edit_ul_li_p">性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别：</p>
+                             <select id="sex" class="jyt_edit_ul_li_sel">
+                                <option>男</option>
+                                <option>女</option>
+                            </select>
+                        </li>
+                        <li class="jyt_edit_ul_li">
+                            <p class="jyt_edit_ul_li_p">身份证号：</p>
+                            <input id="age" class="jyt_edit_ul_li_inp" type="text"/>
+                        </li>
+                        <li class="jyt_edit_ul_li">
+                            <p class="jyt_edit_ul_li_p">我的简介：</p>
+                            <textarea id="remark" class="jyt_edit_ul_li_inp" style="resize: none;height:30vw; " ></textarea>
+                        </li>
+                        <!-- <li class="jyt_edit_ul_li">
+                            <p class="jyt_edit_ul_li_p">生日：</p>
+                            <input  id="birthday" style="height:12vw" type="date" class="jyt_edit_ul_li_inp" value="1900-05-06"/>
+                        </li> -->
+                    </ul>
+                    <button style="outline:none" type="button" id="jyt_edit_sub" class="jyt_edit_sub">确认提交</button>
+                </form>
+	    	</div>
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+	    		
+	    	</footer> -->
+    	</div>
+<script type="text/javascript" src="/layui/layui.js"></script>
+<script type="text/javascript">
+$("html").css("font-size",screen.width/640 * 16);
+      var head_url = '';
+      $(document).ready(function(){
+            layui.use('upload', function(){
+                layui.upload({
+                  elem:'#picname',
+                  url: '/upload.php',
+                  success: function(res){
+                    if(res.status==0){
+                        console.log(res.message);
+                    }
+                    if(res.status==1){
+                        $('#imgurl').attr('src',res.url);
+                        $('#headimg').attr('value',res.url);
+                        head_url = res.url;
+                    }
+                  }
+                });
+            });
+        });
+</script>
+       
+<script>
+$(document).ready(function(){
+    
+    $.ajax({
+        url : 'http://hr.hongrunet.com/Home/UserCenter/userSetting',
+        dataType:'jsonp',
+        data:{},
+        jsonpCallback:'jsonpReturn',
+        beforeSend:function(XMLHttpRequest){ 
+            $("#loading").html("<img src='../lf_img/8.gif'/>"); //在后台返回success之前显示loading图标
+        }, 
+        success : function(req){
+           console.log(req);
+          $("#loading").remove(); //ajax返回成功，清除loading图标
+           
+           if(req.data[0].headimg == null || req.data[0].headimg == ""){
+               $("#imgurl").attr("src","../lf_img/lf_portrait.png");
+           }else{
+                $("#imgurl").attr("src",req.data[0].headimg);
+           }
+           //$("#imgurl").attr("src",req.data[0].headimg);
+           $("#jyt_phone").val(req.data[0].phone);     
+           $("#age").val(req.data[0].age);
+           
+            $("#remark").val(req.data[0].remark);
+           $("#name").val(req.data[0].name);
+           $("#rname").val(req.data[0].rname);
+           $("#sex").val(req.data[0].sex);
+           $("#birthday").val(req.data[0].birthday);
+           $("#jyt_edit_sub").on("touchstart",function(){
+
+            //提交修改资料
+                var headimg = $("#imgurl").attr("src");
+                var phone = $("#jyt_phone").val();
+                var rname = $("#rname").val();
+                var name = $("#name").val();
+                var sex = $("#sex").val();
+                var age = $("#age").val();
+                var remark = $("#remark").val();
+                if(age){
+                     var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;  
+                       if(reg.test(age) === false)  
+                       {  
+                           alert("身份证输入不合法");  
+                           return  false;  
+                       }  
+                }
+
+                    $.ajax({
+                        url : 'http://hr.hongrunet.com/Home/UserCenter/updateUserInfo',
+                        dataType:'jsonp',
+                        type:"get",
+                        data:{
+                            headimg:headimg,
+                            phone:phone,
+                            rname:rname,
+                            sex:sex,
+                            age:age,
+                            //birthday:birthday,
+                            name:name,
+                            remark:remark,
+                        },
+                        jsonpCallback:'jsonpReturn',
+                        success : function (req) {
+                            if(req.status == '1'){
+                                alert(req.msg);
+                                window.location.href = "lf_personal.html";
+                            }else{
+                                 alert(req.msg);
+                            }                        
+                        },
+                        error:function(req){
+                           console.log(req);
+                        }
+                    });
+                
+                //var birthday = $("#birthday").val();
+                // console.log(headimg);
+                // console.log(phone);
+                // console.log(rname);
+                // console.log(name);
+                // console.log(sex);
+                // console.log(age);
+                // console.log(birthday);
+               
+           });
+        }
+    });    
+});
+</script>
+</body>
+</html>

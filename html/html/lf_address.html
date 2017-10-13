@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/lf_style.css">
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+        <style>
+            .lf_tipcon{
+                padding-top:35vw;
+                text-align:center;
+                font-size:2rem;
+                margin:0 5vw;
+                line-height:10vw;
+                /* border:2px solid #ccc;
+                border-radius:5px; */
+                color:#fff;
+            }
+            .lf_tipform{
+                padding:5vw 5vw;
+            }
+            .lf_tipform li{
+                height:15vw;
+                line-height:15vw;
+                font-size:1.5rem;
+            }
+            .lf_tipform li>label{
+                display:block;
+                float:left;
+                width:34vw;
+                color:#fff;
+            }
+            .lf_tipform li>input{
+                display:block;
+                float:left;
+                width:50vw;
+                padding:0 2vw;
+                border:1px solid #fff;
+                border-radius:5px;
+                height:10vw;
+                margin-top:2vw;
+                background:0;
+                color:#fff;
+            }
+            .lf_tipcontent{
+                background:url(../lf_img/lf_bg.jpg) no-repeat center center;
+                background-size:cover;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div class="big-box">
+            
+            <div class="content lf_tipcontent">
+                <div class="lf_tipcon">
+                    请将此参数保存，并填入<br/>OBS广播设定对应参数内进行直播。
+                </div>
+                <div class="lf_tipform">
+                    <ul>
+                        <li class="lf_clearFloat">
+                            <label for="address">推流地址 ：</label>
+                            <input id="address" type="text"/>
+                        </li>
+                        <li class="lf_clearFloat">
+                            <label for="codetxt">播放路径/串码流 ：</label>
+                            <input id="codetxt" type="text"/>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

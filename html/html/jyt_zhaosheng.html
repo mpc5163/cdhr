@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"/><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+		<link rel="stylesheet" type="text/css" href="../css/jyt_public.css">
+		<script src="../js/jquery-3.1.1.min.js"></script>
+		 <link rel="stylesheet" href="/layui/layui.css"/>
+		<script type="text/javascript" src="/layui/layui.js"></script>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+		
+        <link rel="stylesheet" href="../css/wy_main.css"/>
+        <title>鸿儒商学讲堂</title>
+        <style>
+        	.jyt_con11{
+        		padding:  20px 0;
+        	}
+        	.jyt_con11 ul{
+        		padding: 0 3.9vw;
+        		margin-bottom: 20px;
+        	}
+        	.jyt_con11 ul li{
+        		border-bottom: 1px solid #b3b3b3;
+        	}
+        	.jyt_con11 ul li p{
+        		height: 40px;
+        		line-height: 40px;
+        		font-size: 16px;
+        		color: #333333;
+        		padding-left: 10px;
+        	}
+        	.jyt_con11 ul li p span{}
+        	.jyt_con11 h3{
+        		padding: 0 3.9vw;
+        		margin-left: 10px;
+        		line-height: 30px;
+        		font-size: 16px;
+        		color: #ff0000;
+        		font-weight: normal;
+        	}
+			.wy_btn{
+				width: 93vw;
+				height: 11.5625vw;
+				line-height: 11.5625vw;
+				font-size: 1.875rem;
+				text-align: center;
+				background: #188eee;
+				border-radius: 4px;
+				color: #fff;
+				outline: none;
+				display: block;
+				margin: 0 auto;
+				margin-top: 5vw;
+				margin-bottom: 15vw;
+			}
+			
+        </style>
+    </head>
+    <body>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header wy_header wy_font32 wy_header-a">
+		        <div class="wy_header-title">
+		            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui wy_backBtn"></a>
+		            <span>招生奖</span>
+		        </div>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content wy_content jyt_con11">
+					<ul>
+						<li>
+							<p>当前的会员等级：<span id="grade">讲师</span></p>
+						</li>
+						<li>
+							<p>当月团队新增人数(人)：<span id="num">888</span></p>
+						</li>
+						<li>
+							<p>当月团队新增业绩(元)：<span id="money">8888</span></p>
+						</li>
+						<li>
+							<p>直推付费会员人数(人)：<span id="fufei">8888</span></p>
+						</li>
+						<li>
+							<p>招生奖已累计(元)：<span id="jdj">8888</span></p>
+						</li>
+					</ul>
+					<h3>招生奖领取规则：</h3>
+					<h3>1.需要达到讲师或合伙人等级.</h3>
+					<h3>2.当月团队新增人数必须大于等于30人或者团队新增业绩必须大于等于1000元.</h3>
+					<h3>3.直推付费会员人数必须大于等于3人。</h3>
+					<h3>4.当月条件不满足时，招生奖可累计到下个月领取</h3>
+					<h3>注:该奖项每月只可领取一次</h3>
+				<button class="wy_btn">立即领取</button>
+	    	</div>
+    	</div>
+    </body>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+             $.ajax({
+                url : 'http://hr.hongrunet.com/Home/UserCenter/PointAward',
+                dataType:'jsonp',
+                data:{},
+                jsonpCallback:'jsonpReturn',
+                beforeSend:function(XMLHttpRequest){ 
+                    $("#loading").html("<img src='../lf_img/8.gif'/>"); //在后台返回success之前显示loading图标
+                }, 
+                success : function(req){
+                	if(req.status == 3){
+                		alert('你的等级还未达到讲师！');
+                		window.location.href='lf_personal.html';
+                	}
+                   $('#grade').text(req.data.garde);
+                   $('#num').text(req.data.num);
+                   $('#money').text(req.data.money);
+                   $('#fufei').text(req.data.fufei);
+                   $('#jdj').text(req.data.jdj);
+                },
+                error:function(){
+                	alert('网络错误');
+     
+               } 
+            });          
+        });
+         /*领取见点奖*/
+        $(".wy_btn").on("click",function(){
+                $.ajax({
+                    url : 'http://hr.hongrunet.com/Home/UserCenter/myPointAward',
+                    dataType:'jsonp',
+                    data:{},
+                    jsonpCallback:'jsonpReturn3',
+                    success : function (req) {
+                            alert(req.msg);   
+                    }
+                });
+
+            });
+
+
+    </script>
+</html>

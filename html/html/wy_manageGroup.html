@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+
+    <link rel="stylesheet" href="../css/wy_main.css"/>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <title>鸿儒商学讲堂-管理群</title>
+    <script>
+        var id = location.search.split('=')[1];
+        $.ajax({
+            url : 'http://hr.hongrunet.com/home/index/manage_room',
+            dataType : 'jsonp',
+            data : 'id='+id,
+            jsonp : 'jsonpReturn',
+            success : function(req){
+                jsonpReturn(req);
+            }
+        })
+        function jsonpReturn(req){
+            console.log(req);
+            if(req.status != 1){
+                if(req.status != 3){
+                    alert(req.msg);
+                }
+                history.go(-1);
+            }else{
+                var user = '';
+                dataInfo = req.data;
+                $('#edit_name').attr('href','wy_GroupCard.html?id='+dataInfo.room_info.id);
+                $('#del_room').attr('room_id',dataInfo.room_info.id);
+                $('#room_name').html(dataInfo.room_info.room_name);
+                $('#user_num').html(dataInfo.user_info.length+'名成员');
+                $('#jia').attr('href','lf_inviteClassmates.html?id='+dataInfo.room_info.id);
+                $('#jian').attr('href','lf_setAdministrator.html?id='+dataInfo.room_info.id);
+                $('#chakan').attr('href','lf_setAdministrator.html?id='+dataInfo.room_info.id);
+                $('#guanli').attr('href','lf_setAdministrator.html?id='+dataInfo.room_info.id);
+                for(var i = 0;i < 2;i++){
+                    if(dataInfo.user_info[i] != undefined){
+                        user = '<img src="'+dataInfo.user_info[i].headimg+'" alt="'+dataInfo.user_info[i].name+'">';
+                        $('.wy_imgbox').append(user);
+                    }
+                }
+            }
+        }
+    </script>
+    </head>
+    <body>
+    <!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header wy_header wy_font32 wy_header-a">
+		        <div class="wy_header-title">
+		            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui wy_backBtn"></a>
+		            <span>管理群</span>
+		        </div>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content wy_createRoom-centent wy_manageGroup-centent">
+	    		<div class="wy-manageGroup-list wy-manageGroup-manage-list">
+	    			<div class="wy_list">
+	    				<a class="wy_li-a" id="edit_name" href="">
+	    					<i class="iconfont icon-ai-edit wy_i-left"></i>
+	    					<span id="room_name"></span>
+	    					<i class="iconfont icon-you"></i>
+	    				</a>
+	    			</div>
+
+					<div class="wy_list wy_list-1">
+	    				<a class="wy_li-a" id="chakan" href="javascript:void(0);">
+	    					<i class="iconfont icon-icon1 wy_i-left"></i>
+	    					<span class="wy_imgbox">
+                                <!-- 用户位置 -->
+	    					</span><em id="user_num"></em>
+	    					<i class="iconfont icon-you"></i>
+	    				</a>
+	    				<a class="wy-fuhaoImg wy_addImg" href="" id="jia"><img src="../images/wy_group-add.png" alt=""></a>
+	    				<a class="wy-fuhaoImg wy_downImg" href="" id="jian"><img src="../images/wy_group-down.png" alt=""></a>
+	    			</div>
+
+	    			<div class="wy_list">
+	    				<a class="wy_li-a" id="guanli" href="">
+	    					<i class="iconfont icon-guanliyuan1 wy_i-left"></i>
+	    					<span>设置管理员</span>
+	    					<i class="iconfont icon-you"></i>
+	    				</a>
+	    			</div>
+
+	    		</div>
+
+	    		<button class="wy_createBtn wy_input-btn"><a id="del_room">解散该房间</a></button>
+	    	</div>
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+
+	    	</footer> -->
+    	</div>
+    </body>
+</html>
+<script>
+    //删除房间
+    $('#del_room').click(function(){
+        var id = $("#del_room").attr('room_id');
+        $.ajax({
+            url : 'http://hr.hongrunet.com/home/index/del_room',
+            dataType : 'jsonp',
+            data : 'id='+id,
+            jsonp : 'jsonpReturn',
+            success : function(req){
+                jsonpReturn(req);
+            }
+        })
+    });
+</script>

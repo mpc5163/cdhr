@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<!-- <link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" /> -->
+		<script src="../js/jquery-3.1.1.min.js"></script>
+		<!-- <script src="js/swiper.min.js"></script>
+		<script src="js/swiper.animate1.0.2.min.js"></script> -->
+		<title>Cookie</title>
+		<style>
+			.box {
+				width: 800px;
+				height: 400px;
+				margin: 0 auto;
+				background-color: #ccc;
+			}
+			
+			ul {
+				padding-top: 10px;
+			}
+			
+			li {
+				list-style: none;
+				margin: 20px;
+			}
+			
+			li:after {
+				clear: both;
+				height: 0;
+				display: block;
+				overflow: hidden;
+				visibility: hidden;
+				content: ".";
+			}
+			
+			li>label {
+				display: block;
+				width: 50%;
+				position: relative;
+			}
+			
+			label>input {
+				display: block;
+				float: right;
+				width: 60%;
+				border: 1px solid #069;
+				border-radius: 5px;
+				height: 40px;
+				padding-left: 10px;
+			}
+			
+			label>span {
+				display: block;
+				width: 60%;
+				position: absolute;
+				top: 10px;
+				right: -225px;
+			}
+			
+			button {
+				display: block;
+				width: 50%;
+				height: 40px;
+				background-color: #069;
+				color: #fff;
+				border: 1px solid #ccc;
+				border-radius: 5px
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<form action="">
+				<ul>
+					<li>
+						<label class='phone' for="user">
+                            手机号：<input id="user" type="text"/><span></span>
+                        </label>
+					</li>
+					<li>
+						<label class="passWord" for="pwd">
+                            密码：<input id="pwd" type="password"/>
+                        </label>
+					</li>
+					<li>
+						<button>注册</button>
+					</li>
+					<li>
+						<select name="" id="">
+							<option value="1">美国</option>
+							<option value="2">中国</option>
+							<option value="3">英国</option>
+						</select>
+					</li>
+				</ul>
+			</form>
+
+			<div class="swiper-slide">
+				<p class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">内容</p>
+			</div>
+
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		$("select option").on("click",function(){
+			var opt = $("select option").eq($(this)).val();
+			console.log($(this).index());
+			console.log(22);
+		});
+		$.ajax({
+			type:"GET",
+			url:"http://hr.hongrunet.com/Home/UserCenter",
+			dataType:"jsonp",
+			success:function(data){
+				console.log(data)
+		/*var phone = $('#yzm').text();
+        $.ajax({
+            type: 'post',
+            url: "{{ path('zm_member_get_salt') }}",
+            data: {
+                phone: phone,
+                type: 1
+            },
+            dataType: 'json',
+            success: function (result) {
+            if (result.flag == 1) {
+            // alert('成功');
+            time(yzm);
+            } else {
+            alert(result.content);
+            }
+        }
+    });*/
+			},
+			error:function(data){
+				console.log(data)
+			}
+		});
+document.write('<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"><\/script>');
+var getJson = function(url,data,type='GET',callback=function(data){return false;}){
+	// 隐藏页面
+	$('body').hide();
+	// 获取用户数据
+	$.ajax({
+		url:url,
+		type:type,
+		async:false,
+		data:data,
+		dataType: 'jsonp',
+		jsonp: 'jsonpCallback',
+		jsonpCallback: 'jsonpCallback',
+		success:function(data){
+			// 返回数据时显示页面
+			$('body').show();
+			// 权限检测
+			if(data.status==1000){
+				// 提示原因
+				// alert(data.message);
+				// 跳转
+				window.location.href = data.url;
+				return false;
+			}
+			// 回调
+			callback(data);
+			// 调试输出
+		},
+		error: function(xhr){
+	    	//请求出错处理
+	    	alert("请求出错(请检查相关度网络状况.)");
+	   }
+	});
+}		
+	</script>
+</html>

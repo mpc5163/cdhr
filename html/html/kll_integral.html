@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/swiper-3.4.2.min.css"><!-- 轮播图样式 -->
+    <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+    <!-- 私有样式 -->
+    <link rel="stylesheet" href="../css/kll_index.css">
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/swiper.min.js"></script><!-- 轮播图js -->
+    <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+    <!-- 私有js -->
+    <script type="text/javascript" src="../js/kll_index.js"></script>
+    <title>鸿儒商学讲堂</title>
+</head>
+<body>
+<!-- 控制页面大小 -->
+<div class="big-box">
+    <!-- 头部 -->
+    <header class="header kll_header">
+        <a class="kll_header-left iconfont icon-fanhui" href="javascript:history.go(-1);"></a>
+        <h1 class="kll_header-h1">积分支付</h1>
+    </header>
+    <!-- 中间内容 -->
+    <div class="content kll_content-integral">
+        <p class="kll_integral-p"><span class="kll_integral-p_left">现有积分：</span><span id="usescore"></span></p>
+        <p class="kll_integral-p"><span class="kll_integral-p_left">需付积分：</span><span class="kll_integral-p_del">99分</span></p>
+        <button class="kll_integral-btn">立即支付</button>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var score;
+        $.ajax({
+            url:"http://hr.hongrunet.com/Home/UserCenter/useYesScore",
+            dataType:"jsonp",
+            data:{},
+            jsonpCallback:"jsonpReturn",
+            success:function(data){
+                if (data.data.score == 0 || data.data.score=="" || data.data.score == null) {
+                    score = 0;
+                }else{
+                    score = data.data.score;
+                }
+                $("#usescore").text(score+"分");
+            }
+        });
+    });
+
+    $(".kll_integral-btn").on("click",function(){
+        $.ajax({
+            url:"http://hr.hongrunet.com/Home/UserCenter/payScore",
+            dataType:"jsonp",
+            data:{},
+            jsonpCallback:"jsonpReturn",  
+            success: function (data) {
+                alert(data.msg);
+            }          
+        });
+    })
+</script>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_bzdpyvgctzwwxw29.css">
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" href="../css/lf_style.css"/>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+
+        <style>
+            /*弹窗*/
+            .wy_PopupBox{position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 20;display: none}
+            .wy_PopupBox .wy_PopupBox-bg{background: rgba(0,0,0,0.5);width: 100%;height: 100%;}
+            .wy_PopupBox .wy_PopupBox-body{width: 85.9vw;height: 37vw;background: #fff;border-radius: 15px;position: absolute;top: 70.6vw;left: 7vw;text-align: center;font-size: 1.5rem;}
+            .wy_PopupBox .wy_PopupBox-body .wy_h1{line-height: 12.19vw;font-weight: normal;}
+            .wy_PopupBox .wy_PopupBox-body-top{border-bottom: 1px solid #c5c5c5;position: relative;}
+            .wy_PopupBox .wy_p{font-size: 2.2rem;line-height: 25.8vw}
+            .wy_PopupBox .wy_PopupBox-body-bottom{height: 45.1vw}
+            .wy_PopupBox .wy_a-btn{width: 50%;height:11.2vw;line-height: 11.2vw;float: left;color: #0e7dfa; }
+            .wy_PopupBox .wy_a-btn1{border-right: 1px solid #c5c5c5;box-sizing: border-box;}
+
+            .wy_closeBtn{position: absolute;top: 2vw;right: 2vw;}
+            .wy_PopupBox-body-bottom a{
+                display: block;
+                font-size: 1.5rem;}
+            #loading{
+              position:absolute;width:100%;height:100%;background-color:#fff;z-index:99;
+              /* text-align:center; */
+              }
+            #loading>img{
+              display:block;
+              margin:40vw auto;
+              width:60vw;
+              height:60vw;
+            }
+        </style>
+        <title>鸿儒商学讲堂</title>
+    </head>
+    <body>
+     <div id="loading"></div>
+        <!-- 控制页面大小 -->
+        <div class="big-box">
+            <!-- 头部 -->
+            <header class="header lf_header" style="height:auto;background:url(../lf_img/lf_personbg.png) no-repeat;background-size:100vw 51.875vw">
+                <div class="lf_headtop" style="height:13.75vw">
+                     <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+                     <h2>个人中心</h2>
+                </div>
+                <div class="lf_headbot">
+                    <ul class="lf_portraits">
+                         <li class="lf_partner">
+                            <a href="javascript:void(0)" class="lf_jump">
+                                 <img id="lf_portrait01" src="" alt="头像"/>
+                                <span id="gradeName"></span>
+                            </a>
+
+                        </li>
+                        <li class="lf_portrait">
+                            <a href="javascript:void(0)" class="lf_jump">
+                                <img id="portrait" src="" alt="头像"/>
+                            </a>
+                        </li>
+                        <li class="lf_set lf_partner">
+                            <a href="jyt_editZiliao.html" class="lf_jump">
+                                <img src="../lf_img/lf_portrait02.png" alt=""/>
+                                <span>个人设置</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <h3 id="lf_portraitname" class="lf_portraitname">
+
+                    </h3>
+                    <p class="lf_myDaoshi">
+                        我的导师：
+                        <span id="lf_daoshi" class="lf_daoshi" style="color:#ff0"></span>
+                        <span id="lf_daoshizh" class="lf_daoshizh" style="padding-left:2vw"></span>
+                    </p>
+                </div>
+            </header>
+            <!-- 中间内容 -->
+            <div class="content lf_teshu-content" style="background-color:#f5f5f5">
+                <div class="lf_myPartners">
+                    <ul>
+                        <li onclick="javascript:window.location.href='lf_myPartner.html'" class="lf_myClassmate">
+                            <p>我的伙伴</p>
+                            <span id="myHuoban">0人</span>
+                        </li>
+                        <li onclick="javascript:window.location.href='lf_myClassmates.html'" class="lf_myClassmate">
+                            <p>我的同学</p>
+                            <span id="myStudent">0人</span>
+                        </li>
+                        <li onclick="javascript:window.location.href='lf_mySchoolmates.html'" class="lf_myClassmate">
+                            <p>我的校友</p>
+                            <span id="mySchool">0人</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lf_classItems">
+                    <ul class="lf_itemlist">
+                        <li class="lf_itemContent">
+                            <a href="jyt_myaccount.html" class="lf_jump">
+                                 <i style="color:#ff9f22" class="iconfont icon-wodezhanghu"></i>
+                                <span>我的账户</span>
+                            </a>
+
+                        </li>
+                        <li class="lf_itemContent">
+                            <a href="jyt_myBurse.html" class="lf_jump">
+                                <i style="color:#00d8cb" class="iconfont icon-icon"></i>
+                                <span>我的奖学金</span>
+                            </a>
+
+                        </li>
+                        <li class="lf_itemContent">
+                            <a href="jyt_myJifen.html" class="lf_jump">
+                                <i style="color:#ff6867" class="iconfont icon-jifen"></i>
+                                <span>我的积分</span>
+                            </a>
+
+                        </li>
+
+                    </ul>
+                    <ul class="lf_itemlist">
+                        <li class="lf_itemContent">
+                            <a href="jyt_riseFen.html" class="lf_jump">
+                                <i style="color:#188eee" class="iconfont icon-xuefen"></i>
+                                <span>我要晋级</span>
+                            </a>
+
+                        </li>
+                        <li class="lf_itemContent" id="zhibo">
+                        <a href='wy_LiveBroadcast.html' class="lf_jump">
+                                <i style="color:#5bc211" class="iconfont icon-zhibo"></i>
+                                <span>我的直播</span>
+
+                            </a>
+                        </li>
+                        <li class="lf_itemContent" id="ewm">
+                            <a href="javascript:void(0)" class="lf_jump">
+                            <!-- <a href="jyt_erweima.html" class="lf_jump"> -->
+                                <i style="color:#868cff" class="iconfont icon-erweima"></i>
+                                <span>推广二维码</span>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    <ul class="lf_itemlist">
+                        
+                        <li class="lf_itemContent">
+                            <a href="lf_record.html" class="lf_jump">
+                                <i style="color:#ff9f22" class="iconfont icon-tixian"></i>
+                                <span>提现记录</span>
+                            </a>
+                        </li>
+                        <li class="lf_itemContent">
+                            <a href="lf_myFans.html" class="lf_jump">
+                                <i style="color:#ff6867" class="iconfont icon-fensi"></i>
+                                <span>我的粉丝</span>
+                            </a>
+                        </li>
+                        <li class="lf_itemContent">
+                            <a href="lf_myAttention.html" class="lf_jump">
+                                <i style="color:#ff9f22" class="iconfont icon-guanzhu"></i>
+                                <span>我的关注</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="lf_itemlist">
+                        <li class="lf_itemContent">
+                            <a href="kll_myclass.html" class="lf_jump">
+                                <i style="color:#868cff" class="iconfont icon-kecheng"></i>
+                                <span>我的课程</span>
+                            </a>
+                        </li>
+                        <li class="lf_itemContent">
+                            <a href="jyt_zhaosheng.html" class="lf_jump lf_jiandiangjiang">
+                                <i style="color:#5bc211" class="iconfont icon-jiangbei"></i>
+                                <span>招生奖</span>
+                            </a>
+                        </li>
+                        <li class="lf_itemContent">
+                            <a href="lf_integralHuzhuan.html" class="lf_jump">
+                                <i style="color:#ff6867" class="iconfont icon-jifen2"></i>
+                                <span>积分互转</span>
+                            </a>
+                        </li>
+                    </ul>
+                     <ul class="lf_itemlist">
+                        <li class="lf_itemContent" id="duankou">
+                        </li>
+                        <li class="lf_itemContent">
+                            <a href="jyt_lubo.html" class="lf_jump">
+                                <i style="color:#868cff" class="iconfont icon-jifen1"></i>
+                                <span>我的录播</span>
+                            </a>
+                        </li>
+                        <li class="lf_itemContent wy_tuichu-li">
+                            <a href="javascript:void(0)" class="lf_jump">
+                                <i style="color:#3794ff" class="iconfont icon-tuichu"></i>
+                                <span>退出登录</span>
+                            </a>
+                        </li>
+                        <!-- <li class="lf_itemContent">
+                            <a style="display: none;" href="jyt_myaccount.html" class="lf_jump">
+                                 <i style="color:#ff9f22" class="iconfont icon-wodezhanghu"></i>
+                                <span>我的账户</span>
+                            </a>
+                        </li> -->
+                        
+                    </ul>
+                </div>
+                <!-- <a class="lf_kefu" href="lf_kefuCenter.html"> </a> -->
+            </div>
+            <!-- 尾部，如果没有需删除 -->
+            <footer class="footer" style="border-top:1px solid #d9d9d9">
+                <ul class="lf_botlinks">
+                    <li>
+                        <a class="lf_jump" href="kll_index.html">
+                            <i class="iconfont icon-shouye lf_icon-top"></i>
+                            <span class="lf_botxt">首页</span>
+                        </a>
+
+                    </li>
+                    <li id="app">
+                        <a class="lf_jump" href="http://www.appbsl.com/index.php?ctl=app_download&code=pbiouqOgtLTQyMDk3LS0wA%3D%3D">
+                            <i class="iconfont icon-app1 lf_icon-top"></i>
+                            <span class="lf_botxt">APP</span>
+                        </a>
+
+                    </li>
+                     <script type="text/javascript" src="../js/weixin_app.js"></script>
+                     <script type="text/javascript">
+                        if(is_kingkr_obj()){
+
+                                  $('#app').css('display','none');
+
+                                }
+                    </script>
+                    <!-- <li>
+                        <a class="lf_jump" href="lf_classify.html">
+                            <i class="iconfont icon-fenlei lf_icon-top"></i>
+                            <span class="lf_botxt">课程分类</span>
+                        </a>
+
+                    </li> -->
+                    <li>
+                        <a class="lf_jump" href="lf_comprofile.html">
+                            <i class="iconfont icon-kefu lf_icon-top"></i>
+                            <span class="lf_botxt">公司客服</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="lf_jump" href="lf_personal.html"  style="color:#188eee">
+                            <i class="iconfont icon-geren lf_icon-top"></i>
+                            <span class="lf_botxt">个人中心</span>
+                        </a>
+
+                    </li>
+                </ul>
+            </footer>
+
+            <!--弹窗-->
+            <div class="wy_PopupBox">
+                <div class="wy_PopupBox-bg"></div>
+                <div class="wy_PopupBox-body">
+                    <div class="wy_PopupBox-body-top">
+                        <!-- <h1 class="wy_h1">提示</h1> -->
+                        <p class="wy_p">确定退出？</p>
+                    </div>
+                    <div class="wy_PopupBox-body-bottom">
+                        <a class="wy_quxiao wy_a-btn wy_a-btn1 wy_li-a" href="javascript:void(0)">取消</a>
+                        <a class="wy_tuichu wy_a-btn wy_li-a" href="javascript:void(0)">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </body>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                  url:"http://hr.hongrunet.com/Home/Test/getuu",
+                  dataType:"jsonp",
+                  data:{},
+                  jsonpCallback:'jsonpReturn10',
+                  success: function(data){
+
+                     console.log(data);
+                  }
+              });
+             $.ajax({
+                url:"http://hr.hongrunet.com/Home/Letv/duankou",
+                dataType:"jsonp",
+                data:{},
+                jsonpCallback:'jsonpReturn1',
+                success: function(data){
+                    if(data.status == 0){
+                        $('#duankou').html('');
+                    }else if((data.status == 1)){         
+                        $('#duankou').html('<a href="jyt_zbmx.html" class="lf_jump"><i style="color:#5bc211" class="iconfont icon-gongxiangtubiaobaojingduankoushezhi"></i><span>直播端口</span></a>');
+                    }
+                }
+            });
+        });
+    </script>
+ <script type="text/javascript">
+
+   </script> 
+    <script type="text/javascript">
+       
+
+// 退出登录
+$(".wy_tuichu-li").on("click",function(){
+    $(".wy_PopupBox").css("display","block");
+    $.ajax({
+            url : 'http://hr.hongrunet.com/Home/UserCenter/logOut',
+            dataType:'jsonp',
+            data:{},
+            jsonpCallback:'jsonpReturn4',
+            success : function (req) {
+            $(".wy_quxiao").on("click",function(){
+                $(".wy_PopupBox").css("display","none");
+            });
+            $(".wy_tuichu").on("click",function(){
+                window.location.href = "jyt_login.html";
+            });
+
+        }
+    });
+
+})
+
+    </script>
+
+    <script>
+    var userid;
+        $.ajax({
+            url : 'http://hr.hongrunet.com/Home/UserCenter/myCenter',
+            dataType:'jsonp',
+            data:{},
+            jsonpCallback:'jsonpReturn5',
+            beforeSend:function(XMLHttpRequest){
+                    $("#loading").html("<img src='../lf_img/8.gif'/>"); //在后台返回success之前显示loading图标
+            },
+            success : function (req) {
+                if(req.status == 500){
+                    alert(req.msg);
+                    window.location.href="http://hr2.hongrunet.com/html/jyt_login.html";
+                }
+                $("#loading").remove(); //ajax返回成功，清除loading图标
+                userid = req.data.userinfo.id;
+                var grade = req.data.userinfo.grade;
+                if(grade == '4'){
+                    $("#lf_portrait01").attr("src","../lf_img/lf_portrait01.png");
+                };
+                if(grade == '3'){
+                    $("#lf_portrait01").attr("src","../lf_img/wy_portrait04.png");
+                };
+                if(grade == '2'){
+                    $("#lf_portrait01").attr("src","../lf_img/wy_portrait02.png");
+                };
+                if(grade == '1'){
+                    $("#lf_portrait01").attr("src","../lf_img/wy_portrait03.png");
+                };
+                $("#myHuoban").text(req.data.myhuoban+"人");
+                $("#myStudent").text(req.data.mystudent+"人");
+                $("#mySchool").text(req.data.myschool+"人");
+                $("#portrait").attr("src",req.data.userinfo.headimg);
+                if(req.data.userinfo.headimg == null){
+                	$("#portrait").attr("src","../lf_img/lf_portrait.png");
+                }
+                $("#lf_portraitname").text(req.data.userinfo.name);
+                $("#gradeName").text(req.data.userinfo.gradename);
+                if(req.data.userinfo.parentname){
+                   $("#lf_daoshi").text(req.data.userinfo.parentname); 
+                   $("#lf_daoshizh").text(req.data.userinfo.parentphone);
+                   $("#lf_daoshizh").text( $("#lf_daoshizh").text().substring(0,3)+"****"+$("#lf_daoshizh").text().substring(7,11));
+               }else{
+                    $("#lf_daoshi").text('鸿儒商学讲堂');
+               }
+                
+                
+            }
+        });
+// 退出登录
+$("#ewm").on("click",function(){
+    window.location.href='jyt_erweima.html?id='+userid;
+})
+    </script>
+    <script type="text/javascript" src="../js/lf_class.js"></script>
+</html>

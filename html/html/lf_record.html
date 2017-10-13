@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" href="../css/lf_style.css"/>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+    </head>
+    <body>
+        <!-- 控制页面大小 -->
+        <div class="big-box">
+            <!-- 头部 -->
+            <header class="header lf_header">
+                 <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+                 <h2>提现记录</h2>
+            </header>
+            <!-- 中间内容 -->
+            <div class="content" style="background-color:#f5f5f5">
+              <div class="lf_summary">
+                <div class="lf_summary-wrap">
+                   <h3>累计提现</h3>
+                   <p id="allmoney"></p>
+                </div>
+              </div>
+               
+               <div class="lf_txitems">
+                 <ul id="txlog">
+                   <!-- <li class="lf_tx-item lf_clearFloat">
+                     <i class="iconfont icon-yishengduanwodeshouru"></i>
+                     <div class="lf_summaryCon">
+                       <span class="lf_summaryTxt">佣金提现</span>
+                       <span class="lf_time">2017-03-22   12:46</span>
+                     </div>
+                     <div class="lf_jinE">
+                       -100.00
+                     </div>
+                   </li> -->
+                   
+                 </ul>
+               </div>
+            </div>
+             <!-- 尾部，如果没有需删除 -->
+           
+          
+        </div>
+    </body>
+    <script type="text/javascript" src="../js/lf_class.js"></script>
+    <script>
+         $.ajax({
+            url : 'http://hr.hongrunet.com/Home/UserCenter/withdrawalsLog',
+            dataType:'jsonp',
+            data:{},
+            jsonpCallback:'jsonpReturn',
+            success : function (req) {
+               console.log(req);
+               var allmoney = req.data.allmoney;
+               $("#allmoney").text("￥"+allmoney);
+               if(allmoney == null){
+                  allmoney == 0;
+                   $("#allmoney").text('￥0.00');
+               }
+              
+              //提现详情
+              var txlog = $("#txlog");
+              $.each(req.data.txlog,function(index,value){
+                  console.log(value);
+                  $li = $("<li>").addClass('lf_tx-item lf_clearFloat');
+                  $i = $("<i>").addClass('iconfont icon-yishengduanwodeshouru');
+                  $div1 = $("<div>").addClass('lf_summaryCon');
+                  $span1 = $("<span>").addClass('lf_summaryTxt').text(value.message);
+                  function formatDate(now){
+                    var year = now.getFullYear();
+                    var month = now.getUTCMonth() + 1;
+                    var date = now.getDate();
+                    var hour= now.getHours();     
+                    var minute = now.getMinutes();       
+                    return year + "-" + month + "-" + date +"  "+hour+":"+minute;
+                  }
+                  var d = new Date(value.createtime);
+                  console.log(value.createtime);
+                  console.log(formatDate(d));
+                  $span2 = $("<span>").addClass('lf_time').text(formatDate(d));
+                  $div2 = $("<div>").addClass('lf_jinE').text(value.money);
+                  $div1.append($span1).append($span2);
+                  $li.append($i).append($div1).append($div2);
+                  txlog.append($li);
+              });
+
+
+            }  
+        });
+    </script>
+</html>

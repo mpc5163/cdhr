@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+
+    <link rel="stylesheet" href="../css/wy_main.css"/>
+    <title>鸿儒商学讲堂-提交成功</title>
+</head>
+<body>
+<!-- 控制页面大小 -->
+<div class="big-box">
+    <!-- 头部 -->
+    <header class="header wy_header wy_font32 wy_header-a">
+        <div class="wy_header-title">
+            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui wy_backBtn"></a>
+            <span>提交成功</span>
+        </div>
+    </header>
+    <!-- 中间内容 -->
+    <div class="content wy_Refer">
+        <img class="wy_login" src="../wy_img/wy_login.png" alt=""/>
+        <p class="wy_font35 wy_p">视频已提交成功</p>
+        <p class="wy_font35 wy_p">请耐心等待系统审核</p>
+
+        <p class="wy_Run wy_font30">自动跳转到首页...倒计时<span class="wy_RunTime">5</span>秒</p>
+    </div>
+    <!-- 尾部，如果没有需删除 -->
+    <!--<footer class="footer">-->
+
+    <!--</footer>-->
+</div>
+
+<script>
+    $(document).ready(function(){
+        function jump(count) {
+            window.setTimeout(function(){
+                count--;
+                if(count > 0) {
+                    $('.wy_RunTime').text(count);
+                    jump(count);
+                } else {
+                    location.href="kll_index.html";
+                }
+            }, 1000);
+        }
+        jump(5);
+    });
+</script>
+</body>
+</html>

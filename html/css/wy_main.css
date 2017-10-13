@@ -1,0 +1,598 @@
+﻿*{margin: 0;padding: 0;}
+/*公用*/
+a{text-decoration: none;}
+.wy_font30{font-size: 1.875rem;}
+.wy_font32{font-size: 2rem;}
+.wy_font35{font-size: 2.1875rem;}
+.wy_font25{font-size: 1.5625rem;}
+.wy_font24{font-size: 1.5rem;}
+.wy_font23{font-size: 1.4375rem;}
+.wy_font22{font-size: 1.375rem;}
+.wy_font18{font-size: 1.125rem;}
+.wy_font16{font-size: 1rem;}
+.wy_font36{font-size: 2.25rem;}
+.wy_font20{font-size: 1.25rem;}
+
+.wy_nav-a,.wy_li-a,.wy_header-a{display: block;}
+.wy_input-btn{outline: none;}
+/* button{display: block;} */
+/*头部*/
+.wy_header{background: #188eee;text-align: center;color: #fff;line-height: 12.84vw;box-sizing: border-box;}
+.wy_header .wy_backBtn{float: left;color: #fff;font-size: 1.85rem}
+.wy_header .wy_header-title{padding: 0 3.125vw;}
+
+
+/*提交成功*/
+.wy_Refer{text-align: center;}
+.wy_Refer .wy_login{width: 28.125vw;margin: 14.53vw 0 6.56vw;}
+.wy_Refer .wy_p{color: #fc2a24;line-height: 7.5vw;}
+.wy_Refer .wy_Run{color: #333333;margin-top: 8.75vw;}
+.wy_Refer .wy_RunTime{color: #fc4440;}
+
+
+/*大咖专访-合伙人/学霸/专享/免费/全部*/
+.wy_header .wy_nav{background: #fff;height: 13.44vw; width:178vw;top: 12.84vw;border-bottom: 2.81vw solid #eeeeee;padding: 0 3.125vw;}
+.wy_header .wy_nav-li{height: 13.44vw;float: left;}
+.wy_header .wy_nav-a{margin-right: 7.2vw;color: #333;height: 13.44vw;line-height: 13.44vw;box-sizing: border-box;}
+.wy_header .wy_nav-a-last{margin: 0;}
+
+.wy_nav-on{color: #188eee!important;border-bottom: 0.78vw solid #188eee;box-sizing: border-box;}
+/*列表*/
+.wy_Interview-list{padding: 3.125vw;margin-top: 16vw;overflow: hidden;}
+.wy_Interview-list .wy_list{width: 45.32vw;height: 46.5vw;}
+.wy_Interview-list .wy_listImg{width: 100%;height: 117px;}
+.wy_list-tit{line-height: 9.37vw;color: #090909;}
+.wy_span-l{color: #ff4242;float: left;}
+.wy_span-r{color: #919191;float: right;padding-top: 0.5vw;}
+.wy_Interview-list .wy_list-left{float: left}
+.wy_Interview-list .wy_list-right{float: right}
+.wy_list .wy_li-a{height: 45.32vw}
+/*底部导航*/
+.wy-footer{border-top: 1px solid #d9d9d9;padding-top: 2.5vw;}
+.wy-footer .wy_nav-a{width: 20vw;height: 12.84vw;color: #666666;text-align: center;}
+.wy-footer .wy_footer-li{height: 12.84vw;float: left;}
+
+
+
+/*大咖专访-免费*/
+.wy_span-free{color: #62b51f;}
+
+
+
+/*直播列表*/
+.wy_liv-nav{overflow: hidden;}
+.wy_LivList .wy_list{margin-bottom: 5vw;}
+
+
+
+/*弹窗*/
+.wy_PopupBox{position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 20;display: none}
+.wy_PopupBox .wy_PopupBox-bg{background: rgba(0,0,0,0.5);width: 100%;height: 100%;}
+.wy_PopupBox .wy_PopupBox-body{width: 85.9vw;height: 37vw;background: #fff;border-radius: 15px;position: absolute;top: 70.6vw;left: 7vw;text-align: center;}
+.wy_PopupBox .wy_PopupBox-body .wy_h1{line-height: 12.19vw;font-weight: normal;}
+.wy_PopupBox .wy_PopupBox-body-top{border-bottom: 1px solid #c5c5c5;position: relative;}
+.wy_PopupBox .wy_p{margin-bottom: 8.75vw;}
+.wy_PopupBox .wy_PopupBox-body-bottom{height: 45.1vw}
+.wy_PopupBox .wy_a-btn{width: 50%;height:10.9vw;line-height: 10.9vw;float: left;color: #0e7dfa; }
+.wy_PopupBox .wy_a-btn1{border-right: 1px solid #c5c5c5;box-sizing: border-box;}
+
+.wy_closeBtn{position: absolute;top: 2vw;right: 2vw;}
+
+
+
+/*演讲高手*/
+.wy_speech-body{padding: 3.5vw 3.5vw 0vw;box-sizing: border-box;}
+.wy_speech-title{line-height: 9.69vw;font-weight: normal;margin-top: 1.5vw;}
+.wy_speech-title .wy_star{color: #ff0000;padding: 0 1vw;display: block;float: left;width: 2.5vw;height: 2.5vw;margin-top: 0.8vw;font-weight: bold;}
+.wy_speech-body .wy_input{width: 90.5vw;height: 8.75vw;border-style:none;border: 1px solid #b3b3b3;border-radius: 5px;padding-left: 2vw;}
+.wy_speech-body .wy_input1{width: 64.84vw;}
+.wy_speech-body .wy_btn{width: 22.65vw;height: 8.75vw;float: right;background: #e4e6eb;border-radius: 8px;}
+
+.wy_speech-body .wy_xieyi{margin: 5.32vw 2vw;}
+.wy_speech-body .wy_xieyi .wy_a{color:#000;}
+.wy_speech-body .wy_xieyi .wy_span{color: #012bff;}
+
+.wy_speech-body .wy_finishBtn{background: #188eee;width: 90.5vw;height: 10.625vw;border:none;border-radius: 5px; color: #fff;}
+
+/*样式五*/
+input[type=checkbox]{
+    visibility: hidden;
+}
+.wy_checkboxFive{
+    position: relative;
+    width: 6vw;
+    height: 6vw;
+    float: left;
+    margin-right: 4vw;
+    margin-top: -1vw;
+}
+.wy_checkboxFive label{
+    cursor: pointer;
+    position: absolute;
+    width: 6vw;
+    height: 6vw;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border: 2px solid #808080;
+    border-radius: 3px;
+}
+.wy_checkboxFive label:after{
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 8px;
+    background: transparent;
+    top: 4px;
+    left: 3px;
+    border: 2px solid #333;
+    border-right: none;
+    border-top: none;
+
+    -webkit-transform: rotate(-50deg);
+    -moz-transform: rotate(-50deg);
+    -o-transform: rotate(-50deg);
+    -ms-transform: rotate(-50deg);
+}
+.wy_checkboxFive label:hover::after{
+    opacity: 0;
+}
+.wy_checkboxFive input[type=checkbox]:checked + label::after{
+    opacity: 1;
+}
+
+
+
+/*直播开始*/
+.wy_videoBg_box{
+    width: 100vw;
+    height: 100vh;
+    /*background: url("../wy_img/videobg2.png") no-repeat bottom;*/
+    background-size: 100%;
+    position: relative;
+}
+.wy_videoBg_box .wy_mask{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+.wy_videoBg_box .wy_start-close{
+    position: absolute;
+    top: 5vw;
+    right: 6vw;
+    color: #fff;
+}
+.wy_videoBg_box .wy_v_input{
+    width: 54vw;
+    height: 9vw;
+    position: absolute;
+    top: 70vw;
+    left: 23vw;
+    background: none;
+    border: none;
+    color: #188eee;
+}
+.wy_videoBg_box .wy_btn{
+    color: #fff;
+    position: absolute;
+    bottom: 15vw;
+    left: 5vw;
+    width: 90vw;
+    height: 12vw;
+    background: #188eee;
+    border-radius: 2px;
+}
+.wy_videoBg_box input::-webkit-input-placeholder {
+    color: #fff;
+}
+.wy_videoBg_box input:-moz-placeholder {
+    color:#fff;
+}
+.wy_videoBg_box input::-moz-placeholder{
+    color:#fff;
+}
+.wy_videoBg_box input:-ms-input-placeholder{
+    color:#fff;
+}
+
+
+
+/*我的直播*/
+.wy_my-video-top{
+    padding: 3.2vw 3.125vw 0;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+.wy_my-video-top .wy_t_left{
+    /*width: 33.28vw;*/
+    /*height: 9.37vw;*/
+    background: rgba(0,0,0,0.3);
+    border-radius: 50px;
+    float: left;
+}
+.wy_my-video-top .wy_t-headImg{
+    display:block;
+    height: 10.2vw;
+    /*min-height: 9.34vw;*/
+    width: auto;
+    border-radius: 50%;
+    margin-left: 1px;
+    margin-right: 2.5vw;float: left;
+}
+.wy_my-video-top .wy_t_left p{
+    color: #fff;
+    float: left;
+    margin-right: 5vw;
+}
+.wy_my-video-top .wy_p1{
+    padding-top: 1.5vw;
+}
+
+.wy_my-video-top .wy_t_right{
+    float: right;
+}
+.wy_my-video-top .wy_t-logoImg{
+    height: 10.2vw;
+    width: auto;
+}
+
+.wy_my-video-bottom{
+    position: absolute;
+    bottom: 3vw;
+    padding: 0 3.125vw;
+    box-sizing: border-box;
+    color: #fff;
+}
+.wy_msgs{
+    width:79vw;
+    height: 12vw;
+    background: rgba(0,0,0,0.3);
+    border-radius: 50px;
+    line-height: 12vw;
+}
+.wy_msgs .icon-hudong{
+    float: left;
+}
+
+.wy_my-video-bottom .wy_input-btn{
+    position: absolute;
+    left: 14vw;
+    width: 55vw;
+    height: 10vw;
+    top: 0.6vw;
+    background: none;
+    border: none;
+    z-index: 5;
+    color: #fff;
+}
+.wy_my-video-bottom .wy_send{
+    width: 10vw;
+    height: 10vw;
+    margin: 1vw 1vw;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.3);
+    float: right;
+    text-align: center;
+    line-height: 10vw;
+}
+.wy_my-video-bottom .wy_close{
+    width: 12vw;
+    height: 12vw;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    right: -12vw;
+    bottom: 0;
+    text-align: center;
+    line-height: 12vw;
+}
+.wy_my-video-bottom .wy_close .icon-error{
+
+}
+
+
+
+/*观看直播*/
+.wy_my-video-top .wy_follow{
+    width: auto;
+    background: #188eee;
+    border-radius: 50px;
+    float: right;
+    padding: 1.5vw 4vw;
+    color: #fff;
+    margin: 1.5vw 1.5vw 0 0;
+}
+.wy_my-video-bottom .wy_reward{
+    width: 12vw;
+    height: 12vw;
+    border-radius: 50%;
+    background: #e81919;
+    position: absolute;
+    right: -12vw;
+    bottom: 16vw;
+    text-align: center;
+}
+
+
+
+.wy_chatList{
+    max-height: 70vw;
+    position: absolute;
+    left: 0;
+    max-width: 50vw;
+    bottom: 18vw;
+    padding: 0 0 0 2vw;
+    overflow-y:scroll;
+}
+.wy_chatList img{
+    display:block;
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    float: left;
+    margin-right: 2vw;
+}
+.jyt_span{
+    display: block;
+    float: left;
+    width: 74%;
+}
+.wy_chatList li{
+    display:block;
+    height: 100%;
+    overflow: hidden;
+    width: auto;
+    padding: 1.5vw 2.5vw;
+    margin: 2vw 0;
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.5);
+    border-radius: 30px;
+}
+.jyt_livenav{
+    width: 100vw;
+    height: 14vw;
+    display: block;
+    overflow-x: scroll;
+}
+
+/* 创建房间 -创建群、群名片  */
+.wy_createRoom-centent{
+    background: #f8f8f8;
+}
+.wy_createRoom-centent .wy_createInput{
+    width: 90.5625vw;
+    height: 10vw;
+    display: block;
+    margin: 0 auto;
+    margin-top: 6.25vw;
+    border: none;
+    border-bottom: 1px solid #2177db;
+    padding-left: 1vw;
+    font-size:1.6rem;
+    background: none;
+}
+.wy_createRoom-centent input.wy_createInput[placeholder]{
+font-size:1.6rem;
+}
+.wy_createRoom-centent .wy_createBtn{
+    display: block;
+    width: 86vw;
+    height: 12vw;
+    background: #188eee;
+    border-radius: 4px;
+    font-size: 1.875rem;
+    color: #fff;
+    margin: 53.9vw auto;
+}
+
+/* 群名片 */
+.wy_groupCard-centent .wy_createInput{
+    margin-top: 0;
+}
+.wy_groupCard-centent .wy_p{
+    color: #929292;
+    font-size: 1.5rem;
+    display: block;
+    padding-top: 5vw;
+    margin-left: 6vw;
+}
+
+
+/* 管理群  管理员 */
+.wy_manageGroup-centent .wy_createBtn{
+    margin-top: 17.8125vw;
+}
+ .wy-manageGroup-list{
+    margin-top: 1.8vw;
+    background: #fff;
+}
+.wy-manageGroup-list .wy_list{
+    height: 15vw;
+    line-height: 15vw;
+    padding: 0 3.5vw;
+    border-bottom: 1px solid #e6e7e7;
+}
+.wy-manageGroup-list .wy_list .wy_li-a{
+    width: 100%;
+    height: 100%;
+    color: #353535;
+    font-size: 1.5rem;
+}
+.wy-manageGroup-list .wy_list .wy_i-left{
+    display: block;
+    color: #5c6177;
+    float: left;
+    margin-right: 3vw;
+    font-size: 2.4rem;
+}
+.wy-manageGroup-list .wy_list .icon-you{
+    float: right;
+}
+.wy-manageGroup-list .wy_list-1{
+    height: 20.9375vw;
+    position: relative;
+}
+.wy-manageGroup-list .wy_list-1 .wy_li-a{
+    padding-top: 4vw;
+    height: 16.9375vw;
+}
+.wy-manageGroup-list .wy_list-1 .wy_imgbox{
+    display: block;
+    width: 62.5vw;
+    height: 100%;
+    overflow: hidden;
+    float: left;
+}
+.wy-manageGroup-list .wy-fuhaoImg{
+    width: 14.21875vw;
+    height: 14.21875vw;
+    z-index: 3;
+    display: block;
+    position: absolute;
+}
+.wy-manageGroup-list .wy_list img{
+    height: 14.21875vw;
+    width: 14.21875vw;
+    border-radius: 50%;
+    float: left;
+    margin-right: 1vw;
+}
+.wy-manageGroup-list .wy_list-1 em{
+    font-style: normal;
+    color: #808080;
+    float: left;
+}
+
+.wy-manageGroup-list .wy_downImg{
+    right: 27vw;
+    top: 4vw;
+}
+.wy-manageGroup-list .wy_addImg{
+    right: 42.5vw;
+    top: 4vw;
+}
+/* 管理群  成员 */
+.wy-manageGroup-member-list .wy_addImg{
+    right: 27vw;
+    top: 4vw;
+}
+
+/* 创业交流平台 */
+.wy_setting{
+    color: #fff;
+    font-size: 1.85rem;
+    float: right;
+}
+.wy_chat-centent{
+    width: 100%;
+    height: 100%;
+    background:#ededed;
+    padding: 0 4vw;
+    box-sizing: border-box;
+}
+.wy_chat-centent .wy_time{
+    text-align: center;
+    color: #8d8d8d;
+    font-size: 1.125rem;
+    height: 8.4375vw;
+    line-height: 8.4375vw;
+}
+.wy_chat-centent .wy_headeImg{
+    width: 12vw;
+    height: 12vw;
+    border-radius: 50%;
+}
+
+.wy_leftPeople{
+    width: 100%;
+    float: left;
+    margin-bottom: 8vw;
+}
+.wy_rightPeople{
+    width: 100%;
+    float: right;
+    margin-bottom: 8vw;
+}
+/* 左边 */
+.wy_leftPeople .wy_headeImg-left{
+    float: left;
+}
+.wy_leftPeople .wy_left-msg{
+    float: left;
+    margin-left: 2vw;
+    font-size: 1.5rem;
+}
+.wy_leftPeople .wy_left-msg .wy_title{
+    color: #7d7d7d;
+    font-size: 1.125rem;
+}
+.wy_leftPeople .wy_left-msg .wy_neirong-left{
+    display: block;
+    max-width: 60vw;
+    border: 1px solid #188eee;
+    border-radius: 0 27px 27px 25px;
+    padding: 2vw 4vw;
+    background: #fff;
+    margin-top: 1vw;
+}
+.wy_msgImg{
+    width: 25vw;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 1vw;
+}
+/* 右边 */
+.wy_rightPeople .wy_headeImg-right{
+    float: right;
+}
+.wy_rightPeople .wy_right-msg{
+    float: right;
+    margin-right: 2vw;
+    font-size: 1.5rem;
+    text-align: right;
+}
+.wy_rightPeople .wy_right-msg .wy_title{
+    color: #7d7d7d;
+    font-size: 1.125rem;
+}
+.wy_rightPeople .wy_right-msg .wy_neirong-right{
+    display: block;
+    max-width: 40vw;
+    border: 1px solid #7ac3ff;
+    border-radius: 27px 0 25px 27px;
+    padding: 2vw 4vw;
+    background: #7ac3ff;
+    margin-top: 1vw;
+}
+
+
+
+
+.wy_chat-footer{
+    height: 14vw;
+    background: #fff;
+    color: #188eee;
+    line-height: 14vw;
+    padding: 0 3.5vw;
+    box-sizing:border-box;
+}
+.wy_chat-footer input{
+    width: 72%;
+    height: 9vw;
+    border: 1px solid #188eee;
+    border-radius: 3px;
+    float: left;
+    padding-left: 2vw;
+    margin-top: 2.2vw;
+    position: relative;
+}
+.wy_chat-footer i{
+    font-size: 3rem;
+    display: block;
+    width: 9vw;
+    height: 7.5vw;
+    bottom: 7vw;
+    right: 16vw; 
+}

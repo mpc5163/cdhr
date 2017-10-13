@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html>
+
+<head lang="en">
+
+    <meta charset="utf-8">
+
+    <meta name="author" content="ZZJBS" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    <meta name="format-detection" content="telephone=no" />
+
+    <meta name="format-detection" content="email=no" />
+
+    <!-- 引入文件 -->
+
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <!-- 引入font文件 -->
+
+    <link rel="stylesheet" href="../css/common.css" />
+    <!-- 公共样式 -->
+
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <!-- 引入zepto文件 -->
+
+    <script type="text/javascript" src="../js/common.js"></script>
+    <!-- 引入公共js文件 -->
+
+
+
+    <link rel="stylesheet" href="../css/wy_main.css" />
+
+    <script src="../js/jquery-3.1.1.min.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="http://yuntv.letv.com/player/live/blive.js"></script>
+
+    <title>鸿儒商学讲堂-我的直播</title>
+    <style>
+          .lf_tipcon{
+                padding-top:3vw;
+                font-size:1.3rem;
+                line-height:6vw;
+                color:#fff;
+            }
+            .lf_tipform{
+               /*  padding:0vw 5vw; */
+            }
+            .lf_tipform li{
+                height:10vw;
+                line-height:10vw;
+                font-size:1.3rem;
+            }
+            .lf_tipform li>label{
+                display:block;
+                float:left;
+                width:34vw;
+                color:#fff;
+            }
+            .lf_tipform li>input{
+                display:block;
+                float:left;
+                width:50vw;
+                padding:0 2vw;
+                border:1px solid #fff;
+                border-radius:5px;
+                height:8vw;
+                margin-top:1vw;
+                background:0;
+                color:#fff;
+            }
+            .lf_tipcontent{
+                background:url(../lf_img/lf_bg.jpg) no-repeat center center;
+                background-size:cover;
+
+            }
+            .lf_clear:after{
+                content:'.';
+                height:0;
+                display:block;
+                overflow:hidden;
+                visibility:hidden;
+                clear:both;
+            }
+    </style>
+</head>
+
+<body>
+
+    <!-- 控制页面大小 -->
+     <!-- <div class="big-box">
+
+            <div class="content lf_tipcontent">
+                <div class="lf_tipcon">
+                    请将此参数保存，并填入OBS广播设定对应参数内进行直播。
+                </div>
+                <div class="lf_tipform">
+                    <ul>
+                        <li class="lf_clearFloat">
+                            <label for="address">推流地址 ：</label>
+                            <input id="address" type="text"/>
+                        </li>
+                        <li class="lf_clearFloat">
+                            <label for="codetxt">播放路径/串码流 ：</label>
+                            <input id="codetxt" type="text"/>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>-->
+
+         <div class="big-box lf_tipcontent" style="overflow:scroll">
+
+        <div class="wy_myVideo">
+
+
+            <div class="wy_videoBg_box">
+                <div class="wy_my-video-top" style="height:100%;">
+                <div class="lf_clear">
+                    <div class="wy_t_left clear" style="z-index:100;">
+
+                        <img class="wy_t-headImg" src="../wy_img/myHeadImg.png" alt="" />
+
+                        <p class="wy_font18 wy_p1">直播<br/>
+
+                            <span id="usernum">0</span>人观看
+
+                        </p>
+
+                    </div>
+
+                    <div class="wy_t_right cle">
+
+                        <img class="wy_t-logoImg" src="../wy_img/wy_my-login.png" alt="" />
+
+                    </div>
+                </div>
+
+
+
+                     <div class="lf_tipcon">
+                    请将此参数保存，并填入OBS广播设定对应参数内进行直播。
+                    <br/>OBS软件请到OBS官网：https://obsproject.com下载。
+                </div>
+
+                <div class="lf_tipform">
+                    <ul>
+                        <li class="lf_clearFloat">
+                            <label for="address">推流地址 ：</label>
+                            <input id="address" type="text"/>
+                        </li>
+                        <li class="lf_clearFloat">
+                            <label for="codetxt">播放路径/串码流 ：</label>
+                            <input id="codetxt" type="text"/>
+                        </li>
+                    </ul>
+
+                </div>
+                     <div id='playerid' style="z-index:-10;height:77%;"></div>
+
+                </div>
+
+                <!--<a href="javascript:history.go(-1);" class="iconfont icon-cuohao wy_font36"></a>-->
+
+                <div class="wy_my-video-bottom" style="z-index:100;">
+
+                    <div class="wy_msgs">
+
+                        <i class="iconfont icon-iconfontmark wy_font36"></i>
+
+                        <input class="wy_input-btn wy_font20" type="text" id="nr" placeholder="和大家说点什么吧" />
+
+                        <div class="wy_send wy_font24" id="fasong">发送</div>
+
+                        <div class="wy_close">
+                            <i class="iconfont icon-error wy_font30"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--聊天框-->
+
+                <div class="wy_chatList" style="z-index:100">
+
+                    <ul id="content">
+                        <!-- 聊天内容 -->
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <!--弹窗-->
+
+            <div class="wy_PopupBox">
+
+                <div class="wy_PopupBox-bg"></div>
+
+                <div class="wy_PopupBox-body">
+
+                    <div class="wy_PopupBox-body-top">
+
+                        <h1 class="wy_font24 wy_h1">提示</h1>
+
+                        <p class="wy_font24 wy_p">你确定结束直播吗？</p>
+
+                        <!--<i class="iconfont icon-cuohao wy_font30 wy_closeBtn"></i>-->
+
+                    </div>
+
+                    <div class="wy_PopupBox-body-bottom">
+
+                        <a class="wy_a-btn wy_a-btn1 wy_li-a wy_font24 wy_cancel" href="javascript:void(0)">取消</a>
+                        <a class="wy_a-btn wy_li-a wy_font24" id="videoend" >确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/socket.io.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+var activity;
+    $(function() {
+        $.ajax({
+        url : 'http://hr.hongrunet.com/home/Letv/pushUrl',
+        data : {id:id,url:location.href},
+        dataType : 'jsonp',
+        jsonpCallback : 'jsonpReturn2',
+        success : function (req){
+            console.log(req);
+            if(req.data.config != undefined){
+                var configs = JSON.parse(req.data.config);
+                console.log(configs);
+                wx.config(configs);
+                wx.ready(function(){
+                    wx.onMenuShareTimeline({
+                        title: '我在鸿儒讲堂里开启了《'+req.data.data.title+'》直播，全民直播时代已经到来了，同学们快来加入一起分享红利吧！', // 分享标题
+                        link: "http://hr2.hongrunet.com/html/lf_liveDetail.html?id="+id, // 分享链接
+                        imgUrl: 'http://hr2.hongrunet.com/jyt_image/jyt_register_logo1.png', // 分享图标
+                        success: function() {
+                            // 用户确认分享后执行的回调函数
+                            window.href = "http://hr.hongrunet.com/Home/Wechat/code.html?pid="+req.data.data.uid;
+                        },
+                        cancel: function() {
+
+                            // 用户取消分享后执行的回调函数
+                            window.href = "http://hr.hongrunet.com/Home/Wechat/code.html?pid="+req.data.data.uid;
+                        }
+                    });
+                    wx.onMenuShareAppMessage({
+                        title: '鸿儒商学讲堂', // 分享标题
+                        desc: '我在鸿儒讲堂里开启了《'+req.data.data.title+'》直播，全民直播时代已经到来了，同学们快来加入一起分享红利吧！', // 分享描述
+                        link: "http://hr2.hongrunet.com/html/lf_liveDetail.html?id="+id, // 分享链接
+                        imgUrl: 'http://hr2.hongrunet.com/jyt_image/jyt_register_logo1.png', // 分享图标
+                        type: '', // 分享类型,music、video或link，不填默认为link
+                        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                        success: function() {
+                             // 用户确认分享后执行的回调函数
+                            window.href= "http://hr.hongrunet.com/Home/Wechat/code.html?pid="+req.data.data.uid;
+                        },
+                        cancel: function() {
+
+                             // 用户取消分享后执行的回调函数
+                            window.href= "http://hr.hongrunet.com/Home/Wechat/code.html?pid="+req.data.data.uid;
+                        }
+                    });
+                });
+                wx.error(function(res){
+                    console.log(res);
+                    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                });
+            }
+            $('#address').val("rtmp://w.gslb.lecloud.com/live") ;
+            var str = req.data.data.pushurl.replace('rtmp://w.gslb.lecloud.com/live/','');
+            var xx = str.split('?')[0];
+            $('#codetxt').val(xx);
+        },
+        error : function (err){
+            alert('网络错误');
+        }
+    });
+        $(".wy_close").click(function() {
+            $(".wy_myVideo .wy_PopupBox").css("display", "block");
+            $(".wy_cancel").click(function(){
+                $(".wy_myVideo .wy_PopupBox").css("display", "none");
+            });
+            $("#videoend").click(function(){
+                var numm = $('#usernum').text();
+                $.ajax({
+                    url : 'http://hr.hongrunet.com/Home/Letv/stop',
+                    data : {activityId:activity},
+                    dataType : 'jsonp',
+                    jsonpCallback : 'jsonpReturn3',
+                    success : function (req){
+                        if(req){
+                            window.location.href="lf_videoend.html?num="+numm;
+                        }
+                    }
+                });
+        });
+        $("input:text").focus(function(){
+            $(this).attr('placeholder', '');
+        }); 
+    });
+    });
+</script>
+
+</html>
+<script>
+    var id = location.search.split('=')[1];
+    $.ajax({
+        url : 'http://hr.hongrunet.com/home/Letv/letvDetail',
+        data : {id:id},
+        dataType : 'jsonp',
+        jsonpCallback : 'jsonpReturn1',
+        success : function (req){
+            var letv = req.data.letv;
+            activity = letv.activityid;
+            var player = new CloudLivePlayer();
+            var playerConf = {
+                activityId : letv.activityid,
+                pic : letv.coverimgurl,
+                auto_play : 1,
+            }
+            player.init(playerConf,'playerid');
+        },
+        error : function (err){
+            console.log(err);
+        }
+    })
+
+    $.ajax({
+        url : 'http://hr.hongrunet.com/home/index/my_info',
+        data : {},
+        dataType : 'jsonp',
+        jsonpCallback : 'jsonpReturn',
+        success : function (req){
+            user_info = req.data;
+            hudong();
+        },
+        error : function (err){
+            console.log(err);
+        }
+    })
+
+    function hudong(){
+        if(!id){
+            alert('非法访问');
+            return false;
+        }
+        console.log(user_info);
+        var socket = io.connect('http://47.93.27.22:666');
+        var room = 'shipin_'+id;
+        var user_name = user_info.name;
+        var headimg = '../images/wy_group-2.png';
+        var nr = '';
+        socket.on('connect',function(){
+            socket.emit('join',user_name,room);
+        })
+        $('#fasong').click(function(){
+            if(user_info.headimg){
+                headimg = user_info.headimg;
+            }
+            nr = $('#nr').val();
+            if(nr == ''){
+                return false;
+            }
+            $('#nr').val('');
+            socket.emit('foo',user_name,headimg,nr);
+        })
+        var content = '';
+        socket.on('req',function(name,img,nr){
+            content = '<li><img src="'+img+'" alt="" /><span class="wy_font23 jyt_span" style="font-size:15px;">'+nr+'</span></li>';
+            $('#content').append(content);
+        })
+
+        socket.on('usernum',function(num){  //监控当前房间人数
+            $('#usernum').html(num);
+        })
+    }
+</script>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+    <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="../layui/layui.css">
+    <link rel="stylesheet" href="../css/wy_main.css"/>
+    <title>鸿儒商学讲堂-上传视频</title>
+    <style>
+        .wy_img-list .wy_label{
+            font-size: 1.5625rem;
+            display: block;
+            width: 19vw;
+            float: left;
+        }
+        .wy_img-list .wy_label{
+            font-size: 1.5625rem;
+            display: block;
+            width: 19vw;
+            float: left;
+        }
+        .wy_img-list{
+            padding: 5vw 0;
+            border-bottom: 1px solid #b3b3b3;
+            overflow: hidden;
+        }
+        .wy_img-list .wy_img{
+            width: 26.25vw;
+            height: 26.25vw;
+            border: 1px solid #808080;
+            border-radius: 5px;
+            float: left;
+            margin-left: 1vw;
+            margin-right: 5vw;
+        }
+    </style>
+</head>
+<body>
+<!-- 控制页面大小 -->
+<div class="big-box">
+    <!-- 头部 -->
+    <header class="header wy_header wy_font32 wy_header-a">
+        <div class="wy_header-title">
+            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui wy_backBtn"></a>
+            <span>上传视频</span>
+        </div>
+    </header>
+    <!-- 中间内容 -->
+    <div class="content wy_speech-body">
+            <div style="overflow:hidden;" id="loading">
+                <button class="" style="float:left;width: 22.65vw;height: 8.75vw;background: #e4e6eb;border-radius: 8px; margin-top:10px;" onclick="javascript:$('.update_file').click();">上传视频</button>
+                <input style="display:none;" type="file" name="files" class="update_file" lay-type="file" value="上传视频">
+                <input type="hidden" id="video" value="">
+                <a id="shipin" style="float:left;margin-left:10px;height: 8.75vw;line-height:8.75vw;margin-top:10px;
+                font-size:12px;color:#f00;"></a>
+
+            </div>
+            <h5 style="margin-left:10px;margin-top:10px;font-size:14px;color:#f00;">注:视频大小不超过500M，视频时长15分钟左右。</h5>
+            <div>
+                <td>
+                    <h2 class="wy_speech-title wy_font25"><span class="wy_star">*</span>视频类别</h2>
+                </td>
+                <td>
+                    <select id="classid" name="classid" class="wy_input wy_input-btn">
+                        <option value="2">双创平台</option>
+                        <option value="3">人际沟通</option>
+                        <option value="4">团队企管</option>
+                        <option value="5">农建商道</option>
+                        <option value="6">健康养生</option>
+                        <option value="7">家庭教育</option>
+                        <option value="8">微商制造</option>
+                        <option value="9">演讲高手</option>
+                    </select>
+                </td>
+            </div>
+            <div>
+                <td>
+                    <h2 class="wy_speech-title wy_font25"><span class="wy_star">*</span>视频类别</h2>
+                </td>
+                <td>
+                    <select id="fid" name="fid" class="wy_input wy_input-btn">
+                        <option value="1">学童专享</option>
+                        <option value="2">学霸专享</option>
+                        <option value="3">讲师专享</option>
+                        <option value="4">合伙人专享</option>            
+                    </select>
+                </td>
+            </div>
+            <div>
+                <h2 class="wy_speech-title wy_font25"><span class="wy_star">*</span>视频名称</h2>
+                <input style="width:88.5vw" class="wy_input wy_input-btn" type="text" id="videoname" placeholder="请输入视频名称"/>
+            </div>
+            <div class="wy_img-list">
+                    <label class="wy_label">封面图片&nbsp;:</label>
+                    <img id="imgurl" name="imgurl" class="wy_img" src="../jyt_image/jyt_jifen_touxiang_2.jpg"/>
+                    <input type="file" lay-type="images"  name="picname" id="picname" />
+                    <input type="hidden" name="coverImgUrl" id="coverImgUrl" value="" />
+                    <a id="tupian" style="float:left;margin-left:10px;height: 8.75vw;line-height:8.75vw;margin-top:10px;
+                font-size:14px;color:#f00;"></a>
+                </div>
+            <div>
+                <h2 class="wy_speech-title wy_font25"><!-- <span class="wy_star"></span> -->视频简介</h2>
+                <input style="width:88.5vw" class="wy_input wy_input-btn" type="text" id="videointro" placeholder="请输入视频简介"/>
+            </div>
+            <div class="wy_xieyi">
+                <div class="wy_checkboxFive">
+                    <input type="checkbox" id="checkboxFiveInput" checked="checked" name="1"/>
+                    <label class="labelclick" for="checkboxFiveInput">
+                    </label>
+                </div>
+
+                <!--<input class="wy_checkbox" type="checkbox"/>-->
+                <a class="wy_font25 wy_a" href="javascript:void(0)"><u class="wy-em">我已阅读</u>，同意<span class="wy_span">“用户注册协议”</span> </a>
+            </div>
+            <button style="outline:none" type="button" id="jyt_edit_sub" class="wy_finishBtn wy_input-btn wy_font30">确认提交</button>
+    </div>
+</div>
+<script type="text/javascript">
+      var head_url = '';
+      var flog = false;
+      $(document).ready(function(){
+            layui.use('upload', function(){
+                layui.upload({
+                  elem:'#picname',
+                  url: '../upload.php',
+                  before: function(input){
+		            //返回的参数item，即为当前的input DOM对象
+		            $('#tupian').html('图片缓存中...');
+		            layer.msg('加载中', {
+		               icon: 16,
+		               shade: 0.01
+		            });
+		          },
+                  success: function(res){
+                  	$('#tupian').html('缓存成功');
+                    if(res.status==0){
+                        console.log(res.message);
+                    }
+                    if(res.status==1){
+                        $('#imgurl').attr('src',res.url);
+                        $('#coverImgUrl').attr('value',res.url);
+                        head_url = res.url;
+                    }
+                  }
+                });
+            });
+        });
+</script>
+<script>
+    $(function(){
+        // var cid = location.search;
+        $.ajax({
+            url : 'http://hr.hongrunet.com/Home/index/speech',
+            dataType:'jsonp',
+            data:{},
+            jsonp : 'jsonpReturn',
+            success : function(req){
+                jsonpReturn(req);
+            }
+        })
+    });
+    function jsonpReturn(req){
+        console.log(req);
+        if(req.status == '3'){
+        	alert(req.msg);
+            window.location.href = req.data;
+        }
+        if(req.status == '5'){
+            window.location.href = req.data;
+        }
+        if(req.status == '4'){
+            //location.href = req.data;
+        }
+    }
+</script>
+<script type="text/javascript">
+
+    layui.use('upload', function(){
+      layui.upload({
+        url: '../qiniu.php',
+        elem :'.update_file',
+        unwrap: true,
+          before: function(input){
+            //返回的参数item，即为当前的input DOM对象
+            $('#shipin').html('视频缓存中...');
+            layer.msg('加载中', {
+              icon: 16
+              ,shade: 0.01
+            });
+          },
+          success: function(res){
+          	if(res.status==0){
+          		layer.msg(res.message);
+          	}else{
+          		layer.msg(res.message);
+	            $('#video').val(res.url);
+	            $('#shipin').html('视频已缓存完成');
+	            flog=true;
+          	} 
+          }
+      });
+    });
+</script>
+<script>
+    $("#jyt_edit_sub").on("click",function(){
+        //input 框状态
+        $(".labelclick").off("touchstart").on("touchstart", function () {
+            if ($("#checkboxFiveInput").attr("name") == "1") {
+                $("#checkboxFiveInput").attr("name",2);
+            } else {
+                $("#checkboxFiveInput").attr("name",1);
+            }
+        });
+        var phone               =$("#phone").val();
+        var videoname           = $("#videoname").val();
+        var videointro          = $("#videointro").val();
+        var checkboxFiveInput   = $("#checkboxFiveInput").attr("name");
+        var video               = $("#video").val();
+        var classid             = $("#classid").val();
+        var fid                 = $("#fid").val();
+        var thumbnail           = $("#coverImgUrl").val();
+        var preg_tel            = /^1[34578]\d{9}$/; //手机号
+
+        if(!flog){
+        	alert('视频正在缓存，请耐心等待！');return;
+        }
+
+        /*if(!preg_tel.test(phone)) {
+            alert('请输入有效的手机号码!');return;
+        }*/
+        if (videoname == '') {
+            alert('视频名称不能为空!');return;
+        }
+        if (classid == '') {
+            alert('视频类别不能为空!');return;
+        }
+        if (checkboxFiveInput == 2) {
+            alert('请同意用户注册协议!');return;
+        }
+        if (video == "") {
+            alert('请先上传视频!');return;
+        }
+        if (thumbnail == "") {
+            alert('请先上传封面!');return;
+        }
+        if(videoname && classid && checkboxFiveInput && video && thumbnail){
+          $.ajax({
+                    url      : "http://hr.hongrunet.com/Home/index/speech",
+                    data     : {"classid":classid,
+                                "videointro":videointro,
+                                "videoname":videoname,
+                                "phone":phone,
+                                "video":video,
+                                "fid":fid,
+                                "thumbnail":thumbnail,
+                                "checkboxFiveInput":checkboxFiveInput
+                            },
+                    dataType : "jsonp",
+                    jsonpCallback:'jsonpReturn',
+                    async:false,
+                    success:function(data){
+                        console.log(data);
+                        if(data.status == '5'){
+                            location.href = data.data;
+                        }else if(data.status == '1'){
+                          alert(data.msg);
+                          window.location.href=('./lf_personal.html');
+                        }else{
+                           alert(data.msg);
+                        }
+                    },
+                    error:function(data){
+
+                    }
+                });
+        }
+
+    });
+</script>
+</body>
+</html>

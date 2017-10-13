@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" href="../css/lf_style.css"/>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+    </head>
+    <body>
+        <!-- 控制页面大小 -->
+        <div class="big-box">
+            <!-- 头部 -->
+            <header class="header lf_header">
+                 <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+                 <h2>我的关注</h2>
+            </header>
+            <!-- 中间内容 -->
+            <div class="content">               
+               <div class="lf_myfans">
+                 <ul id="myfans">
+                   <!-- <li class="lf_fans-item">
+                    <img class="lf_fansPortrait" src="../lf_img/lf_fans.png" alt=""/>
+                    <div class="lf_fansCon">
+                      <span class="lf_fansTxt">Evelyn Fisher</span>
+                      <span class="lf_fansnum">
+                          <i class="iconfont icon-yiguanzhu1"></i><span class="lf_fansNumber">2636</span>人
+                       </span>
+                    </div>
+                    <div class="lf_fansicon lf_iconTC" style="color:#757575">
+                      <i class="iconfont icon-yiguanzhu"></i><span>已关注 </span>
+                    </div>
+                                     </li>
+                                     <li class="lf_fans-item">
+                    <img class="lf_fansPortrait" src="../lf_img/lf_fans.png" alt=""/>
+                    <div class="lf_fansCon">
+                      <span class="lf_fansTxt">Evelyn Fisher</span>
+                      <span class="lf_fansnum">
+                          <i class="iconfont icon-yiguanzhu1"></i><span class="lf_fansNumber">2636</span>人
+                       </span>
+                    </div>
+                    <div class="lf_fansicon lf_iconTC" style="color:#757575">
+                      <i class="iconfont icon-yiguanzhu"></i><span>已关注 </span>
+                    </div>
+                                   </li>
+                                    <li class="lf_fans-item">
+                    <img class="lf_fansPortrait" src="../lf_img/lf_fans.png" alt=""/>
+                    <div class="lf_fansCon">
+                      <span class="lf_fansTxt">Evelyn Fisher</span>
+                      <span class="lf_fansnum">
+                          <i class="iconfont icon-yiguanzhu1"></i><span class="lf_fansNumber">2636</span>人
+                       </span>
+                    </div>
+                    <div class="lf_fansicon lf_iconTC" style="color:#757575">
+                      <i class="iconfont icon-yiguanzhu"></i><span>已关注 </span>
+                    </div>
+                                   </li>
+                                    <li class="lf_fans-item">
+                    <img class="lf_fansPortrait" src="../lf_img/lf_fans.png" alt=""/>
+                    <div class="lf_fansCon">
+                      <span class="lf_fansTxt">Evelyn Fisher</span>
+                      <span class="lf_fansnum">
+                          <i class="iconfont icon-yiguanzhu1"></i><span class="lf_fansNumber">2636</span>人
+                       </span>
+                    </div>
+                    <div class="lf_fansicon lf_iconTC" style="color:#757575">
+                      <i class="iconfont icon-yiguanzhu"></i><span>已关注 </span>
+                    </div>
+                                   </li> -->
+                 </ul>
+               </div>
+                <!-- 弹出模态框 -->
+                <div class="lf_motaikuang">
+                  <div class="lf_center">
+                      <h3>提示</h3>
+                      <p>是否确认取消关注？</p>
+                      <div class="lf_buttons">
+                          <button type="button" class="lf_cancel" style="background:#fff;" >取消</button>
+                          <button type="button" class="lf_confirm">确定</button>
+                      </div>
+                      
+                  </div>
+              </div>
+            </div>
+             <!-- 尾部，如果没有需删除 --> 
+        </div>
+    </body>
+    
+    <script>
+        $.ajax({
+            url : 'http://hr.hongrunet.com/Home/UserCenter/myFollow',
+            dataType:'jsonp',
+            async:false,
+            data:{},
+            jsonpCallback:'jsonpReturn',
+            success : function (req) {
+               console.log(req);
+               var myfans = $("#myfans");
+               $.each(req.data,function(index,value){
+                   var $li = $("<li>").addClass('lf_fans-item');
+                   var $img = $("<img>").addClass('lf_fansPortrait').attr("src",value.headimg);//"http://hr.hongrunet.com"+
+                   var $div1 = $("<div>").addClass('lf_fansCon');
+                   var $span1 = $("<span>").addClass('lf_fansTxt').text(value.nickname);
+                   var $span2 = $("<span>").addClass('lf_fansnum');
+                   var $i1 = $("<i>").addClass('iconfont icon-yiguanzhu1');
+                   var $span3 = $("<span>").addClass('lf_fansNumbe').text(value.num);
+                   $span2.append($i1);
+                   $span2.append($span3);
+                   $div1.append($span1).append($span2);
+                   var $div2 =  $("<div>").addClass('lf_fansicon lf_iconTC').css("color","#757575");
+                   var $i2 = $("<i>").addClass('iconfont icon-yiguanzhu');
+                   var $span4 = $("<span>").text("已关注");
+                   $div2.append($i2).append($span4);
+                   $li.append($img).append($div1).append($div2);
+                   myfans.append($li);
+                   
+               });
+              /*我的关注页面点击弹出模态框*/
+              $(".lf_fans-item .lf_iconTC").off("touchstart").on("touchstart",function(){
+                    var that = $(this);
+                    console.log(req.data);
+                    console.log($(this).parent(".lf_fans-item").index());
+                    var id = req.data[$(this).parent(".lf_fans-item").index()].uid;
+
+                    $(".lf_motaikuang").css("display","block");
+                    $(".lf_cancel").off("touchstart").on("touchstart",function(){
+                         $(".lf_motaikuang").css("display","none");
+                         $(".lf_confirm").unbind();
+                    });
+                    $(".lf_confirm").off("touchstart").on("touchstart",function(){
+                        $.ajax({
+                            url : 'http://hr.hongrunet.com/Home/UserCenter/clickNoFollow',
+                            dataType:'jsonp',
+                            data:{id:id},
+                            jsonpCallback:'jsonpReturn',
+                            success : function (req) {
+                                if(req.status ==='1'){
+                                    // alert(req.msg);
+                                    $(".lf_motaikuang").css("display","none");
+                                    that.parent(".lf_fans-item").remove();
+                                };
+                           
+                             }
+                        })
+
+                      
+                       //console.log($(this));
+                    });
+
+              });
+            }  
+        });
+    </script>
+    <script type="text/javascript" src="../js/lf_class.js"></script>
+</html>

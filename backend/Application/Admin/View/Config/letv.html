@@ -1,0 +1,72 @@
+<include file="Public/head" />
+<style>
+	#letv_type{width:24rem;height:3rem;margin-left: 5rem;margin: 2rem;}
+	table{margin:3rem;}
+	th{width: 100px;}
+	.btn{width:10rem;height:3rem;margin-left: 6rem;}
+</style>
+	<form>
+		<select name="letv_type" id="letv_type">
+			<option value="13" selected>请选择直播价格设置</option>
+			<option value="13">流畅</option>
+			<option value="16">高清</option>
+			<option value="25">超清</option>
+			<option value="99">蓝光</option>
+		</select>
+		<table id="content">
+			<!-- 内容部分		 -->
+		</table>
+	</form>
+<include file="Public/footer" />
+<script>
+	$('#letv_type').on('change',function(){
+		var letv_type = $(this).val();
+		$.ajax({
+			url:"{:U('/Admin/Config/letvaaa')}",
+			data : {
+				'code' : letv_type,
+			},
+			type : 'post',
+			dataType : 'json',
+			success : function(res){
+				$('#content').empty();
+				console.log(res);
+				var a;
+				var init = '<tr><th rowspan="1" style="width: 120px">人数/时长</th><th rowspan="1" style="width: 120px">40分钟</th><th rowspan="1" style="width: 120px">1小时</th><th rowspan="1" style="width: 120px">1小时30分</th><th rowspan="1" style="width: 120px">2小时</th><th rowspan="1" style="width: 120px">2小时30分</th><th rowspan="1" style="width: 120px">3小时</th></tr><tr>';
+
+				for(var s = 1;s <= 8 ; s++){
+					a = '<td style="line-height:3rem;">'+s+'00</td>';
+					for(var i in res['num'+s]){	
+						a += '<td><input type="text" name="zhi[0]" value="'+res['num'+s][i].price+'" id="'+res['num'+s][i].id+'" class="form-control input-sm fromid" ></td>';
+					}
+					init += a;
+					init += '</tr><tr>';
+				}
+
+				$('#content').append(init);
+				$("input").on("blur",function(){
+					var my = $(this);
+					var thisval = my.val();
+					var thisid  = my.attr("id");
+					$.ajax({
+				  		type     : "POST",
+				  		url      : "{:U('/Admin/Config/save')}",
+				  		data     : {"thisid":my.attr("id"),"thisval":my.val()},
+				  		dataType : "json",
+				  		error	 : function(){},
+				  		success  : function(data){
+			    			console.log(data);
+			    			if(data.status == 1){
+			    				// alert(data.msg);
+			    				alert("更新成功!");
+			    			}else{
+			    				alert("更新失败!");	
+			    			}      				
+				  		}
+				  	});
+				})
+			}
+
+		})
+	})
+</script>

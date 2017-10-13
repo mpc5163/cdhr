@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css">
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+    </head>
+    <body>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header jyt_header_login">
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_login_h1">忘记密码</h1>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content jyt_refister_bg">
+	    		<img class="jyt_register_logo" src="../jyt_image/jyt_register_logo.png" />  
+                <div class="jyt_register_tit">
+                    <p class="jyt_register_tit_p1">欢迎来到鸿儒商学讲堂</p>
+                    <p class="jyt_register_tit_p2">WELcome TO HONG RU BUSINESS LECTURE</p>
+                </div>
+                <form>
+                    <ul class="jyt_register_ul">
+                        <li class="jyt_register_ul_li">
+                            <i class="iconfont icon-phone"></i>
+                            <input id="phone" class="jyt_register_ul_li_inp" placeholder="请输入您的手机号码"/>
+                        </li>  
+                        <li class="jyt_register_ul_li">
+                            <i class="iconfont icon-suo"></i>
+                            <input id="password" class="jyt_register_ul_li_inp" type="password" placeholder="请输入您的新密码"/>
+                        </li>  
+                        <li class="jyt_register_ul_li">
+                            <i class="iconfont icon-suo"></i>
+                            <input id="rpassword" class="jyt_register_ul_li_inp" type="password" placeholder="请确认您的新密码"/>
+                        </li>  
+                        <li class="jyt_register_ul_li">
+                            <i class="iconfont icon-yanzhengmayanzheng"></i>
+                            <input style="width:38vw" id="code" class="jyt_register_ul_li_inp" placeholder="请输入手机验证码"/>
+                             <input class="jyt_register_ul_li_yanzheng" type="button" id="btn_yzm" value="获取验证码"/>
+                        </li>   
+                    </ul>
+                    <button type="button" id="sure" class="jyt_register_but_reg">确定</button>
+                </form>
+	    	</div>
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+	    		
+	    	</footer> -->
+    	</div>
+        <script>
+            var wait=60;
+            function time(o) {
+                if (wait == 0) {
+                        o.removeAttribute("disabled");
+                        o.value="获取验证码";
+                        wait = 60;
+                    } else {
+                        o.setAttribute("disabled", true);
+                        o.value="重新发送(" + wait + ")";
+                        wait--;
+                        setTimeout(function() {
+                        time(o)
+                    }, 1000)
+                }
+            };
+            $('#btn_yzm').on("click",function() {
+                var phone = $("#phone").val();
+                $.ajax({
+                    url : 'http://hr.hongrunet.com/Home/UserCenter/getCode',
+                    dataType:'jsonp',
+                    data:{
+                        phone:phone,
+                        type:1
+                    },
+                    jsonpCallback:'jsonpReturn',
+                    success : function(req){
+                        console.log(req);
+                        if (req.status == 1) {
+                            time(btn_yzm);
+                        } else {
+                            alert(req.msg);
+                        }
+                    }
+                });
+           });
+
+           
+
+            $("#sure").on("click",function(){
+                var phone = $("#phone").val();
+                var password = $("#password").val();
+                var rpassword = $("#password").val();
+                var code = $("#code").val();
+                if(!(/^1[34578]\d{9}$/.test(phone))){ 
+                    alert("手机号码有误!");  
+                    return;
+                } 
+                if(password.length<6){ 
+                    alert("密码长度有误!");  
+                    return; 
+                } 
+                if(password != rpassword){
+                    alert("两次密码不一样!")
+                    return;
+                }
+                $.ajax({
+                    url : 'http://hr.hongrunet.com/Home/UserCenter/forgetPwd',
+                    dataType:'jsonp',
+                    data:{
+                        phone:phone,
+                        password:password,
+                        rpassword:rpassword,
+                        code:code
+                    },
+                    jsonpCallback:'jsonpReturn1',
+                    success : function (req) {
+                        console.log(req);
+                        if(req.status==='1'){
+                            alert(req.msg);
+                            window.location.href = "jyt_login.html";
+                        }else{
+                            alert(req.msg);
+                        };
+                        
+                    }
+                });
+            });
+           
+      </script>
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" href="../css/lf_style.css"/>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+    </head>
+    <style type="text/css">
+      .jty_ul11{
+        overflow: hidden;
+        background: #eee;
+      }
+      .jty_ul11 li{
+        display: block;
+        width: 50%;
+        text-align: center;
+        font-size: 18px;
+        line-height: 40px;
+        float: left;
+      }
+       .jty_ul11cli{
+        color: #f00;
+        border-bottom: 3px solid #f00;
+       }
+    </style>
+    <body>
+        <!-- 控制页面大小 -->
+        <div class="big-box">
+            <!-- 头部 -->
+            <header class="header lf_header">
+                 <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+                 <h2>客服中心</h2>
+            </header>
+            <!-- 中间内容 -->
+            <div class="content">
+              <div class="lf_kefuimg">
+              	   <img src="../lf_img/lf_kefu.png" alt="客服"/>
+              </div>
+               <div class="lf_kefuPhone lf_clearFloat">
+               	  <img src="../lf_img/lf_phone.png" alt="电话"/>
+               	  <h3>客服电话：<span>0314-4314455</span></h3>
+               </div>
+              <button style="margin:0 auto;" class="lf_dailing" onclick="javascript:phone('0314-4314455')"></button>
+              <ul class="jty_ul11">
+                <li class="jty_ul11cli">
+                  客服一
+                </li>
+                <li>
+                  客服二
+                </li>
+              </ul>
+              <div style="width:46.8125vw;padding:1vw 2vw 0;margin:0 auto;overflow: hidden;">
+                 <div class="lf_code" style="margin-right:2vw;margin-top: 8vw;">
+                     <p>客服一</p>
+                     <img src="../lf_img/con01.jpg" alt="二维码"/>
+                  </div>
+                  <div class="lf_code" style="margin-top: 8vw;display:none;">
+                      <p>客服二</p>
+                     <img src="../lf_img/con02.jpg" alt="二维码"/>
+                  </div>
+                 
+              </div>
+              
+            </div>
+              
+             <!-- 尾部，如果没有需删除 -->
+           
+          
+        </div>
+        <h3 class="lf_codeWord">扫一扫，添加客服微信!</h3>
+    </body>
+    <script type="text/javascript" src="../js/lf_class.js"></script>
+    <script>
+        function phone(date){
+            window.location.href = 'tel://' + date;
+        }
+        $(document).ready(function() {
+          $(".jty_ul11 li").on("click",function(){
+            var index = $(this).index()
+            $(".jty_ul11 li").removeClass('jty_ul11cli')
+            $(this).addClass('jty_ul11cli')
+            $(".lf_code").css('display', 'none');
+             $(".lf_code").eq(index).css('display', 'block');
+          })
+        });
+    </script>
+</html>

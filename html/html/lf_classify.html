@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" href="../css/lf_style.css"/>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+        <style type="text/css">
+            .lf_classify:last-child{
+                margin-bottom: 0;
+                border-bottom: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 控制页面大小 -->
+        <div class="big-box">
+            <!-- 头部 -->
+            <header class="header lf_header">
+                 <a href="javascript:history.go(-1);" class="iconfont icon-fanhui"></a>
+                 <h2>课堂分类</h2>
+            </header>
+            <!-- 中间内容 -->
+            <div class="content" style="background-color:#f5f5f5">
+                <ul id='content'>
+                    <!-- 内容填充部分 -->
+                    <!-- <li class="lf_classify"></li> -->
+                </ul>
+
+            </div>
+            <!-- 尾部，如果没有需删除 -->
+            <footer class="footer" style="border-top:1px solid #d9d9d9">
+                <ul class="lf_botlinks">
+                    <li>
+                        <a class="lf_jump" href="kll_index.html">
+                            <i class="iconfont icon-shouye lf_icon-top"></i>
+                            <span class="lf_botxt">首页</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="lf_jump" href="javascript:void(0)">
+                            <i class="iconfont icon-app1 lf_icon-top"></i>
+                            <span class="lf_botxt">APP</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="lf_jump" href="lf_classify.html" style="color:#188eee">
+                            <i class="iconfont icon-fenlei lf_icon-top"></i>
+                            <span class="lf_botxt">课程分类</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="lf_jump" href="lf_comprofile.html">
+                            <i class="iconfont icon-kefu lf_icon-top"></i>
+                            <span class="lf_botxt">公司客服</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="lf_jump" href="lf_personal.html">
+                            <i class="iconfont icon-geren lf_icon-top"></i>
+                            <span class="lf_botxt">个人中心</span>
+                        </a>
+
+                    </li>
+                </ul>
+            </footer>
+        </div>
+        <!-- <script type="text/javascript" src="../js/lf_class.js"></script> -->
+    </body>
+</html>
+<script>
+    $.ajax({
+        url : 'http://hr.hongrunet.com/home/index/index',
+        data : ' ',
+        dataType : 'jsonp',
+        jsonpCallback : 'jsonpReturn',
+        success : function(res){
+            console.log(res);
+            var cclass = res.data.course_class;
+            var type = '';
+            for(var i = (cclass.length-1);i > 0;i--){
+                type = '<li class="lf_classify"><a class="lf_jump" href="wy_shuangchuang.html?classid='+cclass[i].id+'&u_id=1"><i style="color:rgb('+Math.round(Math.random()*255)+','+Math.round(Math.random()*255)+','+Math.round(Math.random()*255)+')" class="iconfont '+cclass[i].icon+' lf_icon-zuo"></i><span class="lf_leaguer">'+cclass[i].name+'</span><i class="iconfont icon-you"></i></a></li>';
+                $('#content').prepend(type);
+            }
+
+
+        },
+        error : function(err){
+            console.log(err);
+        }
+    })
+</script>

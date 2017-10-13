@@ -1,0 +1,170 @@
+body{
+    font-family: '微软雅黑';
+}
+.pagetitle{
+    width: 100%;
+    background-color: #00a0e9;
+    text-align: center;
+    padding-top:5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    color: #F0F0EE;
+}
+.navmenu{
+    margin: 0;background-color: #ffffff;height: 35px;
+}
+.cate{
+    font-weight:500;
+    height:100%;
+    text-align: center;
+    font-size: 14px;
+    padding-top: 8px;
+    border-bottom: 1px solid #e1e1e8;
+}
+.cateleftborder{
+    border-left: 1px solid #e1e1e8;
+}
+.cateactive{
+    border-bottom: 1px solid #00a0e9;
+    color: #00a0e9;
+}
+.barionc{
+    font-size: 18px;color: #00a0e9;
+}
+.bartitle{
+    font-size: 12px;color: #00a0e9;
+}
+.nav-tabs
+{
+    text-align: center;
+}
+.listtitle{
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+.listrow{
+    margin: 2px;border: 1px solid #eeeeee;margin-top: 10px;
+}
+.listleft{
+    padding-left: 1px;padding-right: 1px;
+}
+.listleft img{
+    width: 100%;height: 100%;
+}
+.listright{
+    padding-left: 5px;padding-right: 1px;
+}
+.listspan{
+    font-size: 12px;
+}
+.userinfotable{
+    width: 100%;
+    margin: 5px;
+}
+.userinfotable tr{
+    height: 40px;line-height: 40px;border-bottom: 1px solid #eeeeee;margin-top: 5px;
+}
+.userinfotable tr>td:first-child{
+    width: 60px;
+    font-size: 14px;text-align: right;
+}
+.userinfotable input{
+    width: 95%;
+    border: none;
+    margin-left: 5px;
+}
+.buylogtable{
+    width: 100%;
+    margin: 5px;
+}
+.buylogtable tr{
+    height: 40px;line-height: 25px;border-bottom: 1px solid #eeeeee;margin-top: 5px;padding: 5px;
+}
+.buylogtable tr>td{
+    padding: 5px;
+}
+.buylogtable tr>td:first-child>span:first-child{
+    font-size: 16px;
+}
+.buylogtable tr>td:first-child>span:last-child{
+    color: #9b9b9b;
+}
+.buylogtable tr>td:last-child{
+    font-size: 20px;
+    color:red;
+}
+/*首页中间类别样式*/
+.index-div-cateTitle{
+    background-color: #00a0e9;
+    margin: 0px;
+    line-height: 35px;
+}
+.index-div-cateTitle span:first-child{
+    margin-left: 5px;font-size: 18px;font-weight: 500;color: #ffffff;
+}
+.index-div-cateTitle span:last-child{
+    float: right; margin-right: 5px;font-size: 14px;font-weight: 500;color: #ffffff;
+}
+/*中间内容区域div */
+.containerdiv{
+    padding: 0;overflow-y:auto;width:100%;margin-top: 38px;
+}
+/*购买页面样式*/
+.buy-list-content{
+    width: 100%;padding-left: 10px;border: 1px solid #e0e0e0;
+}
+.buy-list-sigle{
+    width:100%;padding-left:10px;height:40px;padding-top: 10px;border: 1px solid #e0e0e0;
+}
+.buy-list-pay{
+    line-height: 40px;width:100%;padding-top: 10px;border: 1px solid #e0e0e0;
+}
+.buy-list-pay ul{
+    list-style: none;padding-left: 5px;
+}
+.buy-list-pay img{
+    height: 40px;width: 40px;
+ }
+/*用户中心样式*/
+.headdiv{
+    margin: 0;height: 120px;background-color: #2D64B3;
+}
+.headdiv div:last-child{
+    color: #ffffff;
+}
+.headimg{
+    margin-top:30px;width: 60px;height: 60px;border-radius: 10px;
+}
+.membername-div{
+    padding-top: 20px;
+}
+.membername-div span:first-child{
+    font-size: 18px;font-weight: 600;
+ }
+.hrdiv{
+    height: 8px;background-color: #FFFFFF;
+}
+.list-item-div{
+    margin: 0;height: 50px;line-height:50px;border: 1px solid #EEE;
+}
+.list-item-div a{
+    color:black;
+}
+.list-item-div span:first-child{
+    font-size: 16px;font-weight: 500;
+}
+.list-item-div span:last-child{
+    float: right;margin-top: 15px;margin-right: 10px;
+}
+
+.numdiv{
+    margin: 0;height: 50px;border: 1px solid #EEE;
+}
+.numdiv div:first-child{
+    text-align: center;
+}
+.numdiv div:last-child{
+    text-align: center;border-left: 1px solid #EEE;
+}

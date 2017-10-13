@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="ZZJBS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <!-- 引入文件 -->
+    <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+    <link rel="stylesheet" href="../css/swiper-3.4.2.min.css"><!-- 轮播图样式 -->
+    <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+    <!-- 私有样式 -->
+    <link rel="stylesheet" href="../css/kll_index.css">
+    <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+    <script type="text/javascript" src="../js/swiper.min.js"></script><!-- 轮播图js -->
+    <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+    <!-- 私有js -->
+    <script type="text/javascript" src="../js/kll_index.js"></script>
+    <title>鸿儒商学讲堂</title>
+</head>
+<body>
+<!-- 控制页面大小 -->
+<div class="big-box">
+    <!-- 头部 -->
+    <header class="header kll_header">
+        <a class="kll_header-left iconfont icon-fanhui" href="javascript:history.go(-1);"></a>
+        <h1 class="kll_header-h1">购买权限</h1>
+    </header>
+    <!-- 中间内容 -->
+    <div class="content">
+        <!-- 支付头部 -->
+        <div class="kll_payment-top">
+            <p class="kll_payment-top_title">一个月访问权限</p>
+            <h4 class="kll_paycom-top_money">¥19元<span class="kll_paycom-top_span">或</span>99积分</h4>
+        </div>
+
+        <!-- 支付选项 -->
+        <ul class="kll_payment-option">
+            <li class="kll_payment-option_li">
+                <span class="kll_payment-option_icon iconfont icon-wxpay" ></span>
+                <p class="kll_payment-option_p">微信支付<span class="kll_payment-option_rec">推荐</span></p>
+                <span class="kll_payment-option_change iconfont icon-duihaocuohao54 kll_payment-option_ok" id="pay1"></span>
+            </li>
+            <li class="kll_payment-option_li">
+                <span class="kll_payment-option_icon iconfont icon-zhifubaozhifu"></span>
+                <p class="kll_payment-option_p">支付宝支付</p>
+                <span class="kll_payment-option_change iconfont icon-duihaocuohao54" id="pay2"></span>
+            </li>
+            <li class="kll_payment-option_li">
+                <span class="kll_payment-option_icon iconfont icon-icon"></span>
+                <p class="kll_payment-option_p">余额支付</p>
+                <span class="kll_payment-option_change iconfont icon-duihaocuohao54" id="pay3"></span>
+            </li>
+            <li class="kll_payment-option_li">
+                <span class="kll_payment-option_icon iconfont icon-jifen1" style="color:#188eee"></span>
+                <p class="kll_payment-option_p">积分支付</p>
+                <span class="kll_payment-option_change iconfont icon-duihaocuohao54" id="pay4"></span>
+            </li>
+        </ul>
+        <!-- 支付确定选项 -->
+        <button class="kll_payment-btn">立即支付</button>
+    </div>
+</div>
+<script type="text/javascript" src="../js/weixin_app.js"></script> 
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>  
+
+<script>
+/*点击选中*/
+    $(".kll_payment-option_li").on("touchstart", function (){
+          $(".kll_payment-option_change").removeClass('kll_payment-option_ok');
+          $(this).find(".kll_payment-option_change").addClass("kll_payment-option_ok");
+          var box = $(this);
+          var index = goIndex(box);
+         });
+        function goIndex(it) {
+            var big = it.parent();
+            for (var i = 0; i < big.children().length; i++) {
+                if (big.children().eq(i)[0] == it[0]) {
+                    return i;
+                }
+            }
+        };
+
+        $(".kll_payment-btn").on("touchstart",function () {
+            var id = $("span.kll_payment-option_ok").attr("id");
+            var paymenttype = $.trim(id.replace("pay",""));
+             if(is_kingkr_obj() && paymenttype==1){
+              paymenttype=5;
+            } 
+            // paymenttype=5;
+            if (paymenttype == 4) {
+                window.location.href="kll_integral.html";
+            }else{
+                $.ajax({
+                    url:"http://hr.hongrunet.com/Home/UserCenter/scoreExchange",
+                    dataType:"jsonp",
+                    data:{paymenttype:paymenttype},
+                    jsonpCallback:"jsonpReturn",
+                    success:function (data) {
+                        if (data.status == 0) {
+                            alert(data.msg);
+                        }else{
+                            if (data.data.class=="支付宝") {
+                                window.location.href= data.data.res;
+                            }else if(data.data.class == "微信APP"){
+                                var orderId = data.data.oid;
+                                $.ajax({
+                    　　　　　　　　url: "http://hr.hongrunet.com/Home/WxAppPay/sendRequest", 
+                                    data:{'orderId':orderId},
+                    　　　　　　　　dataType:'jsonp',
+                    　　　　　　　　async: true,
+　　　　　　　　                    timeout: 200000,
+                                    jsonpCallback:"jsonpReturn1",
+                    　　　　　　　　success: function(data){　
+                                        if(data.status){
+                                            payType(data.data,'WEIXIN','PayResult');
+                                        }else{
+                                            alert(data.error_message);
+                                        }
+                    　　　　　　　　}
+                    　　　　　　});
+                            }else if(data.data.class == "微信"){
+                                    payConfig = data.data.payConfig;
+                                    //注入 Jsapi 配置
+                                    wx.config(eval('(' +data.data.jsapi + ')'));                            
+                                   // 调用支付
+                                   WeixinJSBridge.invoke(
+                                    'getBrandWCPayRequest', {
+                                    "appId":payConfig.appId,     //公众号名称，由商户传入
+                                    "timeStamp":payConfig.timeStamp, //时间戳，自1970年以来的秒数
+                                    "nonceStr":payConfig.nonceStr, //随机串
+                                    "package":payConfig.package,
+                                    "signType":payConfig.signType, //微信签名方式：
+                                    "paySign":payConfig.paySign //微信签名
+                                   },
+                                   function(res){
+                                        console.log(res);return false;
+                                       if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                                        $('#loading').hide();
+                                        // 支付成功
+                                        alert('付款成功');
+                                        // window.location = '/Myinfo/index.html';
+                                      }else{
+                                        $('#loading').hide();
+                                        // 支付失败
+                                        alert('支付取消');
+                                        // window.location = '/Goods/show.html?id={{$_GET["id"]}}';
+                                      }
+                                   }
+                                 );
+                            }else{
+                                if (data.status == 1) {
+                                    alert("余额支付成功");
+                                    window.location.href = "lf_personal.html";
+                                }else{
+                                    alert("余额支付失败");
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+      　function payResult(r) {
+      　　　　if(r == 0){
+      　　　　setTimeout(function(){
+                      alert('付款成功');
+      　　　　}, 2000);
+      　　　　}else{
+      　　　　　　setTimeout(function(){
+      　　　　　　alert('支付失败请刷新后再试！');
+      　　　　}, 2000);
+      　　}
+      }
+</script>
+</body>
+</html>

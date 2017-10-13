@@ -1,0 +1,438 @@
+<include file="Public/head" />
+<form id="fmform" action="" method="POST" enctype="multipart/form-data">
+    <input type="hidden" value="fmimg" name="imgtype" value="" />
+    <input id="fmimg" style="display: none;" name="fmimg" type="file" onchange="upload('fmform','imgurl')"/>
+</form>
+<form id="vidform" action="" method="POST" enctype="multipart/form-data">
+    <input type="hidden" value="fmvid" name="vidtype" value="" />
+    <input id="fmvid" style="display: none;" name="fmvid" type="file" onchange="videoUpload('vidform','vidurl')"/>
+</form>
+<style type="text/css">
+	table tr > td:first-child{padding-left:20px;padding-bottom:10px;width:40%;text-align:center;}
+	table tr > td:last-child input{width:80%;margin-bottom:10px;	}
+</style>
+<div> 
+	<div style="margin:10px;">
+		<input style="height:36px;" type="text" size="24px" placeholder="输入视频名称过滤查询" id="title" />
+		<select class="form-control" style="width:21%;height:36px;display:inline;border-radius:2px;" id="grade">
+				<option value="">请选择会员等级</option>
+				<option value="1">学童</option>
+				<option value="2">学霸</option>
+				<option value="3">讲师</option>
+				<option value="4">合伙人</option>
+		</select>
+		<select class="form-control" style="width:23%;height:36px;display:inline;border-radius:2px;" id="change">
+				<option value="">请选择视频类别</option>
+				<option value="1">我的朋友圈</option>
+				<option value="2">双创平台</option>
+				<option value="3">人际沟通</option>
+				<option value="4">团队企管</option>
+				<option value="5">农建商道</option>
+				<option value="6">健康养生</option>
+				<option value="7">家庭教育</option>
+				<option value="8">微商制造</option>
+				<option value="9">演讲高手</option>
+				<option value="10">分享经济</option>
+		</select>
+		<label>&nbsp;选择时间 :</label>
+		<input style="height:36px;" type="date" size="24px" id="insta" />至
+		<input style="height:36px;" type="date" size="24px" id="inend" />
+		
+		<button style="margin-left:10px;width:100px;" class="btn btn-primary" onclick="searchVideo();">查询</button>
+		<a style="margin-left:10px;width:100px;" type="button" class="btn btn-primary" onclick="addVideo()">添加</a>
+	</div>	
+	<div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="userlist" style="padding-right: 20px;">
+			<table id="jqGrid" style="width: 100%;"></table>
+			<div id="jqGridPager"></div> 	
+	    </div>
+    	<div role="tabpanel" class="tab-pane" id="edituser"> 		
+	</div>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="width:80%;margin:auto;">
+    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">添加 | 编辑课程信息　<span>(带<span style="color:red">*</span>号为必填项)</span></h4>
+	      </div>
+	       <div class="modal-body">
+				<table class="modal-table" style="width:80%;">
+					<tr>
+						<td>作者<span style="color:red">&nbsp;*</span></td>
+						<td>
+						<input type="hidden" id="id" name="id" value="" />
+						<input type="text" class="form-control" name="author" placeholder="真实姓名" id="author"></td>
+					</tr>
+					<tr>
+						<td>类别<span style="color:red">&nbsp;*</span></td>
+						<td>
+							<select id="classid" name="classid">
+								<option value="1">我的朋友圈</option>
+								<option value="2">双创平台</option>
+								<option value="3">人际沟通</option>
+								<option value="4">团队企管</option>
+								<option value="5">农建商道</option>
+								<option value="6">健康养生</option>
+								<option value="7">家庭教育</option>
+								<option value="8">微商制造</option>
+								<option value="9">演讲高手</option>
+								<option value="10">分享经济</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>等级<span style="color:red">&nbsp;*</span></td>
+						<td>
+							<select id="level"  name="level">
+								<option value="1">免费</option>
+								<option value="2">学霸专享</option>
+								<option value="3">讲师专享</option>
+								<option value="4">合伙人专享</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>视频名称<span style="color:red">&nbsp;*</span></td>
+						<td><input type="text" class="form-control" name="title" id="title1" placeholder="请输入视频名称"></td>
+					</tr>
+					<tr>
+						<td>视频简介</td>
+						<td><input type="text" class="form-control" name="content" id="content" placeholder="视频简介"></td>
+					</tr>
+					<tr>
+						<td>缩略图</td>
+						<td><img id="imgurl" name="imgurl" style="width: 130px;height: 130px;margin:5px auto;" class="form-control" src="__PUBLIC__/images/default.png" onclick="javascript:$('#fmimg').click();"/>
+						<input id="thumbnail" type="hidden" name="thumbnail" value="" />
+						<span style="color:red;">上传图片尺寸为:1145 * 500 px</span>
+                        </td>
+					</tr>
+					<tr>
+						<td>上传视频</td>
+						<td>
+							<div id="doing"></div> 
+							<video class="form-control" id="vidurl" name="vidurl" style="width: 130px;height: 150px;margin:5px auto;" onclick="javascript:$('#fmvid').click();" src="" poster="__PUBLIC__/images/default.png"></video>
+							<input id="video" type="hidden" name="video" value="" />
+                        </td>
+						<!-- <td><input type="file" class="form-control" name="video" id="video" placeholder="上传视频"></td> -->
+					</tr>           
+				</table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-primary" onclick="saveUser();">保存</button>
+	      </div>		     
+    	</div>
+    </div>
+  </div>
+</div>
+<div class="modal fade bs-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="width:80%;height:600px;margin:auto;">
+    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">视频审核/查看</span></h4>
+	      </div>
+	       <div class="modal-body shipinchakan">
+
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-primary" id="pizhun" onclick="">批准</button>
+	        <button type="button" class="btn btn-primary" id="bupizhun" onclick="">拒绝</button>
+	      </div>		     
+    	</div>
+    </div>
+</div>
+<include file="Public/footer" />
+<script type="text/javascript">
+	//上传轮播图
+	function upload(fromID,imgid){
+	  var vars=$("#"+fromID);
+	  var options={
+	      type:"post",
+	      url:"{:U('/Admin/File/Upload')}",
+	      dataType:'json',
+	      contentType:"application/json;charset=utf-8",
+	      success:function(data){
+	          if(data!="false"){
+	              $("#"+imgid).attr('src',data);
+	              $("#vidurl").attr('poster',data);
+	              $("#thumbnail").attr('value',data);
+	          }
+	      }
+	  }
+	  vars.ajaxSubmit(options);
+	}
+	//上传视频
+	function videoUpload(fromID,vidid){
+	  var vars=$("#"+fromID);
+	  var options={
+	      type:"post",
+	      url:"{:U('/Admin/Qiniu/index')}",
+	      dataType:'json',
+	      contentType:"application/json;charset=utf-8",
+	      timeout:1500000, 
+	        // 请求发送之前（发送请求前可修改XMLHttpRequest对象的函数，如添加自定义HTTP头。）。
+	        beforeSend:function(XMLHttpRequest){
+	            $("#doing").html("<strong>正在处理，请稍后···</strong>"); 
+	        }, 
+	        // 请求成功后的回调函数
+	        success:function(data){
+	             console.log(data);
+		      	if(data.status==1){
+		      		$("#"+vidid).attr('src',data.url);
+		      		$("#video").attr('value',data.url);
+		      		alert('视频已上传')
+		      	}else{
+		      		alert(data.url);
+		      	}
+	        },
+	        // 请求完成后的回调函数 (请求成功或失败之后均调用)
+	        complete:function(XMLHttpRequest,textStatus){
+	            $("#doing").empty(); 
+
+	        }, 
+	        // 请求失败时调用此函数。
+	        error:function(XMLHttpRequest,textStatus,errorThrown){
+	            $("#doing").empty();
+	            alert(data); 
+	        } 
+	  }
+	  vars.ajaxSubmit(options);
+	}
+	var class1 = $("#class").val();  
+	function formatLink(id,option,object) {
+		var object1 = object.video;
+		return '<a class="btn btn-primary" onclick="shenhe(\''+id+'\',\''+object1+'\');">审核</a>&nbsp;<a class="btn btn-primary" onclick="edit('+id+');">编辑</a>&nbsp;<a class="btn btn-danger" href="javascript:" onclick="deleteUser('+id+');">删除</a>';
+	}
+	function shenhe(id,object){
+		$('#pizhun').attr('onclick','pizhun('+id+',1)');
+		$('#bupizhun').attr('onclick','pizhun('+id+',2)');
+		$('.shipinchakan').html('');
+		$('.shipinchakan').append('<embed style="width:100%;height:400px;" src="'+object+'"></embed>');
+		$('.bs-example-modal-lg1').modal().show(); 
+	}
+	function pizhun(id,type){
+		$.ajax({
+			url: "{:U('/Admin/Video/pizhun')}",
+			dataType: "json",
+			async: false,
+			data: { 
+				"id": id,
+				"type" : type,
+			},
+			type: "GET",  
+			success: function(data) {
+				alert(data.msg);
+				location.href='/Admin/Video/index.html';
+//				$('#main_iframe').contentWindow.location.reload(true);
+//				$("#jqGrid").clearGridData();
+//	       		$("#jqGrid").jqGrid('setGridParam', { data: data});
+//	       		$("#jqGrid").trigger('reloadGrid');
+			}  
+		});
+	}
+	function formatIs(is) {
+		if (parseInt(is)==1) {
+			return "免费";			
+		}else if(parseInt(is)==2){
+			return "学霸专享";
+		}else if(parseInt(is)==3){
+			return "讲师专享";
+		}else if(parseInt(is)==4){
+			return "合伙人专享";
+		}
+	}
+	function fClass(is) {
+		if (parseInt(is)==9) {
+			return "演讲高手";			
+		}else if(parseInt(is)==2){
+			return "双创平台";
+		}else if(parseInt(is)==3){
+			return "人际沟通";
+		}else if(parseInt(is)==4){
+			return "团队企管";
+		}else if(parseInt(is)==5){
+			return "农建商道";
+		}else if(parseInt(is)==6){
+			return "健康养生";
+		}else if(parseInt(is)==7){
+			return "家庭教育";
+		}else if(parseInt(is)==8){
+			return "微商制造";
+		}else if(parseInt(is)==1){
+			return "大咖专访";
+		}else if(parseInt(is)==10){
+			return "分享经济";
+		}
+	}
+	function formatterImg(thumbnail){
+		return "<img src ="+thumbnail+" style='width: 50px;height: 50px;'  />";
+	}
+	function fTime(createtime){
+		var timestamp3 = createtime;  
+		var newDate = new Date();
+		newDate.setTime(timestamp3 * 1000);
+		return newDate.toLocaleString();
+	}
+	function zhuangtai(is_look){
+		var look = '未审核';
+		if(is_look == '1'){
+			look = '审核通过';
+		}
+		if(is_look == '2'){
+			look = '审核不通过';
+		}
+		return look;
+	}
+	function addVideo() {
+  		$("#level").val("");
+		$("#classid").val("");
+		$("#title").val("");  	
+		$("#author").val("");
+		$("#content").val("");
+		$("#thumbnail").val("");
+		$("#video").val("");
+		$('.bs-example-modal-lg').modal().show(); 
+	}
+   //编辑用户信息
+	function edit(id){
+		$.ajax({
+			url: "{:U('/Admin/Video/editVideo')}",
+			dataType: "json",
+			async: false,
+			data: { "id": id},
+			type: "GET",  
+			success: function(data) {
+			$("#id").val(data.id);	
+  			$("#title").val(data.title);
+  			$("#author").val(data.author);
+  			$("#content").val(data.content);
+  			$("#imgurl").attr('src',data.thumbnail);
+  			$("#vidurl").attr('poster',data.thumbnail);   	
+  			$("#thumbnail").val(data.thumbnail);
+  			$("#video").val(data.video);
+  			$("#level").val(data.level);
+  			$("#classid").val(data.classid);			
+			}  
+		});
+		$('.bs-example-modal-lg').modal().show(); 
+	}
+
+	function deleteUser(id){
+		if (confirm("你确定要删除吗?")) {
+			$.ajax({
+				url: "{:U('/Admin/Video/delVideo')}",
+				dataType: "json",
+				async: true,
+				data: { "id": id},
+				type: "GET",   
+				success: function(data) {
+					if(data.status == 1){
+						alert(data.msg);
+	    				$(window.parent.document).find("#main_iframe").attr("src","{:U('/Admin/Video/index')}");
+	    				//window.history.go(-1);
+					}else{
+						alert(data.msg);
+						$(window.parent.document).find("#main_iframe").attr("src","{:U('/Admin/Video/index')}");
+					}
+				}
+		    });			
+		}
+	}
+	//模糊查询课程
+	function searchVideo(){
+		var grade = $("#grade").val();
+		var insta = $("#insta").val();
+		var inend = $("#inend").val();
+		var change = $("#change").val();
+		var title = $("#title").val();
+		$.ajax({
+			url:"{:U('/Admin/Video/search')}",
+			type:'GET',
+			data:{'title':title,'grade':grade,'start':insta,'end':inend,'change':change},
+			dataType:'json',
+			success:function(returndata){
+				$("#jqGrid").clearGridData();
+	       		$("#jqGrid").jqGrid('setGridParam', { data: returndata});
+	       		$("#jqGrid").trigger('reloadGrid');
+			}
+		});
+	}
+	//保存添加或修改的用户信息
+	function saveUser(){
+		var id   	= $("#id").val();
+		var classid   = $("#classid").val();
+		var level    = $("#level").val();
+		var title     = $("#title1").val();
+		console.log(title);
+		var content = $("#content").val();
+		var thumbnail = $("#thumbnail").val();
+		var video   = $("#video").val();
+		var author      = $("#author").val();;	
+	  	$.ajax({
+	  		type     : "POST",
+	  		url      : "{:U('/Admin/Video/saveVideo')}",
+	  		data     : {"id":id,"classid":classid,"level":level,"title":title,"content":content,"thumbnail":thumbnail,"video":video,"author":author},
+	  		dataType : "json",
+	  		error		 : function(){},
+	  		success  : function(data){
+	    			console.log(data);
+	    			if(data.status == 1){
+	    				alert(data.msg);
+	    				$(window.parent.document).find("#main_iframe").attr("src","{:U('/Admin/Video/index')}");
+	    				//window.history.go(-1);
+	    			}else{
+	    				alert(data.msg);
+	    				//window.history.go(-1);
+	    			}      				
+	  		}
+	  	});
+	}
+	function test(as) {
+		switch(parseInt(as)){
+			case 1:
+			  return "学童";
+			  break;
+			case 2:
+			  return "学霸";
+			  break;
+			case 3:
+			  return "讲师";
+			  break;
+			case 4:
+			  return "合伙人";
+			  break;
+		} 
+	}
+	$(document).ready(function($) {	
+		$("#jqGrid").jqGrid({
+			styleUI : 'Bootstrap',
+			colModel: [
+			    // { label: 'ID', name: 'id',width:'40'},
+			    { label: '视频权限', name: 'level',width:'80',formatter: formatIs},
+			    { label: '视频类别', name: 'classid',width:'80',formatter:fClass},
+			    { label: '视频名称', name: 'title',width:'110'},
+			    { label: '观看数', name: 'looknum',width:'50' },
+			    { label: '作者', name: 'author',width:'50' },
+			    { label: '会员等级', name: 'grade',width:'80',formatter: test},
+			    { label: '缩略图', name: 'thumbnail',width:'100',formatter: formatterImg },
+			    { label: '内容', name: 'content',width:'80'},
+			    { label: '时间', name: 'createtime',width:'195',formatter:fTime},
+			    { label: '状态', name: 'is_look',width:'100',formatter:zhuangtai},
+			    { label: '操作', name: 'id',width:140,formatter: formatLink}
+			],
+			viewrecords: true,
+			rownumbers: true,
+			rownumWidth: 35,
+			height: document.documentElement.clientHeight-135,
+			autowidth:true,
+			rowNum: 9,
+			datatype: 'local',
+			loadonce:true,
+			pager: "#jqGridPager"
+		});
+		$("#jqGrid").jqGrid('setGridParam', { data: eval({$data})});
+		$("#jqGrid").trigger('reloadGrid');
+	});
+</script> 

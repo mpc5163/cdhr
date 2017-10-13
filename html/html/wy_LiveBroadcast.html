@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"/><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+		<link rel="stylesheet" type="text/css" href="../css/jyt_public.css">
+		<script src="../js/jquery-3.1.1.min.js"></script>
+		 <link rel="stylesheet" href="/layui/layui.css"/>
+		<script type="text/javascript" src="/layui/layui.js"></script>
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+		
+        <link rel="stylesheet" href="../css/wy_main.css"/>
+        <title>鸿儒商学讲堂-发起直播</title>
+        <style>
+        	.wy_content{
+	        	width: 100%;
+	        	height: 100%;
+	        	padding: 0 3.5vw;
+	        	box-sizing:border-box;
+	        }
+			.wy_list{
+				height: 17.65625vw;
+				line-height: 17.65625vw;
+				border-bottom: 1px solid #b3b3b3;
+				overflow:hidden;
+			}
+			.wy_list .wy_label{
+				font-size: 1.5625rem;
+				display: block;
+				width: 19vw;
+				float: left;
+			}
+			.wy_list .wy_input{
+				width: 61.6875vw;
+				height: 8.28125vw;
+				line-height: 8.28125vw;
+				border: 1px solid #808080;
+				border-radius: 5px;
+				background: #fff;
+				outline: none;
+				padding: 0 2vw;
+				font-size: 1.4rem;
+				margin-left: 1vw;
+			}
+			.wy_list .wy_select{
+				appearance:none;
+				-moz-appearance:none;
+				-webkit-appearance:none;
+				width: 66vw;
+				height: 9vw;
+				line-height: 8.28125vw;
+				border: 1px solid #808080;
+				border-radius: 5px;
+				font-size: 1.5rem;
+				padding: 0 5vw 0 2vw;
+				background: url(../wy_img/wy_selectbg.png) no-repeat right 1vw center;
+				background-size: 4.5% 30%;
+				margin-left: 1vw;
+				outline: none;
+			}
+			.wy_list .wy_star{
+				color: red;
+				font-size: 2rem;
+				float: right;
+				line-height:19.5vw;
+			}
+			.wy_pay-list{
+				border: none;
+			}
+			.wy_money{
+				color: #f23030;
+				font-size: 1.7rem;
+			}
+			.wy_money em{
+				font-size: 2.2rem;
+				font-style: normal;
+			}
+			.wy_btn{
+				width: 93vw;
+				height: 11.5625vw;
+				line-height: 11.5625vw;
+				font-size: 1.875rem;
+				text-align: center;
+				background: #188eee;
+				border-radius: 4px;
+				color: #fff;
+				outline: none;
+				margin-top: 5vw;
+				margin-bottom: 8vw;
+			}
+			.wy_img-list .wy_label{
+				font-size: 1.5625rem;
+				display: block;
+				width: 19vw;
+				float: left;
+			}
+			.wy_img-list{
+				padding: 5vw 0;
+				border-bottom: 1px solid #b3b3b3;
+				overflow: hidden;
+			}
+			.wy_img-list .wy_img{
+				width: 26.25vw;
+				height: 26.25vw;
+				border: 1px solid #808080;
+				border-radius: 5px;
+				float: left;
+				margin-left: 1vw;
+				margin-right: 5vw;
+			}
+			.wy_img-list .wy_btn{
+				width: 18.75vw;
+				height: 7.03125vw;
+				line-height: 7.03125vw;
+				background: #188eee;
+				border-radius: 5px;
+				font-size: 1.3125rem;
+				color: #fff;
+				display: block;
+				margin-top: 10vw;
+				margin-bottom: 5vw;
+			}
+			.wy_img-list .wy_zhuyi{
+				color: red;
+				font-size: 1.125rem;
+			}
+			.jyt_jiaocheng{
+				font-size:20px;
+				width:100%;
+				display:block;
+				text-align: center;
+				padding-top: 10px ;
+				padding-bottom: 8px;
+				color: blue;
+				border-bottom:1px solid #b3b3b3;
+			}
+        </style>
+    </head>
+    <body>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header wy_header wy_font32 wy_header-a">
+		        <div class="wy_header-title">
+		            <a href="javascript:history.go(-1);" class="iconfont icon-fanhui wy_backBtn"></a>
+		            <span>发起直播</span>
+		        </div>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content wy_content">
+	    	<a href="jyt_zhiboliu.html" class="jyt_jiaocheng">点击查看直播教程！</a>
+	    		<!-- <div class="wy_list">
+	    			<label class="wy_label">直播类型&nbsp;:</label>
+	    			<select class="wy_select" id="cid">
+	    				<option value="双创平台">双创平台</option>
+	    				<option value="人际沟通">人际沟通</option>
+	    				<option value="团队企管">团队企管</option>
+	    				<option value="农建商道">农建商道</option>
+	    				<option value="健康养生">健康养生</option>
+	    				<option value="家庭教育">家庭教育</option>
+	    				<option value="微商制造">微商制造</option>
+						<option value="大咖专访">大咖专访</option>
+						<option value="大神直播">大神直播</option>
+	    			</select>
+	    			<span class="wy_star">*</span>
+	    		</div> -->
+	    		<div class="wy_list">
+	    			<label class="wy_label">直播名称&nbsp;:</label>
+	    			<input style="border:0;background:none;appearance:none;-webkit-appearance:none;width: 61.6875vw;border: 1px solid #808080;border-radius: 5px;background: #fff;outline: none;padding: 2vw 2vw;font-size: 1.4rem;margin-left: 1vw;" type="text" id="title" placeholder="请输入直播间名称" />
+	    			<span class="wy_star">*</span>
+	    		</div>
+	    		<div class="wy_img-list">
+	    			<label class="wy_label">封面图片&nbsp;:</label>
+	    			<img id="imgurl" name="imgurl" class="wy_img" src="../jyt_image/jyt_jifen_touxiang_2.jpg"/>    
+                    <input type="file"  name="picname" id="picname" />
+					<input type="hidden" name="coverImgUrl" id="coverImgUrl" value="" />
+					<a id="tupian" style="float:left;margin-left:10px;height: 8.75vw;line-height:8.75vw;margin-top:10px;
+                font-size:14px;color:#f00;"></a>
+                	
+	    		</div>
+				<div class="wy_list">
+	    			<label class="wy_label">清&nbsp;晰&nbsp;度&nbsp;&nbsp;:</label>
+	    			<select class="wy_select" id="codeRateTypes">
+	    				<option value="13">流畅</option>
+	    				<option value="16">高清</option>
+	    				<option value="25">超清</option>
+	    				<option value="99">1080p</option>
+	    			</select>
+	    			<span class="wy_star">*</span>
+	    		</div>
+	    		<div class="wy_list">
+	    			<label class="wy_label">直播时间&nbsp;:</label>
+	    			<select class="wy_select wy_select1" id="timelength">
+	    				<option value="1">40分钟</option>
+	    				<option value="2">1小时</option>
+	    				<option value="3">1时30分</option>
+	    				<option value="4">2小时</option>
+	    				<option value="5">2时30分</option>
+	    				<option value="6">3小时</option> 			
+	    			</select>
+	    			<span class="wy_star">*</span>
+	    		</div>
+	    		<div class="wy_list">
+	    			<label class="wy_label">开始时间&nbsp;:</label>
+	    			<input style="border:0;background:none;appearance:none;-webkit-appearance:none;width: 61.6875vw;border: 1px solid #808080;border-radius: 5px;background: #fff;outline: none;padding: 2vw 2vw;font-size: 1.4rem;margin-left: 1vw;" type="datetime-local" id="date" placeholder="" />
+	    			<span class="wy_star">*</span>
+	    		</div>
+	    		<div class="wy_list">
+	    			<label class="wy_label">观看人数&nbsp;:</label>
+	    			<select class="wy_select" id="num">
+	    				<option value="1">100</option>
+	    				<option value="2">200</option>
+	    				<option value="3">500</option>
+	    				<option value="4">1000</option>
+	    				<option value="5">2000</option>
+	    				<option value="6">5000</option>
+	    				<option value="7">10000</option>
+						<option value="8">20000</option>
+	    			</select>
+	    			<span class="wy_star">*</span>
+	    		</div>
+	    		<div class="wy_list">
+	    			<label class="wy_label">会员观看&nbsp;:</label>
+	    			<select class="wy_select" id="type"  >
+	    				<option value="1">免费观看</option>
+	    				<option value="2">付费观看</option>
+	    			</select>
+	    			<span class="wy_star">*</span>
+	    		</div>
+				<div class="wy_list wy_pay-list">
+					<label class="wy_label" id="fee">需付款：</label>
+					<span class="wy_money">¥<em id="money">5.00</em></span>
+				</div>
+				<ul>
+ 				<li class="jyt_riseapply_con_ul_li">
+                    <p class="jyt_riseapply_con_ul_li_p">支付方式：</p>
+                    <i class="jyt_riseapply_con_ul_li_xing">*</i>
+                </li>
+				<ul class="jyt_payment_page_ul">
+                    <li class="jyt_bg_gou jyt_bg_gou_1 jyt_payment_page_ul_li" id="pay1">
+                        <img class="jyt_payment_page_ul_li_img" src="../jyt_image/jyt_13.jpg" >
+                        <p  class="jyt_payment_page_ul_li_p">微信支付</p>
+                    </li>
+                    <li class="jyt_bg_gou_1 jyt_payment_page_ul_li" id="pay2">
+                        <img class="jyt_payment_page_ul_li_img" src="../jyt_image/jyt_14.jpg" >
+                        <p  class="jyt_payment_page_ul_li_p">支付宝支付</p>
+                    </li>
+                    <li class="jyt_bg_gou_1 jyt_payment_page_ul_li" id="pay3">
+                        <img class="jyt_payment_page_ul_li_img" src="../jyt_image/jyt_15.jpg" >
+                        <p  class="jyt_payment_page_ul_li_p">余额支付</p>
+                    </li>
+                </ul> 
+				<button class="wy_btn" id="button">发起直播</button>
+	    	</div>
+    	</div>
+    </body>
+</html>
+<script type="text/javascript" src="../js/weixin_app.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript">
+      var head_url = '';
+      $(document).ready(function(){
+
+            layui.use('upload', function(){
+                layui.upload({
+                  elem:'#picname',
+                  url: '/upload.php',
+                  before: function(input){
+		            //返回的参数item，即为当前的input DOM对象
+		            $('#tupian').html('图片缓存中...');
+		            layer.msg('加载中', {
+		               icon: 16,
+		               shade: 0.01
+		            });
+		          },
+                  success: function(res){
+                  	$('#tupian').html('缓存成功');
+                    if(res.status==0){
+                        console.log(res.message);
+                    }
+                    if(res.status==1){
+                        $('#imgurl').attr('src',res.url);
+                        $('#coverImgUrl').attr('value',res.url);
+                        head_url = res.url;
+                    }
+                  }
+                });
+            });
+        });
+</script>
+<script>
+	$(".wy_select1").on("change",function(){
+   		$.ajax({
+            url: 'http://hr.hongrunet.com/Home/Letv/createLetv',
+            data: {
+	   		 	codeRateTypes:$("#codeRateTypes").val(),
+	        	timelength:$("#timelength").val(),
+	        	num:$("#num").val(),
+	        	type:$("#type").val(),
+	   		},
+            dataType: 'jsonp',
+    		jsonp: 'jsonpCallback',
+    		jsonpCallback: "jsonpReturn",
+            type: "get",
+            async: false,
+            success: function (msg) {
+                console.log(msg);
+                $("#money").text(msg.data);
+            },
+            error: function (msg) {
+                console.log(msg);
+                alert("网络有误，刷新重试");
+            }
+        });
+	});
+	$("#codeRateTypes").on("change",function(){
+   		$.ajax({
+            url: 'http://hr.hongrunet.com/Home/Letv/createLetv',
+            data: {
+	   		 	codeRateTypes:$("#codeRateTypes").val(),
+	        	timelength:$("#timelength").val(),
+	        	num:$("#num").val(),
+	        	type:$("#type").val(),
+	   		},
+            dataType: 'jsonp',
+    		jsonp: 'jsonpCallback',
+    		jsonpCallback: "jsonpReturn",
+            type: "get",
+            async: false,
+            success: function (msg) {
+                console.log(msg);
+                $("#money").text(msg.data);
+            },
+            error: function (msg) {
+                console.log(msg);
+                alert("网络有误，刷新重试");
+            }
+        });
+	});
+	$("#num").on("change",function(){
+   		$.ajax({
+            url: 'http://hr.hongrunet.com/Home/Letv/createLetv',
+            data: {
+	   		 	codeRateTypes:$("#codeRateTypes").val(),
+	        	timelength:$("#timelength").val(),
+	        	num:$("#num").val(),
+	        	type:$("#type").val(),
+	   		},
+            dataType: 'jsonp',
+    		jsonp: 'jsonpCallback',
+    		jsonpCallback: "jsonpReturn",
+            type: "get",
+            async: false,
+            success: function (msg) {
+                console.log(msg);
+                $("#money").text(msg.data);
+            },
+            error: function (msg) {
+                console.log(msg);
+                alert("网络有误，刷新重试");
+            }
+        });
+	});
+	$("#type").on("change",function(){
+   		$.ajax({
+            url: 'http://hr.hongrunet.com/Home/Letv/createLetv',
+            data: {
+	   		 	codeRateTypes:$("#codeRateTypes").val(),
+	        	timelength:$("#timelength").val(),
+	        	num:$("#num").val(),
+	        	type:$("#type").val(),
+	   		},
+            dataType: 'jsonp',
+    		jsonp: 'jsonpCallback',
+    		jsonpCallback: "jsonpReturn",
+            type: "get",
+            async: false,
+            success: function (msg) {
+                console.log(msg);
+                $("#money").text(msg.data);
+            },
+            error: function (msg) {
+                console.log(msg);
+                alert("网络有误，刷新重试");
+            }
+        });
+	});
+</script>
+<script >
+var lidss;
+    $(".jyt_payment_page_ul li").on("touchstart", function (){
+      $(".jyt_payment_page_ul li").removeClass('jyt_bg_gou');
+      $(this).addClass("jyt_bg_gou");
+      var box = $(this);
+      var index = goIndex(box);
+  
+     });
+    function goIndex(it) {
+        var big = it.parent();
+        for (var i = 0; i < big.children().length; i++) {
+            if (big.children().eq(i)[0] == it[0]) {
+                return i;
+            }
+        }
+    };
+    $("#button").on("touchstart",function(){
+            var str  = $("li.jyt_bg_gou").attr("id");
+            var paytype = $.trim(str.replace('pay', ""));
+             if(is_kingkr_obj() && paytype==1){
+		          paytype=4;
+		      }
+		      // paytype=4;
+            var title = $("#title").val();
+	    	var type = $("#type").val();
+	    	//var cid = $("#cid").val();
+	    	var coverImgUrl = $("#coverImgUrl").val();
+	    	var codeRateTypes = $("#codeRateTypes").val();
+	    	var timelength = $("#timelength").val();
+	    	var num = $("#num").val();
+	    	var start = $("#date").val();
+	    	// var img = $("#img").val();
+	    	var fee = $("#money").text();
+	    	if(!title){
+	    		alert("请先完整标题");
+	    	}
+	    	if(!coverImgUrl){
+	    		alert("请先完整封面图片");
+	    	}
+	    	if(title && coverImgUrl){
+	    		$.ajax({
+	                url:"http://hr.hongrunet.com/Home/Letv/LetvOrder",
+	                dataType:"jsonp",
+	                data:{
+	                	paymenttype:paytype,
+	                	title:title,
+			        	type:type,
+			        	//cid:cid,
+			        	coverImgUrl:coverImgUrl,
+			        	codeRateTypes:codeRateTypes,
+			        	timelength:timelength,
+			        	num:num,
+			        	fee:fee,
+			        	start:start,
+	                },
+	                jsonpCallback:'jsonpReturn',
+	                success: function (msg) {
+	                	lidss = msg.data.lid;
+	                    if (msg.status == 0) {
+	                        alert(msg.msg);
+	                    }else{
+	                        if (msg.data.class=="支付宝") {
+	                            window.location.href=msg.data.res;
+	                        }else if(msg.data.class == "微信APP"){
+                                var orderId = msg.data.oid;
+                                $.ajax({
+                    　　　　　　　　url: "http://hr.hongrunet.com/Home/WxAppPay/sendRequest", 
+                                    data:{'orderId':orderId},
+                    　　　　　　　　dataType:'jsonp',
+                    　　　　　　　　async: true,
+　　　　　　　　					timeout: 200000,
+                                    jsonpCallback:"jsonpReturn",
+                    　　　　　　　　success: function(data){　
+                                        if(data.status){
+                                            payType(data.data,'WEIXIN','PayResult');
+                                        }else{
+                                            alert(data.error_message);
+                                        }
+                    　　　　　　　　}
+                    　　　　　　});
+                            }else if(msg.data.class == "微信"){
+                                    payConfig = msg.data.payConfig;
+                                    //注入 Jsapi 配置
+                                    wx.config(eval('(' +msg.data.jsapi + ')'));                            
+                                   // 调用支付
+                                   WeixinJSBridge.invoke(
+                                    'getBrandWCPayRequest', {
+                                    "appId":payConfig.appId,     //公众号名称，由商户传入
+                                    "timeStamp":payConfig.timeStamp, //时间戳，自1970年以来的秒数
+                                    "nonceStr":payConfig.nonceStr, //随机串
+                                    "package":payConfig.package,
+                                    "signType":payConfig.signType, //微信签名方式：
+                                    "paySign":payConfig.paySign //微信签名
+                                   },
+                                   function(res){
+                                        // console.log(res);return false;
+                                       if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                                        $('#loading').hide();
+                                        // 支付成功
+                                        alert('付款成功');
+                                        window.location.href = "lf_selectPort.html?id="+msg.data.lid;
+                                      }else{
+                                        $('#loading').hide();
+                                        // 支付失败
+                                        alert('支付取消');
+                                        // window.location = '/Goods/show.html?id={{$_GET["id"]}}';
+                                      }
+                                   }
+                                 );
+                            }else{
+	                            if (msg.status == 1) {
+	                                alert("支付成功");
+	                                window.location.href="lf_selectPort.html?id="+msg.data.lid;
+	                            }else{
+	                                alert("支付失败");
+	                            }
+	                        }
+	                    }
+	                }
+            	});
+	    	}
+            
+         })
+ // }
+</script>
+<script type="text/javascript">
+	function payResult(r){
+		setTimeout(function(){
+	      　　　　if(r == 0){
+	                alert('付款成功');
+	                window.location.href = "lf_personal.html";
+	      　　　　}else{
+	      　　　　　　alert('支付失败请刷新后再试！');
+	      　　　　}
+	  		}, 2000);
+	      　　}
+     
+</script>

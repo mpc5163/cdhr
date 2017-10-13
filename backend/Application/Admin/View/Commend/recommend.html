@@ -1,0 +1,106 @@
+<include file="Public/head" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/jedate/skin/jedate.css">
+<script type="text/javascript" src="__PUBLIC__/jedate/jquery.jedate.js"></script>
+<style type="text/css">
+	table tr > td:first-child{padding-left:20px;padding-bottom:10px;width:40%;text-align:center;}
+	table tr > td:last-child input{width:60%;margin-bottom:10px;	}
+</style>
+	<div class="modal-header">
+      <h4 class="modal-title" id="myModalLabel">推荐　添加 | 编辑</h4>
+    </div>
+     <div class="modal-body">
+        <input type="hidden" name="id" id="id" value="{$products.id}">
+				<table style="width: 100%;">
+					<tr style="margin-bottom:5px;">
+						<td>推荐名称</td>
+						<td><input type="text" class="form-control" name="name" placeholder="推荐名称" id="name" value="{$products.name}"></td>
+					</tr>
+          <tr>
+          	<td class="wstxt">开始日期</td>
+          	<td><input type="text" class="workinput wicon mr25 form-control" id="inpstart" readonly placeholder="请选择开始日期" value="{$products.begintime}"></td>
+          </tr>
+          <tr>	
+						<td class="wstxt">结束日期</td>
+						<td><input type="text" class="workinput wicon mr25 form-control" id="inpend" readonly placeholder="请选择结束日期" value="{$products.endtime}"></td>
+          </tr>
+	        <tr>				 
+						<td>推荐简介</td>
+						<td><textarea style="resize:none;width:410px" type="text" rows="4" class="form-control" name="info" id="info" >{$products.info|htmlspecialchars_decode|stripslashes}</textarea> 
+	       </tr>
+	       <tr>
+						<td style='margin-top:10px;padding-bottom:0px;'>推荐详情</td>
+						<td>
+							<span id="detail" name="detail" style='display:block;margin-top:10px;'>{$products.content|htmlspecialchars_decode|stripslashes}</span> 					
+						</td>	       	
+	       </tr> 
+				</table>
+	    </div>      
+<script id="container" name="content" type="text/plain" style="min-height: 400px;">
+</script>		
+<button class="btn btn-default" style="width:200px;text-align:center;position:absolute;right:100px;margin-top:15px;" onclick="saveProduct()">完成</button>
+<include file="Public/footer" />
+<script src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+  $("#detail").hide();
+    var ue;
+    $(function(){
+    	$("#container").height(document.documentElement.clientHeight-160);
+         ue = UE.getEditor('container',{
+            serverUrl :"{:U('/Admin/Factory/ueditor')}"
+        });
+            ue.ready(function() {
+		    //设置编辑器的内容
+		    ue.setContent($("#detail").html());      
+		});
+    });
+
+	//保存添加或修改的推荐信息
+	function saveProduct(){
+  	var html     = ue.getContent();	
+  	var info     = $("#info").val();  	
+  	var name     = $("#name").val();	
+    var id       = $("#id").val();
+		var starttime= $("#inpstart").val();
+		var endtime  = $("#inpend").val();
+	  if (starttime == '') {
+	 		alert('请选择起始日期!');return;
+	  };
+	  if (endtime == '') {
+	 		alert('请选择结束日期!');return;
+	  };	     
+  	$.ajax({
+  		type     : "POST",
+  		url      : "{:U('/Admin/Commend/saveProduct')}",
+  		data     : {"id":id,"info":info,"name":name,"content":html,'begintime':starttime,'endtime':endtime},
+  		dataType : "json",
+  		error		 : function(){},
+  		success  : function(data){
+    			console.log(data);
+    			if(data.status){
+    				$(window.parent.document).find("#main_iframe").attr("src",data.url);
+    			}else{
+    				alert(data.info);
+    			}      				
+  		}
+  	});
+	}
+
+var start = {
+    format: 'YYYY-MM-DD hh:mm:ss',
+    minDate: '1970-01-01 00:00:00', //设定最小日期为当前日期
+    isinitVal:true,
+    festival:false,
+    ishmsVal:false,
+    maxDate: '2099-06-30 23:59:59', //最大日期
+};
+var end = {
+    format: 'YYYY-MM-DD hh:mm:ss',
+    minDate: $.nowDate(0), //设定最小日期为当前日期
+    festival:false,
+    maxDate: '2099-06-16 23:59:59', //最大日期
+};
+$('#inpstart').jeDate(start);
+$('#inpend').jeDate(end);	
+</script>
+

@@ -1,0 +1,88 @@
+<include file="Public/head" />
+<style type="text/css">
+	table tr > td:first-child{padding-left:20px;padding-bottom:10px;width:40%;text-align:center;}
+	table tr > td:last-child input{width:80%;margin-bottom:10px;	}
+</style>
+<div> 
+	<div style="margin:10px;">
+		<label>&nbsp;给:</label>
+		<!-- <input style="height:36px;" type="text" size="24px" placeholder="输入支付原因查询" id="yuan" /> -->
+		<input type="text" id="userid" list="url_list" name="text" placeholder="输入手机号" class="form-control" style="width:10%;height:36px;display:inline;border-radius:2px;" />
+		<datalist id="url_list">
+			<volist name="user" id="users" >
+				<option data-id="{$users.id}" value="{$users.phone}">{$users.phone}-{$users.name}</option>
+			</volist>
+		</datalist>
+		<label>&nbsp;充值晋级币 :</label>
+		<input style="height:36px;" type="text" size="24px" placeholder="输入充值金额" id="coin" name="coin" />	
+		<button style="margin-left:10px;width:100px;" class="btn btn-primary" onclick="recharge();">充值</button>
+	</div>
+	
+	<div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="userlist" style="padding-right: 20px;">
+			<table id="jqGrid" style="width: 100%;"></table>
+			<div id="jqGridPager"></div> 	
+	    </div>
+    	<div role="tabpanel" class="tab-pane" id="edituser"> 		
+	</div>
+</div>
+<include file="Public/footer" />
+<script type="text/javascript">
+	$("#coin").bind("input propertychange",function(){
+	    var phone = $(this).val();
+	    if (!/^[0-9]*$/.test(phone)) {
+	      $(this).val("");
+	    }
+	  });
+	var class1 = $("#class").val();
+	function fTime(createtime){
+		var timestamp3 = createtime;  
+		var newDate = new Date();
+		newDate.setTime(timestamp3 * 1000);
+		return newDate.toLocaleString();
+	}
+	//模糊查询课程
+	function recharge(){
+		var userid = $("#userid").val();
+		// console.log(userid);return;
+		var coin = $("#coin").val();
+		$.ajax({
+			url:"{:U('/Admin/State/recharge')}",
+			type:'GET',
+			data:{'userid':userid,'coin':coin},
+			dataType:'json',
+			success:function(data){
+				if(data.status==1){
+					alert('充值成功');
+				}else{
+					alert('充值失败');
+				}
+			}
+		});
+	}
+	$(document).ready(function($){	
+
+
+		$("#jqGrid").jqGrid({
+			styleUI : 'Bootstrap',
+			colModel: [
+			    { label: '昵称', name: 'nickname',width:'80'},
+			    { label: '手机号', name: 'phone',width:'80'},
+			    { label: '虚拟币', name: 'coin',width:'50'},
+			    { label: '备注', name: 'remark',width:'100'},
+			    { label: '充值时间', name: 'createtime',width:'100',formatter: fTime}    
+			],
+			viewrecords: true,
+			rownumbers: true,
+			rownumWidth: 35,
+			height: document.documentElement.clientHeight-135,
+			autowidth:true,
+			rowNum: 9,
+			datatype: 'local',
+			loadonce:true,
+			pager: "#jqGridPager"
+		});
+		$("#jqGrid").jqGrid('setGridParam', { data: eval({$data})});
+		$("#jqGrid").trigger('reloadGrid');
+	});
+</script> 

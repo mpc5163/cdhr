@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="ZZJBS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!-- 引入文件 -->
+        <link rel="stylesheet" href="../font/iconfont.css"><!-- 引入font文件 -->
+        <link rel="stylesheet" href="../css/common.css" /><!-- 公共样式 -->
+        <link rel="stylesheet" type="text/css" href="../css/jyt_public.css">
+        <script type="text/javascript" src="../js/zepto.min.js"></script><!-- 引入zepto文件 -->
+        <script type="text/javascript" src="../js/common.js"></script><!-- 引入公共js文件 -->
+        <title>鸿儒商学讲堂</title>
+    </head>
+    <body>
+    	<!-- 控制页面大小 -->
+    	<div class="big-box">
+    		<!-- 头部 -->
+	    	<header class="header  jyt_jifen_header">
+                <a href="javascript:history.go(-1);" class="iconfont icon-fanhui jyt_header_login_back"></a>
+                <h1 class="jyt_header_edit_h1">我的积分</h1>
+                <div class="jyt_jifen_nav">
+	                	<ul  class="jyt_jifen_nav_ul">
+	                		<li class="jyt_jifen_nav_ul_li">
+	                			<a class="jyt_jifen_nav_ul_li_a jyt_jifen_bg_1 jyt_jifen_nav_ul_li_a_yes" href="javascript:void(0);">第一学期</a>
+	                		</li>
+	                		<li class="jyt_jifen_nav_ul_li">
+	                			<a class="jyt_jifen_nav_ul_li_a jyt_jifen_bg_2" href="javascript:void(0);">第二学期</a>
+	                		</li>
+	                		<li class="jyt_jifen_nav_ul_li">
+	                			<a class="jyt_jifen_nav_ul_li_a jyt_jifen_bg_3" href="javascript:void(0);">第三学期</a>
+	                		</li>
+	                	</ul>
+	            </div>
+	    	</header>
+	    	<!-- 中间内容 -->
+	    	<div class="content jyt_jifen_con ">
+	               <ul id="jifen" class="jifen_con_ul">
+	               		<!-- <li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">1</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_1.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_1">
+	               				<i class="iconfont icon-ertong"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">2</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_2.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">3<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_2">
+	               				<i class="iconfont icon-xuexinzhuanhuan"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">3</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_3.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_3">
+	               				<i class="iconfont icon-jiangshi"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">4</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_4.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_4">
+	               				<i class="iconfont icon-hehuoren"></i>
+	               			</div>
+	               		</li> -->
+	               </ul>
+	                <ul class="jifen_con_ul" style="display: none;">
+	               		<!-- <li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">1</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_1.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_1">
+	               				<i class="iconfont icon-ertong"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">2</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_2.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">3<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_2">
+	               				<i class="iconfont icon-xuexinzhuanhuan"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">3</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_3.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_3">
+	               				<i class="iconfont icon-jiangshi"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">4</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_4.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_4">
+	               				<i class="iconfont icon-hehuoren"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">5</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_4.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_4">
+	               				<i class="iconfont icon-hehuoren"></i>
+	               			</div>
+	               		</li> -->
+	               </ul>
+	               <ul class="jifen_con_ul" style="display: none;">
+	               		<!-- <li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">1</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_1.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_1">
+	               				<i class="iconfont icon-ertong"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">2</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_2.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">3<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_2">
+	               				<i class="iconfont icon-xuexinzhuanhuan"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">3</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_3.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_3">
+	               				<i class="iconfont icon-jiangshi"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">4</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_4.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_4">
+	               				<i class="iconfont icon-hehuoren"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">5</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_4.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_4">
+	               				<i class="iconfont icon-hehuoren"></i>
+	               			</div>
+	               		</li>
+	               		<li class="jifen_con_ul_li">
+	               			<h3 class="jifen_con_ul_li_h3">6</h3>
+	               			<img class="jifen_con_ul_li_touxiang" src="../jyt_image/jyt_jifen_touxiang_4.jpg" />
+	               			<div class="jifen_con_ul_li_xq">
+	               				<p class="jifen_con_ul_li_xq_p">Evelyn Fisher</p>
+	               				<i class="jifen_con_ul_li_xq_i">2017-03-29  09:55</i>
+	               			</div>
+	               			<h4 class="jifen_con_ul_li_h4">5<span class="jifen_con_ul_li_h4_sp">积分</span>
+	               			</h4>
+	               			<div  class="jifen_con_ul_li_dengji jyt_dengji_4">
+	               				<i class="iconfont icon-hehuoren"></i>
+	               			</div>
+	               		</li> -->
+	               </ul>
+	    	</div>
+	    
+	    	
+	    	<!-- 尾部，如果没有需删除 -->
+	    	<!-- <footer class="footer">
+	    		
+	    	</footer> -->
+    	</div>
+</body>
+<script>
+$(document).ready(function() {
+ var jifen = $("#jifen");
+ $.ajax({
+      url : 'http://hr.hongrunet.com/Home/UserCenter/myScore',
+      dataType:'jsonp',
+      data:{
+      	type:1
+      },
+      jsonpCallback:'jsonpReturn',
+      success : function(req){
+        console.log(req.data); 
+
+        $.each(req.data,function(index,value){
+        	 //console.log(value.score);
+          var $li = $("<li>").addClass('jifen_con_ul_li');
+          var $h3 = $("<h3>").addClass('jifen_con_ul_li_h3').text(index+1);
+          var $img = $("<img>").addClass('jifen_con_ul_li_touxiang').attr("src",value.headimg);
+          var $div1 = $("<div>").addClass('jifen_con_ul_li_xq');
+          var $p = $("<p>").addClass('jifen_con_ul_li_xq_p').text(value.nickname);
+          var $i1 = $("<i>").addClass('jifen_con_ul_li_xq_i').text(value.createtime);
+     	  if(value.headimg==null||value.headimg==''){
+          	  var $img = $("<img>").addClass('jifen_con_ul_li_touxiang').attr("src","../lf_img/lf_portrait.png");
+          };
+          //console.log(value.grade);
+           if(value.grade=="1"){
+           	  var $div2 = $("<div>").addClass('jifen_con_ul_li_dengji jyt_dengji_1');
+           	  var $i2 = $("<i>").addClass('iconfont icon-ertong');
+           };
+            if(value.grade=="2"){
+           	 var $div2 = $("<div>").addClass('jifen_con_ul_li_dengji jyt_dengji_2');
+           	 var $i2 = $("<i>").addClass('iconfont icon-xuexinzhuanhuan');
+           };
+            if(value.grade=="3"){
+           	 var $div2 = $("<div>").addClass('jifen_con_ul_li_dengji jyt_dengji_3');
+           	 var $i2 = $("<i>").addClass('iconfont icon-jiangshi');
+           };
+            if(value.grade=="4"){
+           	 var $div2 = $("<div>").addClass('jifen_con_ul_li_dengji jyt_dengji_4');
+           	 var $i2 = $("<i>").addClass('iconfont icon-hehuoren');
+           };
+          var $span = $("<span>").text('积分');
+          var $h4 = $("<h4>").addClass('jifen_con_ul_li_h4').text(value.score);
+           $h4.append($span);
+          
+           $li.append($h3).append($img).append($div1.append($p).append($i1)).append($h4).append($div2.append($i2));
+           jifen.append($li);
+        });
+     } 
+});
+
+
+	$(".jyt_jifen_nav_ul_li").on("touchstart",function () {
+    			$(".jyt_jifen_nav_ul_li_a").removeClass('jyt_jifen_nav_ul_li_a_yes');
+    			$(this).children('a').addClass('jyt_jifen_nav_ul_li_a_yes');
+    			var	index = $(this).index() ;
+    			$(".jifen_con_ul").css('display', 'none');
+    			$(".jifen_con_ul").eq(index).css('display', 'block');
+    			var type = index + 1;
+    			console.log(type);
+    			var $jifen = $(".jifen_con_ul").eq(index);
+    			$jifen.html("");
+    			$.ajax({
+		              url : 'http://hr.hongrunet.com/Home/UserCenter/myScore',
+		              dataType:'jsonp',
+		              data:{
+		              	type:type
+		              },
+		              jsonpCallback:'jsonpReturn',
+		              success : function(req){
+		                console.log(req);  
+		               $.each(req.data,function(index,value){
+			              var $li = $("<li>").addClass('jifen_con_ul_li');
+			              var $h3 = $("<h3>").addClass('jifen_con_ul_li_h3').text(index+1);
+			              var $img = $("<img>").addClass('jifen_con_ul_li_touxiang').attr("src",value.headimg);
+			              var $div1 = $("<div>").addClass('jifen_con_ul_li_xq');
+			              var $p = $("<p>").addClass('jifen_con_ul_li_xq_p').text(value.nickname);
+			              var $i1 = $("<i>").addClass('jifen_con_ul_li_xq_i').text(value.createtime);
+			               if(value.headimg==null||value.headimg==''){
+				          	  var $img = $("<img>").addClass('jifen_con_ul_li_touxiang').attr("src","../lf_img/lf_portrait.png");
+				          };
+			               if(value.grade=="1"){
+			               	 var $div2 = $("<div>").addClass('jifen_con_ul_li_dengji jyt_dengji_1');
+			               	 var $i2 = $("<i>").addClass('iconfont icon-ertong');
+			               };
+			                if(value.grade=="2"){
+			               	 var $div2 = $("<div>").addClass('jifen_con_ul_li_dengji jyt_dengji_2');
+			               	 var $i2 = $("<i>").addClass('iconfont icon-xuexinzhuanhuan');
+			               };
+			                if(value.grade=="3"){
+			               	 var $div2 = $("<div>").addClass('jifen_con_ul_li_dengji jyt_dengji_3');
+			               	 var $i2 = $("<i>").addClass('iconfont icon-jiangshi');
+			               };
+			                if(value.grade=="4"){
+			               	 var $div2 = $("<div>").addClass('jifen_con_ul_li_dengji jyt_dengji_4');
+			               	 var $i2 = $("<i>").addClass('iconfont icon-hehuoren');
+			               };
+			              var $span = $("<span>").text('积分');
+				          var $h4 = $("<h4>").addClass('jifen_con_ul_li_h4').text(value.score);
+				          console.log(value.score);
+				           $h4.append($span);
+			              
+			               $li.append($h3).append($img).append($div1.append($p).append($i1)).append($h4).append($div2.append($i2));
+			               	$jifen.append($li);
+			            });
+		             } 
+		          });
+
+    		})
+ });
+
+
+</script>
+</html>
